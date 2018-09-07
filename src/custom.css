@@ -1,0 +1,165 @@
+.form-compact {
+  font-size: 0.8em;
+}
+
+.form-compact .form-control {
+  padding: 1px 2px;
+  height: 24px;
+  font-size: 1em;
+}
+.form-compact label {
+  margin-bottom: 1px;
+}
+.form-compact .form-group {
+  margin-bottom: 0px;
+}
+
+body {
+  background-color: black;
+  background: url(http://www.eugensystems.com/wp-content/uploads/2017/09/SteelDivision_20170424_180309.png)
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+p {
+  font-size: 0.7rem;
+  margin: 0.2rem;
+}
+
+.p-err {
+  background-color: red;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.col-sm-1.col-sm-10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+  text-align: center;
+}
+
+.btn {
+  font-size: 1rem;
+}
+
+.div-rel {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.txt-price {
+  position: absolute;
+  bottom: -10px;
+  left: 0%;
+  color: #ff0;
+  font-weight: 900;
+}
+.txt-avail {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  color: #fff;
+  font-weight: 900;
+}
+.txt-phase {
+  position: absolute;
+  bottom: -10px;
+  left: 80%;
+  color: #fff;
+  font-weight: 900;
+}
+.txt-rel-ap {
+  position: absolute;
+  top: -5px;
+  left: 105%;
+  color: #ff0;
+  font-weight: 900;
+}
+.txt-rel-av {
+  position: absolute;
+  bottom: -5px;
+  left: 105%;
+  color: #ff0;
+  font-weight: 900;
+}
+
+.img-rel-xp {
+  position: absolute;
+  top: -0px;
+  left: 50%;
+  height: 15px;
+}
+.img-rel-spec {
+  position: absolute;
+  top: -5px;
+  left: -10%;
+  color: #fff;
+}
+.img-rel-ap {
+  position: absolute;
+  top: -5px;
+  left: 100%;
+}
+
+.img-back {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 60px;
+}
+
+.img-xp {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 20px;
+}
+
+.img-big {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100px;
+}
+
+.img-weapon {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 50px;
+}
+
+.tab-scroll {
+  height: 935px;
+  overflow-y: auto;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
