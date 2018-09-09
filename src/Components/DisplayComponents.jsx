@@ -142,7 +142,11 @@ export class DisplaySpecial extends PureComponent {
     }
     return (
       <img
-        src={"img/" + x.replace("Texture_Speciality_Icon_", "") + ".tgv.png"}
+        src={
+          "img/" +
+          x.replace("Texture_Speciality_Icon_", "").toLowerCase() +
+          ".tgv.png"
+        }
         className={css}
         alt={"DisplaySpecial"}
       />
