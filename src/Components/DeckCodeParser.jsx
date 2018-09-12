@@ -6,15 +6,20 @@ class DeckCodeParser extends PureComponent {
   };
 
   render() {
+    let Deck = this.props.Deck;
     return (
       <div className="row card-body">
-        <div className="col-sm-3">
+        <div className="col-sm-5">
           <h2>
-            {this.props.Deck.Emblem}: {this.props.Deck.Cards.length} /{" "}
-            {this.props.Deck.DeckPointsTotal}
+            {Deck.Emblem}: {Deck.Cards.length} / {Deck.DeckPointsTotal} |A:
+            {Deck.PhaseA.Income}
+            |B:
+            {Deck.PhaseB.Income}
+            |C:
+            {Deck.PhaseC.Income}|
           </h2>
         </div>
-        <div className="col-sm-7">
+        <div className="col-sm-5">
           <input
             className="form-control"
             value={this.props.code}

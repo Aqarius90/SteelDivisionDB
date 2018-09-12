@@ -13,15 +13,14 @@ class app extends Component {
     this.state = {
       //UI
       code: "",
-      isDBLoaded: true,
+      isDBLoaded: false,
       isDBLoading: false,
       DBUnits: [[], [], [], [], [], [], [], []],
       DeckUnits: [[], [], [], [], [], [], [], []],
       UnitsToDisplay: [],
 
       //data
-      defaultDBURL: "http://folkarps.com.www497.your-server.de/Database.json",
-      DB: dict,
+      DB: "",
       Deck: new DeckAssembly(),
 
       //state modifiers
@@ -48,23 +47,7 @@ class app extends Component {
     };
   }
 
-  componentDidMount() {
-    let newDB = this.state.DB;
-    for (let i = 0; i < newDB.Decks.length; i++) {
-      for (let j = 0; j < newDB.Decks[i].PackList.length; j++) {
-        newDB.Decks[i].PackList[j].Unit = fetchUnit(
-          newDB.Decks[i].PackList[j].Unit,
-          this.state.DB
-        );
-
-        newDB.Decks[i].PackList[j].TransportUnit = fetchUnit(
-          newDB.Decks[i].PackList[j].TransportUnit,
-          this.state.DB
-        );
-      }
-    }
-    this.setState({ DB: newDB });
-  }
+  componentDidMount() {}
 
   //interface
   dbLoading = () => {
@@ -244,23 +227,19 @@ class app extends Component {
       return <div className="lds-dual-ring" />;
     } else {
       if (!this.state.isDBLoaded) {
-        //self-contained: two loading buttons
         return (
           <React.Fragment>
-            <Header />
-            <div className="row">
-              <div className="col-sm">
-                <button
-                  className="btn btn-default"
-                  onClick={this.loadDefaultDB}
-                >
-                  LOAD DEFAULT DATA
-                </button>
-              </div>
-              <div className="col-sm">
-                <button className="btn btn-default" onClick={this.loadCustomDB}>
-                  LOAD CUSTOM DATA
-                </button>
+            <div className="card">
+              <Header />
+              <div className="row">
+                <div className="col-sm">
+                  <button
+                    className="btn btn-default btn-block"
+                    onClick={this.loadDefaultDB}
+                  >
+                    LOAD DATABASE
+                  </button>
+                </div>
               </div>
             </div>
           </React.Fragment>
@@ -306,11 +285,28 @@ class app extends Component {
     }
   };
 
-  loadDefaultDB = () => {};
+  loadDefaultDB = () => {
+    this.setState({ isDBloading: true });
+    let newDB = dict;
+    for (let i = 0; i < newDB.Decks.length; i++) {
+      for (let j = 0; j < newDB.Decks[i].PackList.length; j++) {
+        newDB.Decks[i].PackList[j].Unit = fetchUnit(
+          newDB.Decks[i].PackList[j].Unit,
+          newDB
+        );
+
+        newDB.Decks[i].PackList[j].TransportUnit = fetchUnit(
+          newDB.Decks[i].PackList[j].TransportUnit,
+          newDB
+        );
+      }
+    }
+    this.setState({ DB: newDB });
+    this.setState({ isDBLoaded: true });
+  };
 
   loadCustomDB = () => {
-    console.log("loadCustomDB");
-    this.setState({ isDBLoaded: true });
+    //this.setState({ isDBLoaded: true });
   };
 
   render() {

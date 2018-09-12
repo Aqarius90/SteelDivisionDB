@@ -24,7 +24,6 @@ class LeftPanel extends Component {
             <Tab>Anti-Air</Tab>
             <Tab>Artillery</Tab>
             <Tab>Planes</Tab>
-            <Tab>Debug</Tab>
           </TabList>
 
           <TabPanel>
@@ -114,7 +113,6 @@ class LeftPanel extends Component {
               header={"Planes"}
             />
           </TabPanel>
-          <TabPanel />
         </Tabs>
       </React.Fragment>
     );

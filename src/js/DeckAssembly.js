@@ -40,17 +40,38 @@ class DeckAssembly {
     this.Emblem = deck.EmblemTexture;
     this.Portrait = deck.PortraitTexture;
 
-    this.CostMatrix = new Array(8);
+    let matrix = new Array(8);
     for (let i = 0; i < 8; i++) {
-      this.CostMatrix[i] = new Array(10);
+      matrix[i] = new Array(10);
       for (let j = 0; j < 10; j++) {
         if (typeof deck.CostMatrix[i][j] === "undefined") {
-          this.CostMatrix[i][j] = "X";
+          matrix[i][j] = "X";
         } else {
-          this.CostMatrix[i][j] = deck.CostMatrix[i][j];
+          matrix[i][j] = deck.CostMatrix[i][j];
         }
       }
     }
+
+    /*:eugene:
+    *cost matrix enum:
+    *0 ~air~ "avion"
+    *1 ~tank~ 'char"
+    *2 arty
+    *3 support
+    *4 inf
+    *5 recon
+    *6 PAK
+    *7 AA*/
+
+    this.CostMatrix[7] = matrix[0];
+    this.CostMatrix[2] = matrix[1];
+    this.CostMatrix[6] = matrix[2];
+    this.CostMatrix[3] = matrix[3];
+    this.CostMatrix[1] = matrix[4];
+    this.CostMatrix[0] = matrix[5];
+    this.CostMatrix[4] = matrix[6];
+    this.CostMatrix[5] = matrix[7];
+
     this.DeckPointsTotal = deck.MaxActivationPoints;
     this.encodeDeck();
     return this;
