@@ -13,7 +13,7 @@ class Ammo extends PureComponent {
   render() {
     return (
       <div className="row card-body">
-        <div className="col-sm-4">
+        <div className="col-xl-4">
           <li>
             <p>TypeArme: {this.props.x.TypeArme}</p>
           </li>
@@ -70,7 +70,7 @@ class Ammo extends PureComponent {
             <p>Physical Damage: {this.props.x.PhysicalDamages}</p>
           </li>
         </div>
-        <div className="col-sm-4">
+        <div className="col-xl-4">
           <li>
             <p>
               Suppress damage radius:{" "}
@@ -123,7 +123,7 @@ class Ammo extends PureComponent {
             </p>
           </li>
         </div>
-        <div className="col-sm-4">
+        <div className="col-xl-4">
           <li>
             <p>Shots per salvo: {this.props.x.NbTirParSalves}</p>
           </li>

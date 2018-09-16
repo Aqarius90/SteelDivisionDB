@@ -23,7 +23,7 @@ class TurretHeader extends PureComponent {
     }
     return (
       <div className="card-header row">
-        <div className="col-sm-3">
+        <div className="col-xl-3">
           <img
             src={this.getWeaponPicture(
               this.props.Turret.WeaponList[0].Ammunition.InterfaceWeaponTexture
@@ -34,10 +34,10 @@ class TurretHeader extends PureComponent {
             }
           />
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           <h5>{this.props.Turret.WeaponList[0].Ammunition.Caliber}</h5>
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           {this.parseGunCount(this.props.Turret.WeaponList[0])}
         </div>
         <DisplayAmmoProps

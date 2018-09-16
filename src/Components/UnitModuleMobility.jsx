@@ -4,9 +4,38 @@ import { parseBool, parseSpeed } from "../js/parsers";
 class UnitModuleMobility extends PureComponent {
   render() {
     let x = this.props.x;
+    if (x.VitesseCombat === null) {
+      return (
+        <div className="row">
+          <div className="col-xl">
+            <ul>
+              <li>
+                Speed/Road Speed:
+                {parseSpeed(x)}
+              </li>
+              <li>
+                Combat Speed:{" "}
+                {x.AirVitesseCombat.replace("(", "").replace(") * Metre)", "")}
+              </li>
+            </ul>
+          </div>
+          <div className="col-xl">
+            <ul>
+              <li>FuelCapacity: {x.FuelCapacity}</li>
+              <li>FuelMoveDuration: {x.FuelMoveDuration}</li>
+            </ul>
+          </div>
+          <div className="col-xl">
+            <ul>
+              <li>Turn-Around time: {x.TempsDemiTour} s</li>
+            </ul>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="row">
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>
               Speed/Road Speed:
@@ -18,7 +47,7 @@ class UnitModuleMobility extends PureComponent {
             <li>UnitMovingType: {x.UnitMovingType}</li>
           </ul>
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>FuelCapacity: {x.FuelCapacity}</li>
             <li>FuelMoveDuration: {x.FuelMoveDuration}</li>
@@ -29,7 +58,7 @@ class UnitModuleMobility extends PureComponent {
             <li>isTowable: {parseBool(x.isTowable)}</li>
           </ul>
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>StartTime: {x.StartTime.replace("* Seconde", "s")}</li>
             <li>StopTime: {x.StopTime.replace("* Seconde", "s")}</li>

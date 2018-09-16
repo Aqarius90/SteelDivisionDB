@@ -6,6 +6,7 @@ import LeftPanel from "./LeftPanel";
 import dict from "../Database.json"; //for dev purposes
 import DeckAssembly from "../js/DeckAssembly";
 import fetchUnit from "../js/fetchers";
+import cloneDeep from "lodash/cloneDeep";
 
 class app extends Component {
   constructor() {
@@ -41,6 +42,7 @@ class app extends Component {
       setDeck: this.setDeck,
       setDeckCode: this.setDeckCode,
       parseCode: this.parseCode,
+      autofill: this.autofill,
       parseNull: this.parseNull,
       addUnit: this.addUnit,
       deleteUnit: this.deleteUnit
@@ -142,6 +144,55 @@ class app extends Component {
     this.setState({ Deck: newDeck, code: newCode });
   };
 
+  autofill = x => {
+    let newDeck = this.state.Deck.setDeck(x);
+    let cardsToUse = cloneDeep(newDeck.PackList);
+
+    let matrix = [0, 0, 0, 0, 0, 0, 0, 0];
+    while (newDeck.DeckPointsTotal > newDeck.Cards.length) {
+      let rand = Math.floor(Math.random() * cardsToUse.length);
+      let factory = 8;
+      switch (cardsToUse[rand].Factory) {
+        case "Reco":
+          factory = 0;
+          break;
+        case "Infanterie":
+          factory = 1;
+          break;
+        case "Tank":
+          factory = 2;
+          break;
+        case "Support":
+          factory = 3;
+          break;
+        case "AT":
+          factory = 4;
+          break;
+        case "DCA":
+          factory = 5;
+          break;
+        case "Art":
+          factory = 6;
+          break;
+        case "Air":
+          factory = 7;
+          break;
+        default: {
+          console.log("UnitParseError: autofill");
+        }
+      }
+      if (newDeck.CostMatrix[factory][matrix[factory]] !== "X") {
+        matrix[factory]++;
+        newDeck.addUnit(cardsToUse[rand]);
+      }
+      cardsToUse.splice(rand, 1);
+    }
+    this.parseUnits(newDeck, 0);
+    this.parseUnits(newDeck, 1);
+    let newCode = newDeck.ExportCode;
+    this.setState({ Deck: newDeck, code: newCode });
+  };
+
   setDeck = x => {
     let newDeck = this.state.Deck.setDeck(x);
     let newCode = newDeck.ExportCode;
@@ -219,6 +270,7 @@ class app extends Component {
       }
       this.setState({ DeckUnits: x });
     }
+    return x;
   }
 
   //renders
@@ -232,7 +284,7 @@ class app extends Component {
             <div className="card">
               <Header />
               <div className="row">
-                <div className="col-sm">
+                <div className="col-xl">
                   <button
                     className="btn btn-default btn-block"
                     onClick={this.loadDefaultDB}
@@ -260,7 +312,7 @@ class app extends Component {
               />
             </div>
             <div className="row">
-              <div className="col-sm-7">
+              <div className="col-xl-7">
                 <LeftPanel
                   DB={this.state.DB}
                   Deck={this.state.Deck}
@@ -269,7 +321,7 @@ class app extends Component {
                   f={this.state.API}
                 />
               </div>
-              <div className="col-sm-5">
+              <div className="col-xl-5">
                 <RightPanel
                   DB={this.state.DB}
                   UnitsToDisplay={this.state.UnitsToDisplay}

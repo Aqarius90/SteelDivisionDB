@@ -4,6 +4,7 @@ import DeckGrid from "./DeckGrid";
 import UnitPicker from "./UnitPicker";
 import "react-tabs/style/react-tabs.css";
 import DivisionsSelector from "./DivisionsSelector";
+import RandomizePanel from "./RandomizePanel";
 
 class LeftPanel extends Component {
   render() {
@@ -24,6 +25,7 @@ class LeftPanel extends Component {
             <Tab>Anti-Air</Tab>
             <Tab>Artillery</Tab>
             <Tab>Planes</Tab>
+            <Tab>Randomizer</Tab>
           </TabList>
 
           <TabPanel>
@@ -111,6 +113,14 @@ class LeftPanel extends Component {
               DBUnits={this.props.DBUnits[7]}
               f={this.props.f}
               header={"Planes"}
+            />
+          </TabPanel>
+          <TabPanel>
+            <RandomizePanel
+              DB={this.props.DB}
+              DeckUnits={this.props.DeckUnits[7]}
+              DBUnits={this.props.DBUnits[7]}
+              f={this.props.f}
             />
           </TabPanel>
         </Tabs>

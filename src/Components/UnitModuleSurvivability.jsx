@@ -6,7 +6,7 @@ class UnitModuleSurvivability extends PureComponent {
     let x = this.props.x;
     return (
       <div className="row">
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>DefaultAutoCover: {parseBool(x.DefaultAutoCover)}</li>
             <li>MoralLevel: {x.MoralLevel}</li>
@@ -16,7 +16,7 @@ class UnitModuleSurvivability extends PureComponent {
             </li>
           </ul>
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>
               StunDamagesRegen:{" "}

@@ -6,14 +6,14 @@ class UnitModuleRecon extends PureComponent {
     return (
       <React.Fragment>
         <div className="row">
-          <div className="col-sm">
+          <div className="col-xl">
             <ul>
               <li>IdentifyBaseProbability: {x.IdentifyBaseProbability}</li>
               <li>VisionObstructionType: {x.VisionObstructionType}</li>
               <li>VisionUnitType: {x.VisionUnitType}</li>
             </ul>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <ul>
               <li>
                 TimeBetweenEachIdentifyRoll: {x.TimeBetweenEachIdentifyRoll}
@@ -39,7 +39,7 @@ class GunNoiseParser extends PureComponent {
     }
     return x.Turrets.map((x, i) => {
       return (
-        <div className="col-sm" key={i}>
+        <div className="col-xl" key={i}>
           <h6>Gun Noise Malus:</h6>
           {x.WeaponList.map((x, i) => {
             return (

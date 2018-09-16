@@ -47,7 +47,7 @@ export class DisplayAmmoProps extends PureComponent {
       x.Salvos = x.Barrage;
     } //barrage for normal artillery, burst for normal units and MRLS
     return (
-      <div className="col-sm" key={i}>
+      <div className="col-xl" key={i}>
         <h6>
           {x.Type}: {x.Mags} loads of {x.Salvos}
         </h6>

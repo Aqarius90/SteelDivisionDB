@@ -11,7 +11,7 @@ class UnitModuleAir extends PureComponent {
       <div className="card">
         <div className="card-header"> Air Data </div>
         <div className="row card-body">
-          <div className="col-sm">
+          <div className="col-xl">
             <ul>
               <li>
                 AirMaxspeed:{" "}
@@ -35,7 +35,7 @@ class UnitModuleAir extends PureComponent {
               </li>
             </ul>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <ul>
               <li>PitchAngle: {x.PitchAngle}</li>
               <li>RollAngle: {x.RollAngle}</li>

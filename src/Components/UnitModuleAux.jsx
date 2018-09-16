@@ -12,7 +12,7 @@ class UnitModuleAux extends PureComponent {
     }
     return (
       <div className="row">
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>IsSapery: {parseBool(x.IsSapery)}</li>
             <li>Soldiers in squad: {NbSoldatInGroupeCombat}</li>
@@ -21,7 +21,7 @@ class UnitModuleAux extends PureComponent {
             <li>Dangerousness: {x.Dangerousness}</li>
           </ul>
         </div>
-        <div className="col-sm">
+        <div className="col-xl">
           <ul>
             <li>StrengthDecayPerSecond: {x.StrengthDecayPerSecond}</li>
             <li>PreventsDecayInZone: {parseBool(x.PreventsDecayInZone)}</li>

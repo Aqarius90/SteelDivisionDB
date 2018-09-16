@@ -20,17 +20,17 @@ class DetailUnitHeader extends PureComponent {
     let Unit = this.props.Unit;
     return (
       <div className="row card-header">
-        <div className="col-sm-3">
+        <div className="col-xl-3">
           <img
             src={parsePicture(this.props.Unit, "bg")}
             className="img-big"
             alt="unitPortrait"
           />
         </div>
-        <div className="col-sm-3">
+        <div className="col-xl-3">
           <h3>{parseAlias(this.props.Unit)}</h3>
         </div>
-        <div className="col-sm-2">
+        <div className="col-xl-2">
           <DisplayExp
             Experiencelevel={this.props.Pack.Experiencelevel}
             css="img-xp"
@@ -44,11 +44,11 @@ class DetailUnitHeader extends PureComponent {
           />
           <h6>Phase: {parsePhase(this.props.Pack.AvailableFromPhase)}</h6>
         </div>
-        <div className="col-sm-2">
+        <div className="col-xl-2">
           <h4>{this.props.Pack.PackAvailabilty} cards,</h4>
           <h4>{this.props.Pack.UnitsPerPack} units</h4>
         </div>
-        <div className="col-sm-2">
+        <div className="col-xl-2">
           <button className="btn btn-dark btn-block" onClick={this.addUnit}>
             <h4>Add</h4>
           </button>

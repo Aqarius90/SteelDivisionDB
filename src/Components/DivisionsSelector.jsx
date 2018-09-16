@@ -23,7 +23,7 @@ class Division extends PureComponent {
 class DivisionsSelector extends PureComponent {
   makeButton = (x, i) => {
     return (
-      <div className="col-sm-3" key={i}>
+      <div className="col-xl-3" key={i}>
         <Division x={x} fset={this.props.fset} />
       </div>
     );
@@ -33,7 +33,7 @@ class DivisionsSelector extends PureComponent {
     return (
       <React.Fragment>
         <div className="row card-body">
-          <div className="col-sm">
+          <div className="col-xl">
             <Tabs>
               <TabList>
                 <Tab>Skirmish</Tab>
@@ -75,7 +75,7 @@ class DivisionsSelector extends PureComponent {
               </TabPanel>
             </Tabs>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <Tabs>
               <TabList>
                 <Tab>Skirmish</Tab>

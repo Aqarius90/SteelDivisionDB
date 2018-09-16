@@ -133,13 +133,13 @@ class CardDisplayRow extends Component {
   showCard = (x, i) => {
     if (typeof x.Descriptor === "undefined") {
       return (
-        <div className="col-sm-1 col-sm-10" key={i}>
+        <div className="col-xl-1 col-xl-10" key={i}>
           <h3 key={i}> {x} </h3>
         </div>
       );
     }
     return (
-      <div className="col-sm-1 col-sm-10" key={i}>
+      <div className="col-xl-1 col-xl-10" key={i}>
         <CardDisplay
           DB={this.props.DB}
           x={x}

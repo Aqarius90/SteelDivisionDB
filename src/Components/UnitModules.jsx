@@ -26,18 +26,18 @@ class UnitModules extends PureComponent {
       <div className="card" key={i}>
         <div className="card-header">{x.Ammunition}</div>
         <div className="row card-body">
-          <div className="col-sm">
+          <div className="col-xl">
             <p>Power: {x.Power_ForInterface}</p>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <p>SalvoStockIndex: {x.SalvoStockIndex}</p>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <p>
               SalvoStockIndex_ForInterface: {x.SalvoStockIndex_ForInterface}
             </p>
           </div>
-          <div className="col-sm">
+          <div className="col-xl">
             <p>TirEnMouvement: {parseBool(x.TirEnMouvement)}</p>
           </div>
         </div>

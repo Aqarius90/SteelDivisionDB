@@ -9,7 +9,7 @@ class DeckCodeParser extends PureComponent {
     let Deck = this.props.Deck;
     return (
       <div className="row card-body">
-        <div className="col-sm-5">
+        <div className="col-xl-5">
           <h2>
             {Deck.Emblem}: {Deck.Cards.length} / {Deck.DeckPointsTotal} |A:
             {Deck.PhaseA.Income}
@@ -19,7 +19,7 @@ class DeckCodeParser extends PureComponent {
             {Deck.PhaseC.Income}|
           </h2>
         </div>
-        <div className="col-sm-5">
+        <div className="col-xl-4">
           <input
             className="form-control"
             value={this.props.code}
@@ -27,7 +27,7 @@ class DeckCodeParser extends PureComponent {
             onChange={this.handleChange}
           />
         </div>
-        <div className="col-sm-1">
+        <div className="col-xl">
           <button
             type="button"
             className="btn btn-default btn-block btn-top-line"
@@ -35,8 +35,8 @@ class DeckCodeParser extends PureComponent {
           >
             DECODE
           </button>
-        </div>{" "}
-        <div className="col-sm-1">
+        </div>
+        <div className="col-xl">
           <button
             type="button"
             className="btn btn-default btn-block btn-top-line"

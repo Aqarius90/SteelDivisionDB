@@ -28,7 +28,7 @@ class UnitModuleSimple extends PureComponent {
       return (
         <React.Fragment>
           <div className="row">
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li>
                   Front:{" "}
@@ -51,7 +51,7 @@ class UnitModuleSimple extends PureComponent {
                 <li> Top: {parseTopArmor(x.TagSet)}</li>
               </ul>
             </div>
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li> MaxDamages: {x.MaxDamages} </li>
                 <li>
@@ -62,7 +62,7 @@ class UnitModuleSimple extends PureComponent {
                 <li> Optics: {x.OpticalStrength}</li>
               </ul>
             </div>
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li> Can transport: {parseTransport(x.NbSeatsAvailable)} </li>
                 <li> Needs transport: {parseTransport(x.NbSeatsOccupied)}</li>
@@ -90,7 +90,7 @@ class UnitModuleSimple extends PureComponent {
       return (
         <React.Fragment>
           <div className="row">
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li>
                   Front:{" "}
@@ -113,7 +113,7 @@ class UnitModuleSimple extends PureComponent {
                 <li> Top: {parseTopArmor(x.TagSet)}</li>
               </ul>
             </div>
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li> MaxDamages: {x.MaxDamages} </li>
                 <li>
@@ -124,7 +124,7 @@ class UnitModuleSimple extends PureComponent {
                 <li> Optics: {x.OpticalStrength}</li>
               </ul>
             </div>
-            <div className="col-sm">
+            <div className="col-xl">
               <ul>
                 <li> Can transport: {parseTransport(x.NbSeatsAvailable)} </li>
                 <li> Needs transport: {parseTransport(x.NbSeatsOccupied)}</li>
