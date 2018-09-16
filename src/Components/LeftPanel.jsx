@@ -118,8 +118,7 @@ class LeftPanel extends Component {
           <TabPanel>
             <RandomizePanel
               DB={this.props.DB}
-              DeckUnits={this.props.DeckUnits[7]}
-              DBUnits={this.props.DBUnits[7]}
+              RandomizerDecks={this.props.RandomizerDecks}
               f={this.props.f}
             />
           </TabPanel>

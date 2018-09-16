@@ -19,6 +19,7 @@ class app extends Component {
       DBUnits: [[], [], [], [], [], [], [], []],
       DeckUnits: [[], [], [], [], [], [], [], []],
       UnitsToDisplay: [],
+      RandomizerDecks: [],
 
       //data
       DB: "",
@@ -37,6 +38,7 @@ class app extends Component {
       sortBy: this.sortBy,
       isValid: this.isValid,
       getUsedCount: this.getUsedCount,
+      toggleRandomizer: this.toggleRandomizer,
 
       //deck change
       setDeck: this.setDeck,
@@ -144,10 +146,26 @@ class app extends Component {
     this.setState({ Deck: newDeck, code: newCode });
   };
 
-  autofill = x => {
-    let newDeck = this.state.Deck.setDeck(x);
-    let cardsToUse = cloneDeep(newDeck.PackList);
+  toggleRandomizer = x => {
+    let newState;
+    if (x === "Allied" || x === "Axis") {
+      newState = this.state.DB.Decks.filter(e => e.DivisionNationalite === x);
+    } else {
+      newState = this.state.RandomizerDecks;
+      if (newState.filter(e => e === x).length > 0) {
+        newState.splice(newState.indexOf(x), 1);
+      } else {
+        newState.push(x);
+      }
+    }
+    this.setState({ RandomizerDecks: newState });
+  };
 
+  autofill = x => {
+    let newDeck = new DeckAssembly();
+    newDeck = newDeck.decodeDeck("", this.state.DB);
+    newDeck = newDeck.setDeck(x);
+    let cardsToUse = cloneDeep(newDeck.PackList);
     let matrix = [0, 0, 0, 0, 0, 0, 0, 0];
     while (newDeck.DeckPointsTotal > newDeck.Cards.length) {
       let rand = Math.floor(Math.random() * cardsToUse.length);
@@ -318,6 +336,7 @@ class app extends Component {
                   Deck={this.state.Deck}
                   DBUnits={this.state.DBUnits}
                   DeckUnits={this.state.DeckUnits}
+                  RandomizerDecks={this.state.RandomizerDecks}
                   f={this.state.API}
                 />
               </div>
