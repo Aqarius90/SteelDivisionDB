@@ -199,7 +199,7 @@ class app extends Component {
           console.log("UnitParseError: autofill");
         }
       }
-      if (newDeck.CostMatrix[factory][matrix[factory]] !== "X") {
+      if (newDeck.CostMatrix[factory][matrix[factory]] === 1) {
         matrix[factory]++;
         newDeck.addUnit(cardsToUse[rand]);
       }
