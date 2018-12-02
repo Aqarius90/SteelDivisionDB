@@ -53,15 +53,15 @@ class DeckAssembly {
     }
 
     /*:eugene:
-    *cost matrix enum:
-    *0 ~air~ "avion"
-    *1 ~tank~ 'char"
-    *2 arty
-    *3 support
-    *4 inf
-    *5 recon
-    *6 PAK
-    *7 AA*/
+     *cost matrix enum:
+     *0 ~air~ "avion"
+     *1 ~tank~ 'char"
+     *2 arty
+     *3 support
+     *4 inf
+     *5 recon
+     *6 PAK
+     *7 AA*/
 
     this.CostMatrix[7] = matrix[0];
     this.CostMatrix[2] = matrix[1];
@@ -80,74 +80,73 @@ class DeckAssembly {
   decodeDeck(deckCode, DB) {
     //decode to binary
     if (typeof deckCode === "undefined" || deckCode.length < 4) {
-      let newdeck = new DeckAssembly();
+      let newdeck = new DeckAssembly(); //if code infalid return empty deck
       newdeck.ExportCode = newdeck.encodeDeck();
       return newdeck;
-    } else {
-      this.Cards = [];
-      let deckBinary = parseToBin(deckCode);
+    }
+    this.Cards = [];
+    let deckBinary = parseToBin(deckCode);
 
-      let sUCount = 10; //start of unit counter
-      let sUCOdes = 18; //start of unit encoding
-      let sULen = 18; //unit card length (+4 for count)
+    let sUCount = 10; //start of unit counter
+    let sUCOdes = 18; //start of unit encoding
+    let sULen = 18; //unit card length (+4 for count)
 
-      //extract deck
-      let bin = "";
-      for (let i = 0; i < sUCount; i++) {
-        bin += deckBinary.charAt(i);
+    //extract deck
+    let bin = "";
+    for (let i = 0; i < sUCount; i++) {
+      bin += deckBinary.charAt(i);
+    }
+    let deckInt = parseInt(bin, 2);
+
+    for (let i = 0; i < DB.Decks.length; i++) {
+      if (DB.Decks[i].EncodeInt === deckInt) {
+        this.setDeck(DB.Decks[i]);
       }
-      let deckInt = parseInt(bin, 2);
+    }
 
-      for (let i = 0; i < DB.Decks.length; i++) {
-        if (DB.Decks[i].EncodeInt === deckInt) {
-          this.setDeck(DB.Decks[i]);
-        }
+    //Units
+    let sCount = ""; //get number of unique units in deck
+    for (let i = sUCount; i < sUCOdes; i++) {
+      sCount += deckBinary.charAt(i);
+    }
+    let CardsCount = parseInt(sCount, 2); //total amount of unique units in deck
+
+    let iPC = sUCOdes; //<-positioncounter
+    for (let i = 0; i < CardsCount; i++) {
+      /*for the rest of the binary, count out the unit, then the amount of cards*/
+      let sUnit = "",
+        sAmount = "";
+      for (let j = iPC; j < iPC + sULen; j++) {
+        sUnit += deckBinary.charAt(j);
       }
-
-      //Units
-      let sCount = ""; //get number of unique units in deck
-      for (let i = sUCount; i < sUCOdes; i++) {
-        sCount += deckBinary.charAt(i);
+      iPC += sULen;
+      for (let j = iPC; j < iPC + 4; j++) {
+        sAmount += deckBinary.charAt(j);
       }
-      let CardsCount = parseInt(sCount, 2); //total amount of unique units in deck
+      iPC += 4;
+      let iAmount = parseInt(sAmount, 2);
 
-      let iPC = sUCOdes; //<-positioncounter
-      for (let i = 0; i < CardsCount; i++) {
-        /*for the rest of the binary, count out the unit, then the amount of cards*/
-        let sUnit = "",
-          sAmount = "";
-        for (let j = iPC; j < iPC + sULen; j++) {
-          sUnit += deckBinary.charAt(j);
-        }
-        iPC += sULen;
-        for (let j = iPC; j < iPC + 4; j++) {
-          sAmount += deckBinary.charAt(j);
-        }
-        iPC += 4;
-        let iAmount = parseInt(sAmount, 2);
-
-        /*get unit from DB and add to deck, one per amount
-        * since the deck records two identical cards as {card, 2}
-        * and we need them as {card}, {card}, we'll be incrementing 
-        * CardsCount on every non-first idencital card, since they
-        * "don't count" in the code's cards counter
-        */
-        this.Cards[i] = this.PackList.filter(function(pack) {
-          //first card is added right away
+      /*get unit from DB and add to deck, one per amount
+       * since the deck records two identical cards as {card, 2}
+       * and we need them as {card}, {card}, we'll be incrementing
+       * CardsCount on every non-first idencital card, since they
+       * "don't count" in the code's cards counter
+       */
+      this.Cards[i] = DB.Packs.filter(function(pack) {
+        //first card is added right away
+        return pack.EncodeInt === parseInt(sUnit, 2);
+      })[0];
+      for (let j = 0; j < iAmount - 1; j++) {
+        //second, if it's there, is added after the index move
+        i++;
+        CardsCount++;
+        this.Cards[i] = DB.Packs.filter(function(pack) {
           return pack.EncodeInt === parseInt(sUnit, 2);
         })[0];
-        for (let j = 0; j < iAmount - 1; j++) {
-          //second, if it's there, is added after the index move
-          i++;
-          CardsCount++;
-          this.Cards[i] = this.PackList.filter(function(pack) {
-            return pack.EncodeInt === parseInt(sUnit, 2);
-          })[0];
-        }
       }
-      this.ExportCode = this.encodeDeck();
-      return this;
     }
+    this.ExportCode = this.encodeDeck();
+    return this;
   }
 
   encodeDeck() {

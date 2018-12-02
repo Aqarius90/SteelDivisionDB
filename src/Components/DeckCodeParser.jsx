@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 
 class DeckCodeParser extends PureComponent {
   handleChange = event => {
-    this.props.fset(event.target.value);
+    this.props.API.setDeckCode(event.target.value);
   };
 
   render() {
@@ -31,7 +31,7 @@ class DeckCodeParser extends PureComponent {
           <button
             type="button"
             className="btn btn-default btn-block btn-top-line"
-            onClick={this.props.fparse}
+            onClick={() => this.props.API.parseString(this.props.code)}
           >
             DECODE
           </button>
@@ -40,7 +40,7 @@ class DeckCodeParser extends PureComponent {
           <button
             type="button"
             className="btn btn-default btn-block btn-top-line"
-            onClick={this.props.fparsenull}
+            onClick={() => this.props.API.parseString("")}
           >
             CLEAR
           </button>

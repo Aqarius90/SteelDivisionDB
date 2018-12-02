@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { parseBool } from "../js/parsers";
+import { parseBool } from "../../js/parsers";
 
 class UnitModuleAux extends PureComponent {
   render() {

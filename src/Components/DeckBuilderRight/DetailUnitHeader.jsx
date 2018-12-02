@@ -1,12 +1,12 @@
 import React, { PureComponent } from "react";
-import { parseAlias, parsePhase, parsePicture } from "../js/parsers";
+import { parseAlias, parsePhase, parsePicture } from "../../js/parsers";
 import {
   DisplayAP,
   DisplayAV,
   DisplayExp,
   DisplayPara,
   DisplaySpecial
-} from "./DisplayComponents";
+} from "../DisplayComponents";
 
 class DetailUnitHeader extends PureComponent {
   addUnit = () => {

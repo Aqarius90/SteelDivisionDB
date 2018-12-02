@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Ammo from "./Ammo";
 import TurretHeader from "./TurretHeader";
-import { parseBool } from "../js/parsers";
+import { parseBool } from "../../js/parsers";
 
 class Turret extends PureComponent {
   render() {

@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { parseBool, parseSpeed } from "../js/parsers";
+import { parseBool, parseSpeed } from "../../js/parsers";
 
 class UnitModuleMobility extends PureComponent {
   render() {

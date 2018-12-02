@@ -1,16 +1,16 @@
 import React, { PureComponent } from "react";
-import Turret from "../Turret";
-import DetailUnitHeader from "../DetailUnitHeader";
+import Turret from "./Turret";
+import DetailUnitHeader from "./DetailUnitHeader";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Ammo from "../Ammo";
+import Ammo from "./Ammo";
 import { parseBool } from "../../js/parsers";
-import UnitModuleSimple from "../UnitModuleSimple";
-import UnitModuleRecon from "./DeckBuilderRight/UnitModuleReconn";
-import UnitModuleMobility from "./DeckBuilderRight/UnitModuleMobility";
-import UnitModuleSurvivability from "../UnitModuleSurvivability";
-import UnitModuleAux from "../UnitModuleAux";
-import UnitModuleAir from "./DeckBuilderRight/UntiModuleAirr";
+import UnitModuleSimple from "./UnitModuleSimple";
+import UnitModuleRecon from "./UnitModuleRecon";
+import UnitModuleMobility from "./UnitModuleMobility";
+import UnitModuleSurvivability from "./UnitModuleSurvivability";
+import UnitModuleAux from "./UnitModuleAux";
+import UnitModuleAir from "./UntiModuleAir";
 
 class UnitModules extends PureComponent {
   parseOffmap = x => {

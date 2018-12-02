@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { parsePhase, parseAlias, parsePicture } from "../js/parsers";
+import { parsePhase, parseAlias, parsePicture } from "../../js/parsers";
 import {
   DisplayAP,
   DisplayAV,
   DisplayExp,
   DisplayPara,
   DisplaySpecial
-} from "./DisplayComponents";
+} from "../DisplayComponents";
 
 class UnitsInList extends Component {
   makeUnitEntry = x => {

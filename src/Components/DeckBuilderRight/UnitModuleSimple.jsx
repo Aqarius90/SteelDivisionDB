@@ -5,7 +5,7 @@ import {
   parseTopArmor,
   parseSpeed,
   parseTransport
-} from "../js/parsers";
+} from "../../js/parsers";
 
 class UnitModuleSimple extends PureComponent {
   parseOffmapSimple = x => {

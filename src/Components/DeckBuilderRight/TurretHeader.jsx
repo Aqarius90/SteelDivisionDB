@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import { DisplayAmmoProps } from "./DisplayComponents";
-
+import { DisplayAmmoProps } from "../DisplayComponents";
 class TurretHeader extends PureComponent {
   getWeaponPicture = x => {
     if (x === null) {

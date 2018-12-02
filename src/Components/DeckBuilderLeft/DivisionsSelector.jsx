@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
+//actual division button
 class Division extends PureComponent {
   getPicture = () => {
     let img = "img/d/" + this.props.x.EmblemTexture.toLowerCase() + ".tgv.png";
@@ -20,6 +21,7 @@ class Division extends PureComponent {
   }
 }
 
+//division tab
 class DivisionsSelector extends PureComponent {
   makeButton = (x, i) => {
     return (

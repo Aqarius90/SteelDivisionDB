@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { parseBool, parseDescriptor } from "../js/parsers";
+import { parseBool, parseDescriptor } from "../../js/parsers";
 
 class Ammo extends PureComponent {
   parseLength = x => {

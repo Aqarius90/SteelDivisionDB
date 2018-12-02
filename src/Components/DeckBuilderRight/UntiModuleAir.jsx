@@ -6,7 +6,6 @@ class UnitModuleAir extends PureComponent {
     if (x.AirMaxspeed === null) {
       return <div />;
     }
-    console.log(x.AltitudeMin.replace(" * Metre)", "").replace("(", ""));
     return (
       <div className="card">
         <div className="card-header"> Air Data </div>

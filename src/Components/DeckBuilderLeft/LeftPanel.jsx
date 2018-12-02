@@ -38,7 +38,6 @@ class LeftPanel extends Component {
           <TabPanel>
             <DeckGrid
               DB={this.props.DB}
-              Deck={this.props.Deck}
               DeckUnits={this.props.DeckUnits}
               f={this.props.f}
             />
