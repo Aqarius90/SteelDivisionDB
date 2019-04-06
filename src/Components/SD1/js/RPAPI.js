@@ -1,5 +1,3 @@
-import DeckAssembly from "./DeckAssembly";
-
 export function replayFilter(x) {
   let ReplayDB = this.state.ReplayDB;
   ReplayDB.sortby = x;

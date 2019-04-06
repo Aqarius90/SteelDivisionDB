@@ -118,88 +118,88 @@ export function parsePicture(x) {
   let emblem = "";
   switch (ID) {
     case 22:
-      emblem = "3rd_Infantry_Division";
+      emblem = "3rd_infantry_division";
       break;
     case 74:
-      emblem = "2DB";
+      emblem = "2db";
       break;
     case 23:
-      emblem = "2DB";
+      emblem = "2db";
       break;
     case 75:
-      emblem = "116_Panzer";
+      emblem = "116_panzer";
       break;
     case 24:
-      emblem = "116_Panzer";
+      emblem = "116_panzer";
       break;
     case 25:
-      emblem = "12_SS_Panzer";
+      emblem = "12_ss_panzer";
       break;
     case 26:
-      emblem = "17_SS_Panzergrenadier";
+      emblem = "17_ss_panzergrenadier";
       break;
     case 180:
-      emblem = "SS_Panzerdivision_LSSAH";
+      emblem = "ss_panzerdivision_lssah";
       break;
     case 76:
-      emblem = "21_Panzer";
+      emblem = "21_panzer";
       break;
     case 27:
-      emblem = "21_Panzer";
+      emblem = "21_panzer";
       break;
     case 28:
-      emblem = "352_Infanterie";
+      emblem = "352_infanterie";
       break;
     case 66:
-      emblem = "352_Infanterie";
+      emblem = "352_infanterie";
       break;
     case 77:
-      emblem = "3_Fallschirmjager";
+      emblem = "3_fallschirmjager";
       break;
     case 29:
-      emblem = "3_Fallschirmjager";
+      emblem = "3_fallschirmjager";
       break;
     case 30:
-      emblem = "716_Infanterie";
+      emblem = "716_infanterie";
       break;
     case 31:
-      emblem = "Luftlanfe";
+      emblem = "luftlanfe";
       break;
     case 32:
-      emblem = "Panzer_Lehr";
+      emblem = "panzer_lehr";
       break;
     case 33:
-      emblem = "Dywizja_Pancerna";
+      emblem = "dywizja_pancerna";
       break;
     case 34:
-      emblem = "15th_Infantry_Division";
+      emblem = "15th_infantry_division";
       break;
     case 35:
-      emblem = "6th_Airborne_Division";
+      emblem = "6th_airborne_division";
       break;
     case 36:
-      emblem = "Guards_Armoured_Division";
+      emblem = "guards_armoured_division";
       break;
     case 70:
-      emblem = "101st_Airborne";
+      emblem = "101st_airborne";
       break;
     case 37:
-      emblem = "101st_Airborne";
+      emblem = "101st_airborne";
       break;
     case 179:
-      emblem = "1st_US_Infantry_Division";
+      emblem = "1st_us_infantry_division";
       break;
     case 78:
-      emblem = "2nd_Infantry_Division";
+      emblem = "2nd_infantry_division";
       break;
     case 38:
-      emblem = "2nd_Infantry_Division";
+      emblem = "2nd_infantry_division";
       break;
     case 71:
-      emblem = "3rd_Armored_Division";
+      emblem = "3rd_armored_division";
       break;
     case 39:
-      emblem = "3rd_Armored_Division";
+      emblem = "3rd_armored_division";
       break;
     case 45:
       emblem = "16_luftwaffen";
@@ -208,34 +208,34 @@ export function parsePicture(x) {
       emblem = "16_luftwaffen";
       break;
     case 80:
-      emblem = "9_Panzer";
+      emblem = "9_panzer";
       break;
     case 46:
-      emblem = "9_Panzer";
+      emblem = "9_panzer";
       break;
     case 81:
-      emblem = "Commando_Brigade";
+      emblem = "commando_brigade";
       break;
     case 43:
-      emblem = "Commando_Brigade";
+      emblem = "commando_brigade";
       break;
     case 79:
-      emblem = "4th_Armored";
+      emblem = "4th_armored";
       break;
     case 51:
-      emblem = "4th_Armored";
+      emblem = "4th_armored";
       break;
     case 47:
-      emblem = "Demi_Brigade_SAS";
+      emblem = "demi_brigade_sas";
       break;
     case 48:
-      emblem = "2_Panzer";
+      emblem = "2_panzer";
       break;
     case 49:
-      emblem = "Festung_Gross_Paris";
+      emblem = "festung_gross_paris";
       break;
     case 50:
-      emblem = "7th_Armoured";
+      emblem = "7th_armoured";
       break;
 
     default:
