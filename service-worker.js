@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/SteelDivisionDB/precache-manifest.7c6a18779e11974520facd3266e5f0fb.js"
+  "/SteelDivisionDB/precache-manifest.e556b8d8683ace4575d9919ca2495813.js"
 );
 
 workbox.clientsClaim();
