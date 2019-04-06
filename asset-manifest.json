@@ -1,5 +1,5 @@
 {
-  "main.css": "/SteelDivisionDB/static/css/main.34cab8c1.chunk.css",
+  "main.css": "/SteelDivisionDB/static/css/main.467a4acb.chunk.css",
   "main.js": "/SteelDivisionDB/static/js/main.8346ecc9.chunk.js",
   "main.js.map": "/SteelDivisionDB/static/js/main.8346ecc9.chunk.js.map",
   "runtime~main.js": "/SteelDivisionDB/static/js/runtime~main.69ec7a86.js",
@@ -8,8 +8,8 @@
   "static/js/2.67689d47.chunk.js": "/SteelDivisionDB/static/js/2.67689d47.chunk.js",
   "static/js/2.67689d47.chunk.js.map": "/SteelDivisionDB/static/js/2.67689d47.chunk.js.map",
   "index.html": "/SteelDivisionDB/index.html",
-  "precache-manifest.e556b8d8683ace4575d9919ca2495813.js": "/SteelDivisionDB/precache-manifest.e556b8d8683ace4575d9919ca2495813.js",
+  "precache-manifest.bf6d2d7bed38991ee0edbc353e64a261.js": "/SteelDivisionDB/precache-manifest.bf6d2d7bed38991ee0edbc353e64a261.js",
   "service-worker.js": "/SteelDivisionDB/service-worker.js",
   "static/css/2.b10c9cbe.chunk.css.map": "/SteelDivisionDB/static/css/2.b10c9cbe.chunk.css.map",
-  "static/css/main.34cab8c1.chunk.css.map": "/SteelDivisionDB/static/css/main.34cab8c1.chunk.css.map"
+  "static/css/main.467a4acb.chunk.css.map": "/SteelDivisionDB/static/css/main.467a4acb.chunk.css.map"
 }
