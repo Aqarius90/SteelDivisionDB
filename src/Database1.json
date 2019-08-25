@@ -1,0 +1,1627 @@
+{
+  "Decks": {
+    "DeckList": {
+      "DeckList": [
+        {
+          "Name": "29-й Танковый",
+          "Side": "Allied",
+          "Emblem": "29cchar",
+          "Descriptor": "29cchar",
+          "DivisionTags": "",
+          "EncodeInt": 134
+        },
+        {
+          "Name": "5-te Panzer",
+          "Side": "Axis",
+          "Emblem": "5_panzer",
+          "Descriptor": "5_panzer",
+          "DivisionTags": "",
+          "EncodeInt": 0
+        },
+        {
+          "Name": "Gruppe Harteneck",
+          "Side": "Axis",
+          "Emblem": "harteneck",
+          "Descriptor": "harteneck",
+          "DivisionTags": "",
+          "EncodeInt": 0
+        },
+        {
+          "Name": "1-я гв. кавалерийская",
+          "Side": "Allied",
+          "Emblem": "2cchargd",
+          "Descriptor": "2cchargd",
+          "DivisionTags": "",
+          "EncodeInt": 0
+        },
+        {
+          "Name": "20-te Panzer",
+          "Side": "Axis",
+          "Emblem": "20_panzer",
+          "Descriptor": "20_panzer",
+          "DivisionTags": "",
+          "EncodeInt": 0
+        }
+      ]
+    },
+    "29cchar": {
+      "Header": "000010000010000010",
+      "Name": "29-й танковый",
+      "Descriptor": "29cchar",
+      "Side": "Allied",
+      "DivisionTags": "",
+      "MaxActivPts": 50,
+      "CostMatrix": [
+        [1, 1, 1, 2, 2],
+        [1, 1, 1, 2, 3, 4, 5],
+        [1, 1, 1, 1, 1, 1, 2, 3, 3, 4],
+        [1, 1, 1, 2, 2, 3],
+        [1, 1, 1, 1, 2, 2, 2, 3, 3],
+        [1, 2, 2, 3, 4],
+        [1, 2, 2, 2, 3, 4],
+        [1, 1, 2, 3, 3],
+        [0, 0, 0, 0]
+      ],
+      "EmblemTexture": "placeholder",
+      "Balanced": [100, 140, 170],
+      "Vanguard": [150, 120, 110],
+      "Maverick": [120, 180, 80],
+      "Juggernaut": [90, 120, 200],
+      "PackList": [
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 0,
+          "Descriptor": "WLA_DP",
+          "Name": "WLA DP",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [0, 6, 4],
+            "B": [0, 12, 8],
+            "C": [0, 18, 12]
+          },
+          "Transports": ["-"]
+        },
+        {
+          "Icon": "razvedki_crew_sov",
+          "Deck": "29cchar",
+          "PackAvailabilty": 2,
+          "EncodeInt": 630,
+          "Descriptor": "razvedki_crew_sov",
+          "Name": "Dozor",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [12, 9, 6]
+          },
+          "Transports": [
+            "-",
+            "BA_20",
+            "M2",
+            "ZiS_42",
+            "Dzhip",
+            "M3A1_Razvedka",
+            "WLA",
+            "Studebekker",
+            "WC52",
+            "ZiS_5V"
+          ]
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 4,
+          "EncodeInt": 629,
+          "Descriptor": "Razvedka",
+          "Name": "Razvedka",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 2],
+            "C": [9, 6, 3]
+          },
+          "Transports": ["-", "M2", "ZiS_42", "Studebekker", "ZiS_5V"]
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 514,
+          "Name": "Mot. Razvedka",
+          "Descriptor": "Razvedka_Mot",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [0, 3, 2],
+            "B": [0, 6, 4],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-", "M2", "ZiS_42", "M3A1_Razvedka", "WC52", "ZiS_5V"]
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "su_57_sov",
+          "Descriptor": "su_57_sov",
+          "PackAvailabilty": 1,
+          "EncodeInt": 669,
+          "Name": "SU 57",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"]
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "valentine_iii_sov",
+          "Descriptor": "valentine_iii_sov",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1135,
+          "Name": "Valentine III",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [4, 2, 1],
+            "B": [8, 4, 2],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"]
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1135,
+          "Descriptor": "Sapery_PPSh",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [6, 4, 2],
+            "B": [12, 8, 4],
+            "C": [18, 12, 8]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Sapery (PPSh)"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1315,
+          "Descriptor": "WLA_KomRoti",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 4, 2],
+            "B": [0, 8, 4],
+            "C": [0, 12, 6]
+          },
+          "Transports": ["-"],
+          "Name": "WLA KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 1295,
+          "Descriptor": "KomRoti_Avto",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 0, 2],
+            "B": [0, 0, 4],
+            "C": [0, 0, 6]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Avto. KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 874,
+          "Descriptor": "Tankodesantniki",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [9, 6, 3],
+            "B": [18, 12, 6],
+            "C": [27, 18, 9]
+          },
+          "Transports": ["-", "M2", "M2A1"],
+          "Name": "Tankodesantniki"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 3,
+          "EncodeInt": 818,
+          "Descriptor": "Strelki",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [9, 6, 3],
+            "B": [18, 12, 6],
+            "C": [27, 18, 9]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "Strelki"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 817,
+          "Descriptor": "Strelki_DP",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [9, 6, 3],
+            "B": [18, 12, 6],
+            "C": [27, 18, 9]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "Strelki (DP)"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 678,
+          "Descriptor": "Sapery",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [6, 4, 2],
+            "B": [12, 8, 4],
+            "C": [18, 12, 6]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "Sapery"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 3,
+          "EncodeInt": 16,
+          "Descriptor": "Avtomatchiki",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 6, 4],
+            "B": [0, 12, 8],
+            "C": [0, 16, 12]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "Avtomatchiki"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 816,
+          "Descriptor": "KomRoti_Strelki",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 4, 2],
+            "B": [0, 8, 4],
+            "C": [0, 12, 6]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Strelki KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1299,
+          "Descriptor": "KomRoti_Tankodesant",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 2, 1],
+            "B": [0, 4, 1],
+            "C": [0, 6, 3]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Tankodesant. KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1314,
+          "Descriptor": "KomRoti_Sapery",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Infanterie",
+          "AvMatrix": {
+            "A": [0, 3, 2],
+            "B": [0, 6, 4],
+            "C": [0, 0, 0]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Sapery KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 936,
+          "Descriptor": "KomRoti_Valentine",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [0, 3, 1],
+            "B": [0, 0, 0],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "Valentine KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 0,
+          "Descriptor": "T_34_85_KomRoti",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [0, 1, 1],
+            "B": [0, 2, 1],
+            "C": [0, 3, 2]
+          },
+          "Transports": ["-"],
+          "Name": "T-34/85 KomRoti"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 859,
+          "Descriptor": "T_34_76_obr_1942",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [6, 4, 2],
+            "B": [12, 8, 4],
+            "C": [18, 12, 6]
+          },
+          "Transports": ["-"],
+          "Name": "T-34/76 obr.1942"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 865,
+          "Descriptor": "T-34/85 obr.1943",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [16, 12, 8]
+          },
+          "Transports": ["-"],
+          "Name": "T-34/85 obr.1943"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 6,
+          "EncodeInt": 866,
+          "Descriptor": "T-34/85 obr.1944",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 2],
+            "C": [15, 10, 5]
+          },
+          "Transports": ["-"],
+          "Name": "T-34/85 obr.1944"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "is_2_obr_43_sov",
+          "PackAvailabilty": 2,
+          "EncodeInt": 318,
+          "Descriptor": "is_2_obr_43_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [1, 1, 0],
+            "B": [3, 2, 0],
+            "C": [6, 4, 0]
+          },
+          "Transports": ["-"],
+          "Name": "IS-2 obr.1943"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "is_2_obr_43_cmd_sov",
+          "PackAvailabilty": 1,
+          "EncodeInt": 317,
+          "Descriptor": "is_2_obr_43_cmd_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Tank",
+          "AvMatrix": {
+            "A": [0, 1, 0],
+            "B": [0, 2, 1],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "IS-2 obr.1943 CMD"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 200,
+          "Descriptor": "Ognemetchiki",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [9, 6, 3],
+            "B": [0, 0, 0],
+            "C": [0, 0, 0]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "WLA",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Ognemetchiki"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "mg_maxim_sov",
+          "PackAvailabilty": 2,
+          "EncodeInt": 460,
+          "Descriptor": "mg_maxim_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [0, 6, 4],
+            "B": [0, 12, 8],
+            "C": [0, 18, 12]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Maxim"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 292,
+          "Descriptor": "52-P-353 76.2mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [0, 6, 5],
+            "B": [0, 12, 9],
+            "C": [0, 0, 0]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "52-P-353 76.2mm"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "truck_studebaker_supply_sov",
+          "PackAvailabilty": 3,
+          "EncodeInt": 912,
+          "Descriptor": "truck_studebaker_supply_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [2, 0, 0],
+            "B": [6, 0, 0],
+            "C": [10, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "Studebekker snab."
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 0,
+          "EncodeInt": 1298,
+          "Descriptor": "KomBat",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [0, 0, 1],
+            "B": [0, 0, 0],
+            "C": [0, 0, 0]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "KomBat"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 252,
+          "Descriptor": "M2 KomBat",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [0, 0, 0],
+            "B": [0, 0, 1],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "M2 KomBat"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 31,
+          "Descriptor": "BA-20V KomBat",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Support",
+          "AvMatrix": {
+            "A": [0, 0, 0],
+            "B": [0, 0, 0],
+            "C": [0, 0, 1]
+          },
+          "Transports": ["-"],
+          "Name": "BA-20V KomBat"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 5,
+          "Descriptor": "PTRS-41",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [6, 4, 3],
+            "B": [10, 7, 5],
+            "C": [14, 9, 7]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "WLA",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "PTRS-41"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 75,
+          "Descriptor": "53-K 45mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [0, 6, 4],
+            "B": [0, 9, 6],
+            "C": [0, 0, 0]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "53-K 45mm"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "m10a1_wolverine",
+          "PackAvailabilty": 2,
+          "EncodeInt": 416,
+          "Descriptor": "m10a1_wolverine",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 2],
+            "C": [9, 6, 3]
+          },
+          "Transports": ["-"],
+          "Name": "M10"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 72,
+          "Descriptor": "ZiS-2 57mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 3, 1],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "ZiS-2 57mm"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 286,
+          "Descriptor": "ZiS-3 76.2mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 3, 1],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker"],
+          "Name": "ZiS-3 76.2mm"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "su_85_sov",
+          "PackAvailabilty": 2,
+          "EncodeInt": 677,
+          "Descriptor": "su_85_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "AT",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [10, 8, 5]
+          },
+          "Transports": ["-"],
+          "Name": "SU-85"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "truck_zis5v_dshk_sov",
+          "PackAvailabilty": 1,
+          "EncodeInt": 921,
+          "Descriptor": "truck_zis5v_dshk_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "DCA",
+          "AvMatrix": {
+            "A": [7, 5, 4],
+            "B": [14, 10, 8],
+            "C": [27, 19, 15]
+          },
+          "Transports": ["-"],
+          "Name": "ZiS 5V Dushka"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "truck_gaz_aaa_maxim_sov",
+          "PackAvailabilty": 3,
+          "EncodeInt": 897,
+          "Descriptor": "truck_gaz_aaa_maxim_sov",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "DCA",
+          "AvMatrix": {
+            "A": [6, 4, 2],
+            "B": [12, 8, 4],
+            "C": [18, 12, 6]
+          },
+          "Transports": ["-"],
+          "Name": "GAZ-AAA Maxim 4M"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 3,
+          "EncodeInt": 141,
+          "Descriptor": "Zen.Art. 37mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "DCA",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 2],
+            "C": [9, 6, 3]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Studebekker",
+            "ZiS_5V_Doushka",
+            "ZiS_5V"
+          ],
+          "Name": "Zen.Art. 37mm"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1297,
+          "Descriptor": "Vzvod Upr.",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [0, 3, 2],
+            "B": [0, 6, 4],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker", "ZiS_5V"],
+          "Name": "Vzvod Upr."
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 508,
+          "Descriptor": "Gran. M-37 82mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [5, 4, 2],
+            "B": [10, 7, 5],
+            "C": [15, 11, 7]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Dzhip",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Gran. M-37 82mm"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 798,
+          "Descriptor": "WLA PM-37",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "WLA PM-37"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 3,
+          "EncodeInt": 481,
+          "Descriptor": "Gran. PM-38 120mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 3],
+            "C": [12, 9, 6]
+          },
+          "Transports": [
+            "-",
+            "M2",
+            "M2A1",
+            "ZiS_42",
+            "Studebekker",
+            "WC52_Doushka",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Name": "Gran. PM-38 120mm"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1426,
+          "Descriptor": "WC52 KAO",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [0, 2, 0],
+            "B": [0, 4, 0],
+            "C": [0, 6, 0]
+          },
+          "Transports": ["-"],
+          "Name": "WC52 KAO"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 3,
+          "EncodeInt": 273,
+          "Descriptor": "F-22 76.2mm",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [12, 9, 6]
+          },
+          "Transports": ["-", "M2", "M2A1", "ZiS_42", "Studebekker"],
+          "Name": "F-22 76.2mm"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 907,
+          "Descriptor": "BM-13-16 Katyusha",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Art",
+          "AvMatrix": {
+            "A": [1, 0, 0],
+            "B": [2, 1, 0],
+            "C": [4, 2, 1]
+          },
+          "Transports": ["-"],
+          "Name": "BM-13-16 Katyusha"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "po_2_sov",
+          "Descriptor": "po_2_sov",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1068,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [3, 0, 0],
+            "B": [0, 0, 0],
+            "C": [0, 0, 0]
+          },
+          "Transports": ["-"],
+          "Name": "Po-2"
+        },
+        {
+          "Deck": "29cchar",
+          "Icon": "sov_grd_att_a20",
+          "PackAvailabilty": 1,
+          "EncodeInt": 948,
+          "Descriptor": "sov_grd_att_a20",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [0, 2, 1],
+            "B": [0, 4, 2],
+            "C": [0, 6, 3]
+          },
+          "Transports": ["-"],
+          "Name": "A-20Zh Zhuchok"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1061,
+          "Descriptor": "P-39Q-15",
+          "Name": "P-39Q-15",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [3, 2, 1],
+            "B": [6, 4, 2],
+            "C": [9, 6, 3]
+          },
+          "Transports": ["-"]
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1626,
+          "Descriptor": "A-20C Boston 120",
+          "Name": "A-20C Boston",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [1, 0, 0],
+            "B": [3, 1, 0],
+            "C": [6, 3, 0]
+          },
+          "Transports": ["-"]
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 1622,
+          "Descriptor": "P-39N-0",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [2, 1, 0],
+            "B": [4, 2, 1],
+            "C": [8, 4, 2]
+          },
+          "Transports": ["-"],
+          "Name": "P-39N-0"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 2,
+          "EncodeInt": 1609,
+          "Descriptor": "Boston A-20C 140",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [0, 0, 0],
+            "B": [3, 2, 1],
+            "C": [6, 4, 2]
+          },
+          "Transports": ["-"],
+          "Name": "Boston A-20C 140"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1007,
+          "Descriptor": "La-5FN",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [2, 1, 0],
+            "B": [4, 2, 1],
+            "C": [8, 4, 2]
+          },
+          "Transports": ["-"],
+          "Name": "La-5FN"
+        },
+        {
+          "Icon": "ar_66_c_ger",
+          "PackAvailabilty": 1,
+          "EncodeInt": 1462,
+          "Descriptor": "Boston A-20C 160",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Air",
+          "AvMatrix": {
+            "A": [0, 0, 0],
+            "B": [2, 1, 0],
+            "C": [3, 1, 0]
+          },
+          "Transports": ["-"],
+          "Name": "Boston A-20C 160"
+        }
+      ],
+      "TransportList": [
+        {
+          "Enc": -0,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "-",
+          "Avail": 0,
+          "Desc": "-",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 29,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "BA-20",
+          "Avail": 18,
+          "Desc": "BA_20",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 250,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "M2",
+          "Avail": 50,
+          "Desc": "M2",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 261,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "M2A1",
+          "Avail": 0,
+          "Desc": "M2A1",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 1115,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "ZiS-42",
+          "Avail": 12,
+          "Desc": "ZiS_42",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -1,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "Dzhip",
+          "Avail": 100,
+          "Desc": "Dzhip",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -2,
+          "Name": "M3A1 Razvedka",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Avail": 9,
+          "Desc": "M3A1_Razvedka",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -3,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "WLA",
+          "Avail": 20,
+          "Desc": "WLA",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 910,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "Studebekker",
+          "Avail": 300,
+          "Desc": "Studebekker",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -4,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "WC52",
+          "Avail": 24,
+          "Desc": "WC52",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -5,
+          "Name": "WC52 Doushka",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Avail": 0,
+          "Desc": "WC52_Doushka",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": 1312,
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Name": "ZiS-5V",
+          "Avail": 100,
+          "Desc": "ZiS_5V",
+          "Icon": "ar_66_c_ger"
+        },
+        {
+          "Enc": -6,
+          "Name": "ZiS-5V Doushka",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Avail": 0,
+          "Desc": "ZiS_5V_Doushka",
+          "Icon": "ar_66_c_ger"
+        }
+      ],
+      "EncodeInt": 134
+    }
+  },
+  "Units": {
+    "UnitsList": {
+      "UnitsList": [
+        {
+          "Deck": "29cchar",
+          "Icon": "razvedki_crew_sov",
+          "Descriptor": "razvedki_crew_sov",
+          "PackAvailabilty": 2,
+          "EncodeInt": 630,
+          "Name": "Dozor",
+          "Price": "-",
+          "ATshow": "-",
+          "AVshow": "-",
+          "SpecShow": "-",
+          "Factory": "Reco",
+          "AvMatrix": {
+            "A": [4, 3, 2],
+            "B": [8, 6, 4],
+            "C": [12, 9, 6]
+          },
+          "Transports": [
+            "-",
+            "BA_20",
+            "M2",
+            "ZiS_42",
+            "Dzhip",
+            "M3A1_Razvedka",
+            "WLA",
+            "Studebekker",
+            "WC52",
+            "ZiS_5V"
+          ],
+          "Unit": "Dozor"
+        }
+      ]
+    },
+    "razvedki_crew_sov": {
+      "ClassNameForDebug": "Unit_Canon_17pdr_CAN",
+      "TagSet": [],
+      "PlaneEvacuationTime": 0,
+      "PortraitForInterface": "",
+      "VisualsForInterface": "Canon_17pdr_CAN",
+      "Category": "Infanterie",
+      "MotherCountry": "CAN",
+      "AliasName": "17 pounder",
+      "PositionRadius": "((5) * Metre)",
+      "UnitConcealmentBonus": 2.5,
+      "VisionUnitType": "AlwaysOnGround",
+      "VisionObstructionType": "Infantry",
+      "GroundDissimulationModifierType": "Ground",
+      "DefaultAutoCover": true,
+      "DamageDescriptor": {
+        "DamageDescriptor": "TModernWarfareCommonDamageDescriptor",
+        "SuppressDamagesRegenRatio": "Infanterie_SuppressDamagesRegenRatioList",
+        "SuppressDamagesRegenRatioOutOfRange": "Infanterie_SuppressDamagesRegenRatioOutOfRange",
+        "StunDamagesRegen": "Infanterie_StunDamagesRegen",
+        "StunDamagesToGetStunned": "Infanterie_StunDamagesToGetStunned",
+        "StunFreezesUnits": false,
+        "MaxSuppressionDamages": "Infanterie_MaxSuppressionDamages",
+        "BlindageProperties": {
+          "Name": "TBlindageProperties",
+          "ArmorDescriptorFront": "ArmorDescriptor_Canon_Lourd",
+          "ArmorDescriptorSides": "ArmorDescriptor_Canon_Lourd",
+          "ArmorDescriptorTop": "ArmorDescriptor_Canon_Lourd",
+          "ArmorDescriptorRear": "ArmorDescriptor_Canon_Lourd"
+        }
+      },
+      "MaxDamages": 6.0,
+      "HitRollSize": 0,
+      "Dangerousness": 100.0,
+      "PhysicalDamageLevelsPack": "DamageLevelsPackDescriptor_Default_pack_paliers_degats_phy",
+      "SuppressDamageLevelsPack": "DamageLevelsPackDescriptor_CanonAT_packSupp",
+      "TypeForGroundDamageModifier": "Undefined",
+      "MoralLevel": 0,
+      "Behaviour": null,
+      "UnitMovingType": "Infantry",
+      "PathfindType": "PathfindTypes/CanonTracte",
+      "Maxspeed": "(20",
+      "MaxAcceleration": "(10",
+      "MaxDeceleration": "(40",
+      "VitesseCombat": "(20",
+      "SpeedBonusOnRoad": 0.0,
+      "TempsDemiTour": 4.0,
+      "StartTime": "2 * Seconde",
+      "StopTime": "2 * Seconde",
+      "RotationStartTime": "2 * Seconde",
+      "RotationStopTime": "2 * Seconde",
+      "IdentifyBaseProbability": 0.1,
+      "TimeBetweenEachIdentifyRoll": 4.0,
+      "TransportedTexture": "Texture_CompanyLabel_Transport_ATGun",
+      "NbSeatsOccupied": 3,
+      "TimeToLoad": "CanonsLoadingTime",
+      "OpticalStrength": 100,
+      "ProductionYear": "1941",
+      "ProductionPrice": "100",
+      "ProductionTime": "3",
+      "InfluenceStrength": 0.3,
+      "MinimumInfluenceStrength": 0.0,
+      "StrengthDecayPerSecond": 0.005,
+      "PreventsDecayInZone": false,
+      "APValue": "16",
+      "APValueBazooka": false,
+      "IsParachutist": false,
+      "IsCommandementUnit": true,
+      "IsTransporter": false,
+      "PlatingValue": 0,
+      "SpecialtyTexture": null,
+      "TransportableTagSet": null,
+      "NbSeatsAvailable": 0,
+      "SupplyCapacity": 0.0,
+      "FuelCapacity": 0.0,
+      "FuelMoveDuration": 0.0,
+      "AirMaxspeed": null,
+      "AirVitesseCombat": null,
+      "Altitude": null,
+      "AltitudeMin": null,
+      "AltitudeMax": null,
+      "Speed": null,
+      "AgilityRadius": null,
+      "PitchAngle": 0,
+      "RollAngle": 0,
+      "RollSpeed": 0,
+      "EvacAngle": 0,
+      "AttackStrategyDescriptors": null,
+      "isTowable": true,
+      "Offmap": null,
+      "UnitDescriptor": "razvedki_crew_sov",
+      "WeaponsDescriptor": "Canon_17pdr_CAN"
+    }
+  },
+  "Weapons": [
+    {
+      "Turrets": [
+        {
+          "AimingPriority": 0,
+          "AngleRotationBase": 0.0,
+          "AngleRotationBasePitch": 0.0,
+          "AngleRotationMax": 0.436332315,
+          "AngleRotationMaxPitch": 0.0,
+          "AngleRotationMinPitch": -0.17453292,
+          "FlyingTimeAndHitPhysicalPropertyName": null,
+          "TagIndex": 0,
+          "VitesseRotation": 0.17453292,
+          "WeaponList": [
+            {
+              "Ammunition": "Ammo_CanonTracte_17pdr_AP",
+              "Power_ForInterface": 0,
+              "SalvoStockIndex": 0,
+              "SalvoStockIndex_ForInterface": 0,
+              "TirEnMouvement": false,
+              "WeaponNumber_ForInterface": 1,
+              "ShowDispersion": false
+            }
+          ],
+          "UnitIdleManagerDescriptor": null
+        }
+      ],
+      "WeaponsDescriptor": "Canon_17pdr_CAN",
+      "Salves": [
+        50,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "HasMainSalvo": false,
+      "SalvoIsMainSalvo": [false, false],
+      "AlwaysOrientArmorTowardsThreat": false
+    }
+  ],
+  "Ammo": [
+    {
+      "AmmoDescriptor": "Ammo_CanonTracte_17pdr_AP",
+      "HitRollRule": {
+        "HitModList": [
+          "Precision,",
+          "DistanceToTarget,",
+          "SuccesiveShots,",
+          "Suppress,"
+        ],
+        "Targeted": "0.0",
+        "Idling": "6.0",
+        "SuccessfulShots": "0.0",
+        "Base": "0.0",
+        "Moving": "1.0"
+      },
+      "Name": "NA",
+      "TypeArme": "Main_Gun",
+      "Caliber": "76_2mm",
+      "Arme": "Arme                              = EArmeType/AP_16",
+      "ProjectileType": "ProjectileType                    = EProjectileType/Obus",
+      "Puissance": 250.0,
+      "TempsEntreDeuxTirs": -1.0,
+      "TempsEntreDeuxTirs_Min": 0.0,
+      "TempsEntreDeuxTirs_Max": 0.0,
+      "TempsEntreDeuxFx": "7.0",
+      "PorteeMaximale": "((6000) * Metre)",
+      "PorteeMinimale": "((0) * Metre)",
+      "PorteeMaximaleTBA": "((0) * Metre)",
+      "PorteeMinimaleTBA": "((0) * Metre)",
+      "PorteeMaximaleHA": "((0) * Metre)",
+      "PorteeMinimaleHA": "((0) * Metre)",
+      "AffecteParNombre": false,
+      "EfficaciteSelonPortee": true,
+      "DispersionAtMaxRange": "((20) * Metre)",
+      "RadiusSplashPhysicalDamages": "((1) * Metre)",
+      "PhysicalDamages": 6.0,
+      "RadiusSplashSuppressDamages": "((202) * Metre)",
+      "SuppressDamages": 835.0,
+      "RayonPinned": "((80) * Metre)",
+      "TirIndirect": false,
+      "TirReflexe": false,
+      "InterdireTirReflexe": false,
+      "NoiseDissimulationMalus": 16.0,
+      "SupplyCost": 39.0,
+      "TargetsDistricts": true,
+      "TempsDeVisee": 4.0,
+      "TempsEntreDeuxSalves": 7.0,
+      "TempsEntreDeuxSalves_Min": -1.0,
+      "TempsEntreDeuxSalves_Max": -1.0,
+      "NbTirParSalves": 1,
+      "NbSalvosShootOnPosition": 0,
+      "NbrProjectilesSimultanes": 1,
+      "AffichageMunitionParSalve": 1,
+      "AffichageMenu": true,
+      "InterfaceWeaponTexture": "~/Texture_Interface_Weapon_CanonTracte_17pdr",
+      "SmokeDescriptor": "nil",
+      "FireDescriptor": "nil",
+      "IsHarmlessForAllies": true,
+      "PiercingWeapon": true
+    }
+  ]
+}

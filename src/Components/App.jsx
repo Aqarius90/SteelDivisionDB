@@ -7,7 +7,36 @@ import SkyLight from "react-skylight";
 
 //import dict from "../Database.json"; //for dev purposes
 //import FirestoreInit from "../js/FirestoreInit";
+
+/* deflater test loop
+var pako = require("pako");
+
+var binaryString = pako.deflate(JSON.stringify(dict), { to: "string" });
+firebase
+  .firestore()
+  .collection("test")
+  .doc("deflateTest")
+  .set({ binaryString })
+  .catch(function(error) {
+    console.error("Get error: ", error);
+  })
+  .then(x => {
+    firebase
+      .firestore()
+      .collection("test")
+      .doc("deflateTest")
+      .get()
+      .then(queryDocumentSnapshot => {
+        var returner = queryDocumentSnapshot.data().binaryString;
+        var restored = JSON.parse(pako.inflate(returner, { to: "string" }));
+        console.log(restored);
+      });
+  });
+  */
+
 require("dotenv").config();
+
+global.debug = true;
 
 class app extends Component {
   constructor() {
@@ -43,8 +72,7 @@ class app extends Component {
   };
 
   loadSD2 = () => {
-    console.log("SD2 DB support not implemented yet");
-    return;
+    this.setState({ loadedDB: "SD2", ActiveTab: "DeckBuilder" });
   };
 
   setActiveTab = x => {
@@ -101,6 +129,12 @@ class app extends Component {
                   onClick={this.loadSD1}
                 >
                   Steel Division: Normandy 44
+                </button>
+                <button
+                  className="btn btn-default btn-block"
+                  onClick={this.loadSD2}
+                >
+                  Steel Division 2
                 </button>
               </div>
             </div>

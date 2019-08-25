@@ -16,7 +16,7 @@
 
 body {
   background-color: black;
-  background: url(http://www.eugensystems.com/wp-content/uploads/2017/09/SteelDivision_20170424_180309.png)
+  background: url(https://www.eugensystems.com/wp-content/uploads/2017/09/SteelDivision_20170424_180309.png)
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -162,4 +162,15 @@ p {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.img-sd2-back {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 67px;
+}
+
+.img-sd2-xp {
+  height: 25px;
 }

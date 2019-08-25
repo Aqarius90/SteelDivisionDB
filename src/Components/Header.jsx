@@ -11,37 +11,42 @@ class Header extends Component {
   }
 
   renderButtons() {
-    let button1 = "";
-    let button2 = "";
-    let button1Click = "";
-    let button2Click = "";
+    let buttonsArr = [];
 
-    if (this.props.Honey.ActiveTab === "DeckBuilder") {
-      button1 = "Decks";
-      button2 = "Replays";
-      button1Click = () => this.props.Honey.setActiveTab("DeckDB");
-      button2Click = () => this.props.Honey.setActiveTab("ReplayDB");
-    } else if (this.props.Honey.ActiveTab === "DeckDB") {
-      button1 = "Deck Builder";
-      button2 = "Replays";
-      button1Click = () => this.props.Honey.setActiveTab("DeckBuilder");
-      button2Click = () => this.props.Honey.setActiveTab("ReplayDB");
-    } else if (this.props.Honey.ActiveTab === "ReplayDB") {
-      button1 = "Deck Builder";
-      button2 = "Decks";
-      button1Click = () => this.props.Honey.setActiveTab("DeckBuilder");
-      button2Click = () => this.props.Honey.setActiveTab("DeckDB");
-    } else {
-      return <div />;
+    switch (this.props.Honey.loadedDB) {
+      case "SD1":
+        buttonsArr = [
+          ["DeckBuilder", "DeckBuilder"],
+          ["Decks", "DeckDB"],
+          ["Replays", "ReplayDB"]
+        ];
+        break;
+
+      case "SD2":
+        buttonsArr = [["DeckBuilder", "DeckBuilder"], ["Database", "Database"]];
+        break;
+
+      default:
+        return <div />;
     }
     return (
       <React.Fragment>
-        <button className="btn btn-primary btn-block" onClick={button1Click}>
-          {button1}
-        </button>
-        <button className="btn btn-primary btn-block" onClick={button2Click}>
-          {button2}
-        </button>
+        {buttonsArr.map(x => {
+          console.log(this.props.Honey.ActiveTab);
+          if (this.props.Honey.ActiveTab === x[1]) {
+            return <div />;
+          } else {
+            return (
+              <button
+                key={x[1]}
+                className="btn btn-primary btn-block"
+                onClick={() => this.props.Honey.setActiveTab(x[1])}
+              >
+                {x[0]}
+              </button>
+            );
+          }
+        })}
       </React.Fragment>
     );
   }

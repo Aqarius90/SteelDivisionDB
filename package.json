@@ -6,24 +6,28 @@
   "dependencies": {
     "ajv": "^6.10.0",
     "bootstrap": "^4.3.1",
-    "braces": "^2.3.2",
-    "core-js": "^3.0.0",
-    "dotenv": "^7.0.0",
-    "firebase": "^5.9.1",
-    "firebase-tools": "^6.5.0",
-    "firebaseui": "^3.5.2",
+    "braces": "^3.0.2",
+    "core-js": "^3.1.3",
+    "dotenv": "^8.0.0",
+    "firebase": "^6.1.1",
+    "firebase-tools": "^6.11.0",
+    "firebaseui": "^4.0.0",
+    "fstream": "^1.0.12",
     "gh-pages-deploy": "^0.5.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.11",
     "lodash.clonedeep": "^4.5.0",
     "npm": "^6.9.0",
+    "npm-check-updates": "^3.1.10",
+    "pako": "^1.0.10",
     "popper": "^1.0.1",
-    "popper.js": "^1.14.7",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-scripts": "^2.1.8",
+    "popper.js": "^1.15.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.1",
     "react-skylight": "^0.5.1",
-    "react-tabs": "^2.3.0"
+    "react-tabs": "^3.0.0",
+    "reactstrap": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,7 +39,7 @@
     "commit": "gh-pages -d build -n"
   },
   "devDependencies": {
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^2.0.1"
   },
   "browserslist": [
     ">0.2%",
