@@ -88,7 +88,6 @@ class SD1 extends Component {
 
       //GameData
       DB: null, //list of decks, full deck loaded as needed (cheaper, faster)
-      Firebase: null, //for calling decks
       DeckBuilder: {
         Deck: null,
         UnitsToDisplay: [], //detailed display list
@@ -146,29 +145,49 @@ class SD1 extends Component {
   }
 
   initData = () => {
-    this.props.Honey.Firebase.collection("SD1")
-      .doc("GameData")
-      .collection("Decks")
-      .doc("DeckList")
-      .get()
-      .then(queryDocumentSnapshot => {
-        let DeckArray = queryDocumentSnapshot.data().decklist; //get list of decks, lazy load the decks as needed
-        let deckbuilder = this.state.DeckBuilder;
-        let newdeck = new DeckAssembly();
-        deckbuilder.Deck = newdeck;
-        let FB = this.props.Honey.Firebase.collection("SD1")
-          .doc("GameData")
-          .collection("Decks");
-        this.setState({
-          Firebase: FB,
-          DB: DeckArray,
-          DeckBuilder: deckbuilder,
-          isLoading: false
-        }); //switch interface last
-      })
-      .catch(function(error) {
-        console.error("Get error: ", error);
+    console.log("initData");
+    let deckbuilder = this.state.DeckBuilder;
+    deckbuilder.Deck = new DeckAssembly();
+    let db = this.props.Honey.DB;
+    //fold ammo into weapons
+    db.Weapons.forEach(w => {
+      w.Turrets.forEach(t => {
+        t.WeaponList.forEach(wl => {
+          wl.Ammunition = this.props.Honey.DB.Ammo.find(
+            a => wl.Ammunition === a.AmmoDescriptor
+          );
+        });
       });
+    });
+    //fold weapons into units
+    db.Units.forEach(u => {
+      u.WeaponsDescriptor =
+        u.WeaponsDescriptor &&
+        this.props.Honey.DB.Weapons.find(
+          w => w.WeaponsDescriptor === u.WeaponsDescriptor
+        );
+      u.Offmap =
+        u.Offmap &&
+        this.props.Honey.DB.Weapons.find(w => w.WeaponsDescriptor === u.Offmap);
+    });
+    //folding units into decks
+    db.Decks.forEach(ed => {
+      ed.PackList.forEach(ep => {
+        ep.Unit = this.props.Honey.DB.Units.find(
+          u => ep.Unit === u.UnitDescriptor
+        );
+        ep.TransportUnit =
+          ep.TransportUnit &&
+          this.props.Honey.DB.Units.find(
+            u => ep.TransportUnit === u.UnitDescriptor
+          );
+      });
+    });
+    this.setState({
+      DB: db.Decks,
+      DeckBuilder: deckbuilder,
+      isLoading: false
+    });
   };
 
   render() {

@@ -5,38 +5,73 @@ import SD1 from "./SD1/SD1";
 import SD2 from "./SD2/SD2";
 import SkyLight from "react-skylight";
 
-//import dict from "../Database.json"; //for dev purposes
+import DB1 from "../Database1.json"; //for dev purposes
+import DB2 from "../Database2.json"; //for dev purposes
 //import FirestoreInit from "../js/FirestoreInit";
 
-/* deflater test loop
+//deflate DB upload
 var pako = require("pako");
-
-var binaryString = pako.deflate(JSON.stringify(dict), { to: "string" });
-firebase
-  .firestore()
-  .collection("test")
-  .doc("deflateTest")
-  .set({ binaryString })
-  .catch(function(error) {
-    console.error("Get error: ", error);
-  })
-  .then(x => {
-    firebase
-      .firestore()
-      .collection("test")
-      .doc("deflateTest")
-      .get()
-      .then(queryDocumentSnapshot => {
-        var returner = queryDocumentSnapshot.data().binaryString;
-        var restored = JSON.parse(pako.inflate(returner, { to: "string" }));
-        console.log(restored);
-      });
-  });
-  */
+//var zip1 = pako.deflate(JSON.stringify(DB1), { to: "string" });
+//var zip2 = pako.deflate(JSON.stringify(DB2), { to: "string" });
+//firebase
+//  .firestore()
+//  .collection("zip")
+//  .doc("SD1")
+//  .set({ zip1 })
+//  .catch(function(error) {
+//    console.error("Set error: ", error);
+//  });
+//firebase
+//  .firestore()
+//  .collection("zip")
+//  .doc("SD2")
+//  .set({ zip2 })
+//  .catch(function(error) {
+//    console.error("Set error: ", error);
+//  });
 
 require("dotenv").config();
 
 global.debug = true;
+global.throw = function(title, vars, error) {
+  console.error(title);
+  console.log(vars);
+  console.error(error);
+};
+global.report = function(title, error) {
+  //TODO
+  console.errors("NOT IMPLEMENTED: errorReport (gg SYSOP)");
+};
+global.UpdateDatabase = function(x) {
+  if (x === 1) {
+    var zip1 = pako.deflate(JSON.stringify(DB1), { to: "string" });
+    firebase
+      .firestore()
+      .collection("zip")
+      .doc("SD1")
+      .set({ zip1 })
+      .catch(function(error) {
+        console.error("Set error: ", error);
+      })
+      .then(() => {
+        console.log("SD1 update");
+      });
+  } else {
+    var zip2 = pako.deflate(JSON.stringify(DB2), { to: "string" });
+    firebase
+      .firestore()
+      .collection("zip")
+      .doc("SD2")
+      .set({ zip2 })
+      .catch(function(error) {
+        console.error("Set error: ", error);
+      })
+      .then(() => {
+        console.log("SD2 update");
+      });
+  }
+  return "wait for console";
+};
 
 class app extends Component {
   constructor() {
@@ -55,6 +90,7 @@ class app extends Component {
       Firebase: db,
       Storage: fb,
 
+      DB: null,
       setActiveTab: this.setActiveTab,
       logIn: this.logIn,
       logout: this.logOut,
@@ -68,11 +104,37 @@ class app extends Component {
   };
 
   loadSD1 = () => {
-    this.setState({ loadedDB: "SD1", ActiveTab: "DeckBuilder" });
+    this.setState({ loadedDB: "loading" });
+    this.state.Firebase.collection("zip")
+      .doc("SD1")
+      .get()
+      .then(queryDocumentSnapshot => {
+        var inflated = JSON.parse(
+          pako.inflate(queryDocumentSnapshot.data().zip1, { to: "string" })
+        );
+        this.setState({
+          loadedDB: "SD1",
+          ActiveTab: "DeckBuilder",
+          DB: inflated
+        });
+      });
   };
 
   loadSD2 = () => {
-    this.setState({ loadedDB: "SD2", ActiveTab: "DeckBuilder" });
+    this.setState({ loadedDB: "loading" });
+    this.state.Firebase.collection("zip")
+      .doc("SD2")
+      .get()
+      .then(queryDocumentSnapshot => {
+        var inflated = JSON.parse(
+          pako.inflate(queryDocumentSnapshot.data().zip2, { to: "string" })
+        );
+        this.setState({
+          loadedDB: "SD2",
+          ActiveTab: "DeckBuilder",
+          DB: inflated
+        });
+      });
   };
 
   setActiveTab = x => {
@@ -140,6 +202,16 @@ class app extends Component {
             </div>
           </div>
         </React.Fragment>
+      );
+    } else if (this.state.loadedDB === "loading") {
+      return (
+        <div className="card">
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
       );
     } else if (this.state.loadedDB === "SD1") {
       return <SD1 Honey={this.state} />;
