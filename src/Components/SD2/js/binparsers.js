@@ -280,7 +280,7 @@ export function parseFromBin(BinaryOut) {
   } else if (CharOut.length % 4 === 2) {
     CharOut += "A=";
   } else if (CharOut.length % 4 === 3) {
-    CharOut += "=";
+    CharOut += "A";
   }
   return CharOut;
 }

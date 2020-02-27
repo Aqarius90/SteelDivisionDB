@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 function DivisionSelector({ Decks, setDeck }) {
   let makeButton = (x, i) => {
@@ -7,11 +6,15 @@ function DivisionSelector({ Decks, setDeck }) {
       <div className="col-xl-3" key={i}>
         <button className="btn btn-block" onClick={() => setDeck(x.Descriptor)}>
           <img
-            src={"img-sd2/divs/" + x.Emblem.toLowerCase() + ".tgv.png"}
+            src={
+              "SteelDivisionDB/img-sd2/divs/" +
+              x.EmblemTexture.split("Emblem_")[1].toLowerCase() +
+              ".png"
+            }
             className="img-back"
             alt="divEmblem"
           />
-          <p>{x.Name}</p>
+          <p>{x.DivisionName}</p>
         </button>
       </div>
     );

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import DeckAssembly from "../SD2/js/Deck";
 import DeckBuilder from "./DeckBuilder/DeckBuilder";
 import Database from "./Database/Database";
+import pako from "pako";
+import _ from "lodash";
 
-import dummyDB from "../../DB2test.json";
+//import dummyDB from "../../DB2test.json";
 //import FirestoreInit from "./js/FirestoreInit";
 
 //TODO add defences in matrix display
@@ -12,139 +14,54 @@ function SD2({ Honey }) {
   console.log("SD2 render");
   var API = {}; //empty object to hold all functions used by the rest of the modules
 
-  //deck code
-  const [code, setCode] = useState(
-    "DCRDGiCEIS0E7FaVQEbxhOwHUCPOOQZiQVSkTlEqHuUhw+ABWiZWmmZOOZJ8ACEJDjlGwgAUJ8ABUnoAFh+AAYcgABkRrjkBkFaQqwABERrjkKuAAUcWABhxYAFSIxbWhKABi2wAGmxAASokPppmQ+kWtgAVEa45ByAAEQIOOA=="
-  );
-  let handleChange = event => {
-    setCode(event.target.value);
-  };
-
   //deck setters
   const [deck, setDeck] = useState(new DeckAssembly());
-  API.decode = () => {
+  API.decode = code => {
     //set deck via deck code
     try {
       let newdeck = new DeckAssembly();
-      newdeck.loadFromCode(code, DB);
-      setDeck(newdeck);
-      setCode(newdeck.DeckCode);
+      setDeck(newdeck.loadFromCode(code, DB));
     } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("deck decode error");
-      } else {
-        errorReport("deck decode error");
-      }
+      global.throw("deck decode error", 0, error);
     }
   };
   API.clear = () => {
     //set deck to empty
     let newdeck = new DeckAssembly();
-    setDeck(newdeck);
-    setCode(newdeck.DeckCode);
   };
   API.setDeck = x => {
     //set deck from DB
     try {
       //TODO keep units on switch?
       let newdeck = new DeckAssembly();
-      newdeck.loadFromDB(x, DB);
-      setDeck(newdeck);
-      setCode(newdeck.DeckCode);
+      setDeck(newdeck.loadFromDB(x, DB));
     } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("deck set error");
-      } else {
-        errorReport("deck set error");
-      }
+      global.throw("deck set error", 0, error);
     }
   };
   API.setIncome = x => {
     //incomes are 0,1 2 3 for balanced, vanguard, maverick, juggernaut
     //TODO check this ordering
     try {
-      let newdeck = deck.setIncome(x);
-      setDeck(newdeck);
-      setCode(newdeck.DeckCode);
-      console.log(deck);
+      setDeck(_.clone(deck).setIncome(x));
     } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("income set error");
-      } else {
-        errorReport("income set error");
-      }
-    }
-  };
-
-  //DB handling
-  let initData = () => {
-    try {
-      if (global.debug) {
-        console.log("not implemented: dynamic DB loading");
-      }
-      setDB(dummyDB);
-      setLoading(false);
-    } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("DB get error");
-      } else {
-        errorReport("DB get error");
-      }
+      global.throw("income set error", 0, error);
     }
   };
 
   //render
-  const [isLoading, setLoading] = useState(true);
-  const [hasError, setHasError] = useState(0); //0-no error, 1-uploading, 2-done
-  const [DB, setDB] = useState(null);
-
-  //TODO
-  API.addUnit = x => {
-    try {
-      let newdeck = deck.addUnit(x);
-      setDeck(newdeck);
-      setCode(newdeck.DeckCode);
-    } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("addUnit error");
-      } else {
-        errorReport("addUnit error");
-      }
-    }
-  };
-  API.deleteUnit = x => {
-    try {
-      let newdeck = deck.deleteUnit(x);
-      setDeck(newdeck);
-      setCode(newdeck.DeckCode);
-    } catch (error) {
-      if (global.debug) {
-        console.error(error);
-        console.error("deleteUnit error");
-      } else {
-        errorReport("deleteUnit error");
-      }
-    }
-  };
-  API.toggleRandomizer = () => {
-    //TODO can probably be self-contained in the module
-    console.log("NOT IMPLEMENTED: toggleRandomizer");
-  };
-
-  function errorReport(title, error) {
-    //TODO
-    console.log("NOT IMPLEMENTED: errorReport");
-  }
-
-  if (isLoading) {
-    if (!DB) {
-      initData();
-    }
+  //const [hasError, setHasError] = useState(0); //0-no error, 1-uploading, 2-done
+  const [DB, setDB] = useState();
+  if (!DB) {
+    Honey.Firebase.collection("zip")
+      .doc("SD2")
+      .get()
+      .then(queryDocumentSnapshot => {
+        var inflated = JSON.parse(
+          pako.inflate(queryDocumentSnapshot.data().d, { to: "string" })
+        );
+        setDB(inflated);
+      });
     return (
       <div className="card">
         <div className="d-flex justify-content-center">
@@ -154,50 +71,46 @@ function SD2({ Honey }) {
         </div>
       </div>
     );
-  } else {
-    if (Honey.ActiveTab === "DeckBuilder") {
-      return (
-        <React.Fragment>
-          <div className="card">
-            <div className="row card-body">
-              <div className="col-xl-2">
-                <h3>
-                  {deck.Name} :{deck.ActivPts}/
-                  {deck.MaxActivPts /*todo, change to show nothing on 0/0*/}
-                </h3>
-              </div>
-              <div className="col-xl-8">
-                <input
-                  className="form-control"
-                  value={code}
-                  type="text"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-xl">
-                <button className="btn btn-block" onClick={() => API.decode()}>
-                  Decode
-                </button>
-              </div>
-              <div className="col-xl">
-                <button className="btn btn-block" onClick={() => API.clear()}>
-                  Clear
-                </button>
-              </div>
-            </div>
-          </div>
-          <DeckBuilder DB={DB} Deck={deck} API={API} />
-        </React.Fragment>
-      );
-    } else if (Honey.ActiveTab === "Database") {
-      return <Database DB={DB} />;
-    } else if (Honey.ActiveTab === "DeckDB") {
-      return <div>DeckDB</div>;
-    } else if (Honey.ActiveTab === "ReplayDB") {
-      return <div>replayDB fragment</div>;
-    } else {
-      return null;
+  }
+
+  //TODO
+  API.addUnit = x => {
+    try {
+      setDeck(_.clone(deck).addUnit(x));
+    } catch (error) {
+      global.throw("addUnit error", 0, error);
     }
+  };
+  API.deleteUnit = x => {
+    try {
+      setDeck(_.clone(deck).deleteUnit(x));
+    } catch (error) {
+      global.throw("deleteUnit error", 0, error);
+    }
+  };
+  API.toggleRandomizer = () => {
+    //TODO can probably be self-contained in the module
+    console.log("NOT IMPLEMENTED: toggleRandomizer");
+  };
+
+  if (Honey.ActiveTab === "DeckBuilder") {
+    return (
+      <DeckBuilder
+        DB={DB}
+        Deck={deck}
+        API={API}
+        Preload={Honey.ShareDeckCode}
+        Afterload={Honey.makeShare}
+      />
+    );
+  } else if (Honey.ActiveTab === "Database") {
+    return <Database DB={DB} FB={Honey.Firebase} />;
+  } else if (Honey.ActiveTab === "DeckDB") {
+    return <div>DeckDB</div>;
+  } else if (Honey.ActiveTab === "ReplayDB") {
+    return <div>replayDB fragment</div>;
+  } else {
+    return null;
   }
 }
 

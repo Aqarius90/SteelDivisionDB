@@ -168,9 +168,87 @@ p {
   position: relative;
   top: 0;
   left: 0;
-  height: 67px;
+  height: 60px;
 }
 
 .img-sd2-xp {
   height: 25px;
+}
+.txt-sd2-price {
+  position: absolute;
+  bottom: -10px;
+  left: 5%;
+  color: #fff;
+  font-weight: 900;
+}
+
+.img-sd2-rel-xp {
+  position: absolute;
+  top: 0px;
+  left: 80%;
+}
+.img-sd2-rel-spec {
+  position: absolute;
+  top: -10px;
+  left: 85%;
+  color: #fff;
+}
+
+.txt-sd2-phase {
+  position: absolute;
+  top: 0px;
+  left: 5%;
+  color: #fff;
+  font-weight: 900;
+}
+.txt-sd2-avail {
+  position: absolute;
+  bottom: -10px;
+  right: 5%;
+  color: #fff;
+  font-weight: 900;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .popup-background {
+    position: "absolute";
+    left: "0%";
+    top: "0%";
+    width: "100%";
+    height: "100%";
+    opacity: "0.7";
+    background-color: "#000";
+  }
+  .popup-simple {
+    position: "absolute";
+    left: "30%";
+    top: "30%";
+    width: "40%";
+    height: "40%";
+  }
+  .popup-unit {
+    position: absolute;
+    right: 0%;
+    width: 914.5px;
+    z-index: 2;
+  }
+}
+.popup-close {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  font-weight: 900;
 }

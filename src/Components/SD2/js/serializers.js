@@ -10,6 +10,7 @@ export function getIncomeArray(Deck) {
     case 3:
       return Deck.IncomeList.Juggernaut;
     default:
-      throw { "Income array parsing error": Deck };
+      console.log(Deck);
+      throw new Error("Income array parsing error");
   }
 }

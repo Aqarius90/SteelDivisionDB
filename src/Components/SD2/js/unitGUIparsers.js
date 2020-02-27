@@ -1,4 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
+
+export function getSpec(x, css) {
+  if (x.Key.SpecToken) {
+    return (
+      <img
+        src={
+          "SteelDivisionDB/img-sd2/specs/" +
+          x.Key.SpecToken.toLowerCase() +
+          ".tgv.png"
+        }
+        className={css}
+        //className={css}
+        alt={"DisplaySpecial"}
+      />
+    );
+  }
+  return;
+}
+
+export function getPortrait(x, css) {
+  if (css) {
+    return (
+      <img
+        src={
+          "SteelDivisionDB/img-sd2/pictures/" +
+          x.Key.UnitDescriptor.toLowerCase() +
+          ".png"
+        }
+        className={css}
+        alt="unitPortrait"
+      />
+    );
+  }
+  return (
+    <img
+      src={
+        "SteelDivisionDB/img-sd2/units/" +
+        x.Key.UnitDescriptor.toLowerCase() +
+        ".png"
+      }
+      className="img-sd-back"
+      alt="unitPortrait"
+    />
+  );
+}
+
 export function parsePhaseAvail(x, y) {
   if (x.reduce((a, b) => a + b)) {
     //if any, return true
@@ -7,38 +53,92 @@ export function parsePhaseAvail(x, y) {
   return "-";
 }
 
-export function parseBool(x) {
-  return x ? "True" : "False";
-}
-
-export function DisplayAP(AP, css) {
-  switch (AP) {
-    case "HEAT":
-      return (
-        <img src="img/icone_fantassin.tgv.png" className={css} alt="HEAT" />
-      );
-    case "none":
-      return <img src="img/icone_ap.tgv.png" className={css} alt="none" />;
-    default: {
-      if (css === "img-xp") {
-        return <h6>AP: {AP}</h6>;
-      } else {
-        return <h5 className="txt-rel-ap">{AP}</h5>;
-      }
+export function parseArmor(x) {
+  if (x) {
+    var foo = x;
+    //foo = foo === "ArmorDescriptor_Toit" ? "Roof" : foo;
+    foo = foo.replace("ArmorDescriptor_", "");
+    foo = foo.replace("Lourd", "Heavy");
+    foo = foo.replace("Toit", "Roof"); //"roof"
+    foo = foo.replace("_", " ");
+    foo = foo.replace("Infanterie", "Infantry");
+    foo = foo.replace("Batiment", "Fortification");
+    foo = foo.replace("Canon", "Gun");
+    foo = foo.replace("Avion", "Aircraft");
+    if (foo.includes("Blindage")) {
+      foo = foo.replace("Blindage", "");
+      foo = parseInt(foo) * 5 + "mm";
     }
+    return foo;
+  }
+  return "DBERROR";
+}
+export function parseTransport(x) {
+  if (x === 0) {
+    return "none";
+  } else if (x === 2) {
+    return "Light";
+  } else if (x === 3) {
+    return "Heavy";
+  } else if (x === 3) {
+    return "Not towable";
+  } else {
+    return "N/A";
   }
 }
 
-export function DisplayAV(AV, css) {
-  switch (AV) {
-    case "none":
-      return <img src="img/icone_ap.tgv.png" className={css} alt="none" />;
-    default: {
-      if (css === "img-xp") {
-        return <h6>FAV: {AV}</h6>;
-      } else {
-        return <h5 className="txt-rel-av">{AV}</h5>;
-      }
-    }
+export function parseSpecialDetection(x) {
+  if (x) {
+    return (
+      <div className="col-xl">
+        <h6>Special detection bonus:</h6>
+        <ul>
+          {x.map((e, i) => {
+            return (
+              <li key={i}>
+                {e.replace("EVisionUnitType/", "").replace(".0 * Metre", "")}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
   }
+  return <div />;
+}
+
+export function parseTerrainList(x) {
+  if (x) {
+    return (
+      <div className="col-xl">
+        <h6>AutoCover Terrain List:</h6>
+        <ul>
+          {x.map((e, i) => {
+            return e ? (
+              <li key={i}>{e.replace("/ETerrainType/", "")}</li>
+            ) : (
+              <div key={i} />
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+  return <div />;
+}
+
+export function parseStrategyList(x) {
+  if (x) {
+    return (
+      <div className="col-xl">
+        <h6>Attack strategy list:</h6>
+        <ul>
+          {x.map((e, i) => {
+            return e ? <li key={i}>{e}</li> : <div key={i} />;
+          })}
+        </ul>
+      </div>
+    );
+  }
+  return <div />;
 }

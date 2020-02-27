@@ -1,68 +1,152 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import DeckDB from "./DeckDB";
 import UnitDB from "./UnitDB";
+import WeaponDB from "./WeaponDB";
+import pako from "pako";
 
-function Database({ DB }) {
-  const [filterParams, setFilterParams] = useState("");
-  const [filterListUnit, setFilterlist] = useState(DB.Units); //check the derivation
-  let handleChange = event => {
-    setFilterParams(event.target.value);
-  };
+function Database({ DB, FB }) {
+  const [thisDB, setThisDB] = useState("d");
+  const [allDecks, setAllDecks] = useState(DB);
+  const [allUnits, setAllUnits] = useState(null);
+  const [allWeapons, setAllWeapons] = useState(null);
 
-  let filter = () => {
-    console.log("setFilterlist");
-    let x = DB.Units.filter(e => {
-      return (
-        e.Descriptor !== "-" &&
-        (e.Name.includes(filterParams.filterText) ||
-          e.Decks.includes(filterParams.filterText) ||
-          e.Optics.includes(filterParams.filterText))
-      ); //||
-      //e.Weapons.Descriptor.includes(filterParams.filterText)) //wront, but fine for now
-    });
-    console.log(x);
-    setFilterlist(x);
-  };
+  function getDB() {
+    switch (thisDB) {
+      case "d":
+        if (allDecks) {
+          console.log("Deck");
+          return <DeckDB allDecks={allDecks} />;
+        }
+        break;
+      case "u":
+        if (allUnits) {
+          console.log("Unit");
+          return <UnitDB allUnits={allUnits} />;
+        }
+        break;
+      case "w":
+        if (allWeapons) {
+          return <WeaponDB allWeapons={allWeapons} />;
+        }
+        break;
+    }
+    return (
+      <div className="card">
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-  let clearFilter = () => {
-    setFilterParams({
-      filterText: "",
-      priceRange: [0, 999]
-    });
-    filter();
-  };
+  function setActive(x) {
+    if (x === "u" && !allUnits) {
+      FB.collection("zip")
+        .doc("SD2u")
+        .get()
+        .then(queryDocumentSnapshot => {
+          var inflated = JSON.parse(
+            pako.inflate(queryDocumentSnapshot.data().u, { to: "string" })
+          );
+          setAllUnits(inflated);
+        });
+    }
+    if (x === "w" && !allWeapons) {
+      FB.collection("zip")
+        .doc("SD2a")
+        .get()
+        .then(queryDocumentSnapshot => {
+          var inflated = JSON.parse(
+            pako.inflate(queryDocumentSnapshot.data().a, { to: "string" })
+          );
+          setAllWeapons(inflated);
+        });
+    }
+    setThisDB(x);
+  }
 
   return (
     <React.Fragment>
-      <div className="row">
-        <div className="col-10">
-          <input
-            className="form-control"
-            value={filterParams}
-            type="text"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="col-2">
-          <button
-            className="btn btn-block btn-primary"
-            onClick={() => filter()}
-          >
-            Filter
-          </button>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <button className="btn btn-block" onClick={() => setActive("d")}>
+              Decks
+            </button>
+          </div>
+          <div className="col">
+            <button className="btn btn-block" onClick={() => setActive("u")}>
+              Units
+            </button>
+          </div>
+          <div className="col">
+            <button className="btn btn-block" onClick={() => setActive("w")}>
+              Weapons
+            </button>
+          </div>
         </div>
       </div>
-      <Tabs className="card">
-        <TabList>
-          <Tab>Unit</Tab>
-          <Tab>Weapon</Tab>
-        </TabList>
-        <TabPanel>
-          <UnitDB filterList={filterListUnit} />
-        </TabPanel>
-        <TabPanel />
-      </Tabs>
+      {getDB()}
     </React.Fragment>
+  );
+}
+
+export function FilterField({ items, set }) {
+  const [str, setstr] = useState("");
+  let handleChange = event => {
+    setstr(event.target.value);
+  };
+
+  function searchObj(obj, query) {
+    for (var key in obj) {
+      var value = obj[key];
+
+      if (typeof value === "object") {
+        searchObj(value, query);
+      }
+
+      if (
+        typeof value === "string" &&
+        value.toLowerCase().includes(query.toLowerCase())
+      ) {
+        return true;
+      }
+      if (value === query) {
+        return true;
+      }
+    }
+  }
+
+  let lookup = str => {
+    let u = [];
+    items.forEach(e => {
+      if (searchObj(e, str)) {
+        u.push(e);
+      }
+    });
+    console.log(str);
+    console.log(u);
+    set(u);
+  };
+  return (
+    <div className="row">
+      <div className="col-10">
+        <input
+          className="form-control"
+          value={str}
+          type="text"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="col-2">
+        <button className="btn btn-block" onClick={() => lookup(str)}>
+          Filter
+        </button>
+      </div>
+    </div>
   );
 }
 

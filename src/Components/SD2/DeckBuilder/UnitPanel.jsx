@@ -1,97 +1,155 @@
-import React from "react";
-import { parsePhaseAvail, DisplayAP, DisplayAV } from "../js/unitGUIparsers";
+import React, { useState } from "react";
+import { getSpec, getPortrait } from "../js/unitGUIparsers";
 import CDRow from "./CDRow";
 import UnitDisplay from "./UnitDisplay";
 
-function UnitPanel({ Deck, API, Index, Pack, show }) {
+function UnitPanel({ Deck, API, UnitPairs, Index, sideShow, setShow }) {
   let Parsed = Deck.DisplayMatrix[Index];
-  /* pack:{pack: e, trans: t }*/
   return (
     <div className="card-body">
-      <CDRow Deck={Deck} Parsed={Parsed} show={show} API={API} />
+      <CDRow Deck={Deck} Parsed={Parsed} show={setShow} API={API} />
       <div className="row">
         <div className="col-xl-6">
-          <UnitList Deck={Deck} Index={Index} show={show} />
+          <UnitList UnitPairs={UnitPairs} show={setShow} />
         </div>
         <div className="col-xl-6">
-          <UnitDisplay Pack={Pack} add={API.addUnit} />
+          {<UnitDisplay Pack={sideShow} show={setShow} add={API.addUnit} />}
         </div>
       </div>
     </div>
   );
 }
 
-function UnitList({ Deck, Index, show }) {
-  let types = [
-    "Reco",
-    "Inf",
-    "Tank",
-    "Support",
-    "AT",
-    "DCA",
-    "Art",
-    "Air",
-    "Static"
-  ];
-  let Type = types[Index];
+function UnitList({ UnitPairs, show }) {
   let makeUnitEntry = (x, index) => {
-    if (x.pack === undefined) {
-      throw "no unit in display";
+    if (x.t) {
+      return (
+        <tr key={index} onClick={() => show(x)}>
+          <td>{getPortrait(x.u, "img-sd2-xp")}</td>
+          <td>{x.u.Key.UnitName}</td>
+          <td>{x.u.Key.ProductionPrice}</td>
+          <td>{x.u.Value.MaxPackNumber}</td>
+          <td>{x.u.Value.UnitsPerPack[0] + "|"}</td>
+          <td>{x.u.Value.UnitsPerPack[1] + "|"}</td>
+          <td>{x.u.Value.UnitsPerPack[2]}</td>
+          <td>{getSpec(x.u)}</td>
+          <td>{getPortrait(x.t, "img-sd2-xp")}</td>
+          <td>{x.t.Key.UnitName}</td>
+          <td>{x.t.Key.ProductionPrice}</td>
+          <td>{getSpec(x.t)}</td>
+        </tr>
+      );
     }
     return (
       <tr key={index} onClick={() => show(x)}>
-        <td>{x.pack.Unit.Name}</td>
-        <td>{x.pack.Unit.Price}</td>
-        <td>{x.pack.PackAvail}</td>
-        <td>{DisplayAP(x.pack.Unit.ATshow, "img-xp")}</td>
-        <td>{DisplayAV(x.pack.Unit.AVshow, "img-xp")}</td>
-        <td>{x.pack.Unit.SpecShow}</td>
-        <td>{x.trans.Unit.Name}</td>
-        <td>{x.trans.Unit.Price}</td>
-        <td>{DisplayAP(x.trans.Unit.ATshow, "img-xp")}</td>
-        <td>{DisplayAV(x.trans.Unit.AVshow, "img-xp")}</td>
-        <td>{x.trans.Unit.SpecShow}</td>
-        <td>{parsePhaseAvail(x.pack.AvMatrix[0], "A")}</td>
-        <td>{parsePhaseAvail(x.pack.AvMatrix[1], "B")}</td>
-        <td>{parsePhaseAvail(x.pack.AvMatrix[2], "C")}</td>
+        <td>{getPortrait(x.u, "img-sd2-xp")}</td>
+        <td>{x.u.Key.UnitName}</td>
+        <td>{x.u.Key.ProductionPrice}</td>
+        <td>{x.u.Value.MaxPackNumber}</td>
+        <td>{x.u.Value.UnitsPerPack[0] + "|"}</td>
+        <td>{x.u.Value.UnitsPerPack[1] + "|"}</td>
+        <td>{x.u.Value.UnitsPerPack[2]}</td>
+        <td>{getSpec(x.u)}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     );
   };
-
-  let Unitslist = [];
-  Deck.PackList.forEach(e => {
-    if (Type === e.Unit.Factory) {
-      //constructs a unit for display
-      e.Transports.forEach(l => {
-        let t = Deck.TransportList.find(x => {
-          return x.Desc === l;
-        });
-        Unitslist.push({ pack: e, trans: t });
-      });
+  const [sort, setSort] = useState(null);
+  const [order, setOrder] = useState(true);
+  function compare(a, b) {
+    if (order) {
+      return a > b ? 1 : a < b ? -1 : 0;
     }
-  });
+    return a < b ? 1 : a > b ? -1 : 0;
+  }
+  function setSortValue(x) {
+    if (sort === x) {
+      setOrder(!order);
+    } else {
+      setSort(x);
+    }
+  }
+
+  switch (sort) {
+    case null:
+      break;
+    case "Unit":
+      UnitPairs.sort((a, b) => compare(a.u.Key.UnitName, b.u.Key.UnitName));
+      break;
+    case "Points":
+      UnitPairs.sort(
+        (a, b) => a.u.Key.ProductionPrice - b.u.Key.ProductionPrice
+      );
+      break;
+    case "Cards":
+      UnitPairs.sort(
+        (a, b) => a.u.Value.MaxPackNumber - b.u.Value.MaxPackNumber
+      );
+      break;
+    case "A":
+      UnitPairs.sort((a, b) =>
+        compare(a.u.Value.UnitsPerPack[0], b.u.Value.UnitsPerPack[0])
+      );
+      break;
+    case "B":
+      UnitPairs.sort((a, b) =>
+        compare(a.u.Value.UnitsPerPack[1], b.u.Value.UnitsPerPack[1])
+      );
+      break;
+    case "C":
+      UnitPairs.sort((a, b) =>
+        compare(a.u.Value.UnitsPerPack[2], b.u.Value.UnitsPerPack[2])
+      );
+      break;
+    case "Spec":
+      UnitPairs.sort((a, b) => compare(a.u.Key.SpecToken, b.u.Key.SpecToken));
+      break;
+    case "Trans":
+      UnitPairs.sort((a, b) =>
+        compare(a.t ? a.t.Key.UnitName : 0, b.t ? b.t.Key.UnitName : 0)
+      );
+      break;
+    case "tPoints":
+      UnitPairs.sort((a, b) =>
+        compare(
+          a.t ? a.t.Key.ProductionPrice : 0,
+          b.t ? b.t.Key.ProductionPrice : 0
+        )
+      );
+      break;
+    case "tSpec":
+      UnitPairs.sort((a, b) =>
+        compare(a.t ? a.t.Key.SpecToken : 0, b.t ? b.t.Key.SpecToken : 0)
+      );
+      break;
+    default:
+      global.throw("sortError", sort);
+      break;
+  }
   return (
     <div className="card">
       <div className="card-body">
-        <table className="sortable table-hover" id="recTable">
+        <table className="sortable table-hover">
           <tbody>
             <tr>
-              <th>Unit⇓</th>
-              <th>Points⇓</th>
-              <th>Cards⇓</th>
-              <th>AT⇓</th>
-              <th>FAV⇓</th>
-              <th>Spec⇓</th>
-              <th>Transport⇓</th>
-              <th>Points⇓</th>
-              <th>AT⇓</th>
-              <th>FAV⇓</th>
-              <th>Spec⇓</th>
-              <th>A⇓</th>
-              <th>B⇓</th>
-              <th>C⇓</th>
+              <th></th>
+              <th onClick={() => setSortValue("Unit")}> Unit⇓</th>
+              <th onClick={() => setSortValue("Points")}>Points⇓</th>
+              <th onClick={() => setSortValue("Cards")}>Cards⇓</th>
+              <th onClick={() => setSortValue("A")}>A⇓|</th>
+              <th onClick={() => setSortValue("B")}>B⇓|</th>
+              <th onClick={() => setSortValue("C")}>C⇓</th>
+              <th onClick={() => setSortValue("Spec")}>Spec⇓</th>
+              <th></th>
+              <th onClick={() => setSortValue("Trans")}>Transport⇓</th>
+              <th onClick={() => setSortValue("tPoints")}>Points⇓</th>
+              <th onClick={() => setSortValue("tSpec")}>Spec⇓</th>
             </tr>
-            {Unitslist.map(makeUnitEntry)}
+            {UnitPairs.map(makeUnitEntry)}
           </tbody>
         </table>
       </div>

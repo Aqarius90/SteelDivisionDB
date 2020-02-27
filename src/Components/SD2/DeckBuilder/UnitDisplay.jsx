@@ -3,49 +3,38 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import UnitHeader from "./UnitHeader";
 import UnitModules from "./UnitModules";
 
-function UnitDisplay({ Pack, add }) {
+function UnitDisplay({ Pack, show, add }) {
   if (Pack === null || Pack === undefined) {
     return <div />;
   } else {
-    let foo = {};
-    if (Pack.phase !== undefined) {
-      //deck card
-      foo.pack = Pack.Pack;
-      foo.trans = Pack.Transport;
-    } else {
-      //new unit
-      foo.pack = Pack.pack;
-      foo.trans = Pack.trans;
-    }
-    if (foo.trans.Unit.Descriptor === "-") {
+    if (Pack.t) {
       return (
-        <Tabs className="card">
-          <UnitHeader Pack={foo} add={add} />
-          <TabList>
-            <Tab>Unit</Tab>
-          </TabList>
-          <TabPanel>
-            <UnitModules Unit={foo.pack} />
-          </TabPanel>
-        </Tabs>
-      );
-    } else {
-      return (
-        <Tabs className="card">
-          <UnitHeader Pack={foo} add={add} />
+        <Tabs className="card popup-unit">
+          <UnitHeader Pack={Pack} show={show} add={add} />
           <TabList>
             <Tab>Unit</Tab>
             <Tab>Transport</Tab>
           </TabList>
           <TabPanel>
-            <UnitModules Unit={foo.pack} />
+            <UnitModules x={Pack.u} />
           </TabPanel>
           <TabPanel>
-            <UnitModules Unit={foo.trans} />
+            <UnitModules x={Pack.t} />
           </TabPanel>
         </Tabs>
       );
     }
+    return (
+      <Tabs className="card popup-unit">
+        <UnitHeader Pack={Pack} show={show} add={add} />
+        <TabList>
+          <Tab>Unit</Tab>
+        </TabList>
+        <TabPanel>
+          <UnitModules x={Pack.u} />
+        </TabPanel>
+      </Tabs>
+    );
   }
 }
 export default UnitDisplay;

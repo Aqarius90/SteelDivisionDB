@@ -4,85 +4,53 @@ import Header from "./Header";
 import SD1 from "./SD1/SD1";
 import SD2 from "./SD2/SD2";
 import SkyLight from "react-skylight";
+import pako from "pako";
 
-import DB1 from "../Database1.json"; //for dev purposes
-import DB2 from "../Database2.json"; //for dev purposes
+import DB1 from "../Database1.json";
+import DB2 from "../DB2.json";
 //import FirestoreInit from "../js/FirestoreInit";
-
-//deflate DB upload
-var pako = require("pako");
-//var zip1 = pako.deflate(JSON.stringify(DB1), { to: "string" });
-//var zip2 = pako.deflate(JSON.stringify(DB2), { to: "string" });
-//firebase
-//  .firestore()
-//  .collection("zip")
-//  .doc("SD1")
-//  .set({ zip1 })
-//  .catch(function(error) {
-//    console.error("Set error: ", error);
-//  });
-//firebase
-//  .firestore()
-//  .collection("zip")
-//  .doc("SD2")
-//  .set({ zip2 })
-//  .catch(function(error) {
-//    console.error("Set error: ", error);
-//  });
+//import _ from "lodash";
+import { UpdateDatabase } from "../js/DatabaseHandlers";
 
 require("dotenv").config();
-
-global.debug = true;
-global.throw = function(title, vars, error) {
-  console.error(title);
-  console.log(vars);
-  console.error(error);
-};
-global.report = function(title, error) {
-  //TODO
-  console.errors("NOT IMPLEMENTED: errorReport (gg SYSOP)");
-};
 global.UpdateDatabase = function(x) {
-  if (x === 1) {
-    var zip1 = pako.deflate(JSON.stringify(DB1), { to: "string" });
-    firebase
-      .firestore()
-      .collection("zip")
-      .doc("SD1")
-      .set({ zip1 })
-      .catch(function(error) {
-        console.error("Set error: ", error);
-      })
-      .then(() => {
-        console.log("SD1 update");
-      });
-  } else {
-    var zip2 = pako.deflate(JSON.stringify(DB2), { to: "string" });
-    firebase
-      .firestore()
-      .collection("zip")
-      .doc("SD2")
-      .set({ zip2 })
-      .catch(function(error) {
-        console.error("Set error: ", error);
-      })
-      .then(() => {
-        console.log("SD2 update");
-      });
-  }
+  UpdateDatabase(x);
   return "wait for console";
 };
 
+global.debug = true;
+global.throw = function(title, vars, error) {
+  if (global.debug) {
+    console.error(title);
+    console.log(vars);
+    console.error(error);
+  } else {
+    console.log(title);
+    console.log(error);
+    //TODO
+    console.error("NOT IMPLEMENTED: errorReport (gg SYSOP)");
+  }
+};
+
+global.shareCode = null;
+
 class app extends Component {
   constructor() {
+    let URL = window.location.href;
+    let URA = URL.split("?");
+    console.log(URA);
     super();
     const db = firebase.firestore();
     const fb = firebase.storage().ref();
 
+    global.shareCode = URA[3] ? URA[3] : null;
     this.state = {
       //UI
-      loadedDB: null, //parsed values: SD1, SD2
-      ActiveTab: "DBloader", //options: DBloader, DeckBuilder, DeckDB, ReplayDB
+      loadedDB: URA[1] ? URA[1] : null, //parsed values: SD1, SD2
+      ActiveTab: URA[2] ? URA[2] : "DBloader", //options: DBloader, DeckBuilder, Decks, Replays, Database
+      ShareLink: "",
+      ShareScreen: false,
+      ErrorLink: "",
 
       //firebase and auth data
       User: null,
@@ -95,12 +63,27 @@ class app extends Component {
       logIn: this.logIn,
       logout: this.logOut,
       PleaseLogIn: this.PleaseLogInShow,
-      ErrorOut: this.Error
+      share: this.share,
+      ErrorOut: this.Error,
+      makeShare: this.makeShare
     };
   }
 
   PleaseLogInShow = () => {
     this.PleaseLogIn.show();
+  };
+  share = x => {
+    console.log(global.shareCode);
+    this.setState({
+      ShareLink:
+        "https://localhost:3000/SteelDivisionDB/?" +
+        this.state.loadedDB +
+        "?" +
+        this.state.ActiveTab +
+        "?" +
+        global.shareCode
+    });
+    this.setState({ ShareScreen: true });
   };
 
   loadSD1 = () => {
@@ -121,20 +104,10 @@ class app extends Component {
   };
 
   loadSD2 = () => {
-    this.setState({ loadedDB: "loading" });
-    this.state.Firebase.collection("zip")
-      .doc("SD2")
-      .get()
-      .then(queryDocumentSnapshot => {
-        var inflated = JSON.parse(
-          pako.inflate(queryDocumentSnapshot.data().zip2, { to: "string" })
-        );
-        this.setState({
-          loadedDB: "SD2",
-          ActiveTab: "DeckBuilder",
-          DB: inflated
-        });
-      });
+    this.setState({
+      loadedDB: "SD2",
+      ActiveTab: "DeckBuilder"
+    });
   };
 
   setActiveTab = x => {
@@ -180,9 +153,9 @@ class app extends Component {
 
   // render app body
   showDBInterface = () => {
-    if (this.state.loadedDB === null) {
-      return (
-        <React.Fragment>
+    switch (this.state.loadedDB) {
+      case null:
+        return (
           <div className="card">
             <div className="row">
               <div className="col-xl">
@@ -201,24 +174,25 @@ class app extends Component {
               </div>
             </div>
           </div>
-        </React.Fragment>
-      );
-    } else if (this.state.loadedDB === "loading") {
-      return (
-        <div className="card">
-          <div className="d-flex justify-content-center">
-            <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
+        );
+      case "loading":
+        return (
+          <div className="card">
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    } else if (this.state.loadedDB === "SD1") {
-      return <SD1 Honey={this.state} />;
-    } else if (this.state.loadedDB === "SD2") {
-      return <SD2 Honey={this.state} />;
-    } else {
-      console.log(this.state.loadedDB);
+        );
+      case "SD1":
+        return <SD1 Honey={this.state} />;
+      case "SD2":
+        return <SD2 Honey={this.state} />;
+
+      default:
+        global.report("DB switch error", this.state);
+        return <h1>ERROR</h1>;
     }
   };
 
@@ -232,9 +206,45 @@ class app extends Component {
           Please Log In
         </SkyLight>
         <SkyLight hideOnOverlayClicked ref={ref => (this.Error = ref)}>
-          An error has occurred
+          An error has occurred : {}
+        </SkyLight>
+        <SkyLight
+          hideOnOverlayClicked
+          ref={ref => (this.Share = ref)}
+          title={
+            <div className="card">
+              <input
+                className="form-control"
+                value={this.state.ShareLink}
+                type="text"
+                readOnly
+              />
+            </div>
+          }
+        >
+          <input
+            className="form-control"
+            value={this.state.ShareLink}
+            type="text"
+            readOnly
+          />
         </SkyLight>
         {this.showDBInterface()}
+        <div
+          className={this.state.ShareScreen ? "d-block" : "d-none"}
+          onClick={() =>
+            this.setState({ ShareScreen: !this.state.ShareScreen })
+          }
+        >
+          <div className="popup-background"></div>
+          <div onClick={e => e.stopPropagation()} className="popup-simple">
+            <div className="card justify-content-center">
+              <div className="card-header">
+                <h3>{this.state.ShareLink}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -7,7 +7,7 @@ class TurretHeader extends PureComponent {
     }
     let str = x.toLowerCase();
     str = str.replace("~/texture_interface_weapon_", "");
-    return "img/w/" + str + ".tgv.png";
+    return "img/w/" + str + ".png";
   };
   parseGunCount = x => {
     if (x.SalvoStockIndex === x.SalvoStockIndex_ForInterface) {

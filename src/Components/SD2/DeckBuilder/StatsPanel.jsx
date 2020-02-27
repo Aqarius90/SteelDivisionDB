@@ -41,7 +41,7 @@ function StatsPanel({ Deck, setIncome }) {
         summa.push(
           row
             .filter(e => {
-              return e.phase == i; //TODO see if phase should be INT by default
+              return e.phase === i; //TODO see if phase should be INT by default
             })
             .reduce(sumUnits, 0)
         );
@@ -57,12 +57,13 @@ function StatsPanel({ Deck, setIncome }) {
       newSummedCosts.push(summa);
     }
     setSummedcosts(newSummedCosts);
-  }, [Deck.Income]); // unneeded, you have to leave the tab to modify units
+  }); // unneeded, you have to leave the tab to modify units
 
   /*reducer*/
   function sumUnits(total, e) {
+    console.log("...check this");
     if (!!e) {
-      return total + e.Pack.Unit.Price + e.Transport.Unit.Price; //empty transport should add to 0
+      return total + e.unitPack.u.Price + e.transportPack.u.Price; //empty transport should add to 0
     }
     throw { "Summing of empty unit": e };
   }

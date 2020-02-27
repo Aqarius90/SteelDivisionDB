@@ -13,6 +13,7 @@ function DeckGrid({ Deck, setIncome }) {
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[5]} />
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[6]} />
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[7]} />
+      <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[8]} />
     </div>
   );
 }
@@ -27,7 +28,7 @@ export function IncomeSelector({ Deck, setIncome }) {
     return "btn ";
   };
   return (
-    <div className="btn-group btn-group-sm">
+    <div className="card-title btn-group btn-group-sm">
       <button className={isSelected(0)} onClick={() => setIncome(0)}>
         {"Balanced:  " +
           IncomeList.Balanced[0] +
