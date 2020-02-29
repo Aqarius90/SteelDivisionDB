@@ -44,18 +44,18 @@ function WeaponDB({ allWeapons }) {
             <tbody>
               <tr>
                 <th></th>
-                <th>Weapon</th>
-                <th>Caliber</th>
-                <th>Indirect fire</th>
-                <th>APCR</th>
-                <th>Accuracy</th>
-                <th>Stabilizer</th>
-                <th>Aimtime</th>
-                <th>DispersionMin</th>
-                <th>DispersionMax</th>
-                <th>RangeMin</th>
-                <th>RangeMax</th>
-                <th>RangeAAA</th>
+                <th> Weapon </th>
+                <th> Caliber </th>
+                <th> Indirect fire </th>
+                <th> APCR </th>
+                <th> Accuracy </th>
+                <th> Stabilizer </th>
+                <th> Aimtime </th>
+                <th> DispersionMin </th>
+                <th> DispersionMax </th>
+                <th> RangeMin </th>
+                <th> RangeMax </th>
+                <th> RangeAAA </th>
               </tr>
               {pageWeapons.map((e, i) => showRow(e, i))}
             </tbody>

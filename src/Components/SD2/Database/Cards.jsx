@@ -296,7 +296,7 @@ export function WeaponWeaponCard({ detail, setDetail }) {
               X
             </button>
           </div>
-          <div className="col-3">
+          <div className="col-2">
             <img
               src={
                 "SteelDivisionDB/img-sd2/guns/" +
@@ -307,7 +307,7 @@ export function WeaponWeaponCard({ detail, setDetail }) {
               alt={detail.InterfaceWeaponTexture}
             />
           </div>
-          <div className="col">
+          <div className="col-3">
             <div className="row">
               <b>{detail.AmmoDescriptor}</b>
             </div>
@@ -319,7 +319,7 @@ export function WeaponWeaponCard({ detail, setDetail }) {
             </div>
             <div className="row">is APCR: {detail.isAPCR ? "Yes" : "No"}</div>
           </div>
-          <div className="col">
+          <div className="col-2">
             <ReactTooltip />
             <h6 data-tip="Idle/Moving">
               Accuracy:
@@ -345,6 +345,11 @@ export function WeaponWeaponCard({ detail, setDetail }) {
                 "/" +
                 detail.RangeMaxAAA}
             </h6>
+          </div>
+          <div className="col-4">
+            {detail.Units.map((e, i) => (
+              <h6 key={i}>{e}</h6>
+            ))}
           </div>
         </div>
         <Ammo x={detail} />

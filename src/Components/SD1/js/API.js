@@ -17,6 +17,7 @@ export function setDeck(deck) {
       deckbuilder.DBUnits = sortByCategory(dataarray[index].PackList);
       deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
       deckbuilder.Deck = newDeck;
+      this.props.API.setCode(newCode);
       this.setState({ DeckBuilder: deckbuilder, code: newCode });
     } else {
       this.setState({ isLoading: true });
@@ -33,6 +34,7 @@ export function setDeck(deck) {
           deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
           deckbuilder.Deck = newDeck;
 
+          this.props.API.setCode(newCode);
           this.setState({
             isLoading: false,
             DeckBuilder: deckbuilder,
@@ -99,6 +101,7 @@ export function addUnit(x) {
     let newCode = newDeck.ExportCode;
     state.DeckUnits = sortByCategoryForDisplay(newDeck);
     state.Deck = newDeck;
+    this.props.API.setCode(newCode);
     this.setState({ DeckBuilder: state, code: newCode });
   }
 }
@@ -108,6 +111,7 @@ export function deleteUnit(x) {
   let newCode = newDeck.ExportCode;
   state.DeckUnits = sortByCategoryForDisplay(newDeck);
   state.Deck = newDeck;
+  this.props.API.setCode(newCode);
   this.setState({ DeckBuilder: state, code: newCode });
 }
 
@@ -163,6 +167,7 @@ export function sortBy(u, x) {
 }
 
 export function setDeckCode(x) {
+  this.props.API.setCode(x);
   this.setState({ code: x });
 }
 
@@ -185,6 +190,7 @@ export function parseDeckCode(x) {
       deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
       deckbuilder.Deck = newDeck;
 
+      this.props.API.setCode(newCode);
       this.setState({
         DeckBuilder: deckbuilder,
         code: newCode
@@ -203,6 +209,7 @@ export function parseDeckCode(x) {
           deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
           deckbuilder.Deck = newDeck;
 
+          this.props.API.setCode(newCode);
           this.setState({
             DB: dataarray,
             DeckBuilder: deckbuilder,

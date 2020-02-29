@@ -15,13 +15,11 @@ function Database({ DB, FB }) {
     switch (thisDB) {
       case "d":
         if (allDecks) {
-          console.log("Deck");
           return <DeckDB allDecks={allDecks} />;
         }
         break;
       case "u":
         if (allUnits) {
-          console.log("Unit");
           return <UnitDB allUnits={allUnits} />;
         }
         break;
@@ -73,17 +71,26 @@ function Database({ DB, FB }) {
       <div className="container">
         <div className="row">
           <div className="col">
-            <button className="btn btn-block" onClick={() => setActive("d")}>
+            <button
+              className="btn btn-block  btn-outline-dark"
+              onClick={() => setActive("d")}
+            >
               Decks
             </button>
           </div>
           <div className="col">
-            <button className="btn btn-block" onClick={() => setActive("u")}>
+            <button
+              className="btn btn-block  btn-outline-dark"
+              onClick={() => setActive("u")}
+            >
               Units
             </button>
           </div>
           <div className="col">
-            <button className="btn btn-block" onClick={() => setActive("w")}>
+            <button
+              className="btn btn-block  btn-outline-dark"
+              onClick={() => setActive("w")}
+            >
               Weapons
             </button>
           </div>

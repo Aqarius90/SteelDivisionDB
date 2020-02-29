@@ -5,7 +5,7 @@ import DeckGrid from "./DeckGrid";
 import UnitPanel from "./UnitPanel";
 //import StatsPanel from "./StatsPanel";
 
-function DeckBuilder({ DB, Deck, API, Preload, Afterload }) {
+function DeckBuilder({ DB, Deck, API, Preload, setCode }) {
   //the unit to show in right hand side
   const [sideShow, setSideShow] = useState(null);
 
@@ -33,12 +33,7 @@ function DeckBuilder({ DB, Deck, API, Preload, Afterload }) {
   console.log("render deckbuilder");
   return (
     <div className="card">
-      <DecodeHeader
-        Deck={Deck}
-        API={API}
-        Preload={Preload}
-        Afterload={Afterload}
-      />
+      <DecodeHeader Deck={Deck} API={API} Preload={Preload} setCode={setCode} />
       <Tabs className="card">
         <TabList>
           <Tab>Division</Tab>
@@ -161,28 +156,21 @@ function DeckBuilder({ DB, Deck, API, Preload, Afterload }) {
   );
 }
 
-function DecodeHeader({ Deck, API, Preload, Afterload }) {
-  const [code, setCode] = useState(
-    "DCRDGhCEIS0E7FaVQEbxhOwHUCPOOQZiQVSkTlEqHuUhw+ABWiZWmmZOOZJ8ACEJDjlGwgAUJ8ABUnoAFh+AAYcgABkRrjkBkFaQqwABERrjkKuAARAg45hxYAFSIxbWhKABi2wAGmxAASokPppmQ+kWtgAVEa45ByAAAA=="
-  );
-
+function DecodeHeader({ Deck, API, Preload }) {
   const [isFirst, setIsFirst] = useState(true);
-  if (isFirst && global.shareCode) {
-    console.log("test");
-    console.log(global.shareCode);
-    API.decode(global.shareCode);
+  if (isFirst && Preload) {
+    API.decode(Preload);
     setIsFirst(false);
   }
 
   /*lets you type into the input without polluting the Deck object with false data*/
+  const [code, setCode] = useState("");
   const [realCode, setRealCode] = useState(Deck.DeckCode);
   if (realCode !== Deck.DeckCode) {
     /*realCode is the actual deck code. code is just the shown one
-     *when deck disagrees with real, deck is right*/
+     *when deckcode disagrees with realcode, the deck was changed, everything syncs*/
     setCode(Deck.DeckCode);
     setRealCode(Deck.DeckCode);
-    global.shareCode = Deck.DeckCode;
-    console.log(global.shareCode);
   }
 
   let handleChange = event => {

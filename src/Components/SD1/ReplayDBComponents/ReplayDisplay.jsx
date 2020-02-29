@@ -3,7 +3,7 @@ import { parsePicture } from "../js/ReplayParsers";
 
 class ReplayDisplay extends Component {
   getPicture = x => {
-    return "img/d/" + x.Emblem.toLowerCase() + ".tgv.png";
+    return "SteelDivisionDB/img/d/" + x.Emblem.toLowerCase() + ".tgv.png";
   };
 
   makePlayerEntry = (x, i) => {

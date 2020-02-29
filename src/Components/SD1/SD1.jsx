@@ -5,6 +5,9 @@ import DeckBuilder from "./DeckBuilderComponents/DeckBuilder";
 import DeckAssembly from "./js/DeckAssembly";
 import UploadDialog from "./UploadDialog";
 import SkyLight from "react-skylight";
+import Database from "./Database/Database";
+import firebase from "../../js/Firestore";
+import pako from "pako";
 import {
   //separate file, for housekeeping
   setDeck,
@@ -148,46 +151,68 @@ class SD1 extends Component {
     console.log("initData");
     let deckbuilder = this.state.DeckBuilder;
     deckbuilder.Deck = new DeckAssembly();
-    let db = this.props.Honey.DB;
-    //fold ammo into weapons
-    db.Weapons.forEach(w => {
-      w.Turrets.forEach(t => {
-        t.WeaponList.forEach(wl => {
-          wl.Ammunition = this.props.Honey.DB.Ammo.find(
-            a => wl.Ammunition === a.AmmoDescriptor
-          );
+    firebase
+      .firestore()
+      .collection("zip")
+      .doc("SD1")
+      .get()
+      .then(queryDocumentSnapshot => {
+        console.log("tests");
+        var inflated = JSON.parse(
+          pako.inflate(queryDocumentSnapshot.data().d, { to: "string" })
+        );
+        let db = inflated;
+        /*fold ammo into DB*/
+        /*should have been done earlier, but there were size constraints*/
+
+        db.Decks.forEach(d => {
+          d.PackList.forEach(u => {
+            if (u.Unit.WeaponsDescriptor) {
+              u.Unit.WeaponsDescriptor.Turrets.forEach(t => {
+                t.WeaponList.forEach(w => {
+                  w.Ammunition = db.Ammo.find(
+                    x => x.AmmoDescriptor === w.Ammunition
+                  );
+                });
+              });
+            }
+            if (u.Unit.Offmap) {
+              u.Unit.Offmap.Turrets.forEach(t => {
+                t.WeaponList.forEach(w => {
+                  w.Ammunition = db.Ammo.find(
+                    x => x.AmmoDescriptor === w.Ammunition
+                  );
+                });
+              });
+            }
+            if (u.TransportUnit) {
+              if (u.TransportUnit.WeaponsDescriptor) {
+                u.TransportUnit.WeaponsDescriptor.Turrets.forEach(t => {
+                  t.WeaponList.forEach(w => {
+                    w.Ammunition = db.Ammo.find(
+                      x => x.AmmoDescriptor === w.Ammunition
+                    );
+                  });
+                });
+              }
+              if (u.TransportUnit.Offmap) {
+                u.TransportUnit.Offmap.Turrets.forEach(t => {
+                  t.WeaponList.forEach(w => {
+                    w.Ammunition = db.Ammo.find(
+                      x => x.AmmoDescriptor === w.Ammunition
+                    );
+                  });
+                });
+              }
+            }
+          });
+        });
+        this.setState({
+          DB: db.Decks,
+          DeckBuilder: deckbuilder,
+          isLoading: false
         });
       });
-    });
-    //fold weapons into units
-    db.Units.forEach(u => {
-      u.WeaponsDescriptor =
-        u.WeaponsDescriptor &&
-        this.props.Honey.DB.Weapons.find(
-          w => w.WeaponsDescriptor === u.WeaponsDescriptor
-        );
-      u.Offmap =
-        u.Offmap &&
-        this.props.Honey.DB.Weapons.find(w => w.WeaponsDescriptor === u.Offmap);
-    });
-    //folding units into decks
-    db.Decks.forEach(ed => {
-      ed.PackList.forEach(ep => {
-        ep.Unit = this.props.Honey.DB.Units.find(
-          u => ep.Unit === u.UnitDescriptor
-        );
-        ep.TransportUnit =
-          ep.TransportUnit &&
-          this.props.Honey.DB.Units.find(
-            u => ep.TransportUnit === u.UnitDescriptor
-          );
-      });
-    });
-    this.setState({
-      DB: db.Decks,
-      DeckBuilder: deckbuilder,
-      isLoading: false
-    });
   };
 
   render() {
@@ -204,7 +229,13 @@ class SD1 extends Component {
       );
     } else {
       if (this.props.Honey.ActiveTab === "DeckBuilder") {
-        return <DeckBuilder Honey={this.state} />;
+        return (
+          <DeckBuilder
+            Honey={this.state}
+            pload={this.props.Honey.Preload}
+            pset={this.props.API.setCode}
+          />
+        );
       } else if (this.props.Honey.ActiveTab === "DeckDB") {
         return (
           <DeckDB
@@ -214,6 +245,8 @@ class SD1 extends Component {
             User={this.props.Honey.User}
           />
         );
+      } else if (this.props.Honey.ActiveTab === "Database") {
+        return <Database DB={this.state.DB} />;
       } else if (this.props.Honey.ActiveTab === "ReplayDB") {
         return (
           <React.Fragment>

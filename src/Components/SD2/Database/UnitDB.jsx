@@ -43,20 +43,20 @@ function UnitDB({ allUnits }) {
           <table className="sortable table-hover">
             <tbody>
               <tr>
-                <th>⇓</th>
-                <th>Unit</th>
-                <th>Spec</th>
-                <th>Price</th>
-                <th>FAV</th>
-                <th>SAV</th>
-                <th>RAV</th>
-                <th>TAV</th>
-                <th>Factory</th>
-                <th>Optics</th>
-                <th>Camo</th>
-                <th>Speed</th>
-                <th>Stun/regen</th>
-                <th>Supply/TOT</th>
+                <th> </th>
+                <th> Unit </th>
+                <th> Spec </th>
+                <th> Price </th>
+                <th> Front AV </th>
+                <th> Side AV </th>
+                <th> Rear AV </th>
+                <th> Top AV </th>
+                <th> Factory </th>
+                <th> Optics </th>
+                <th> Camo </th>
+                <th> Speed </th>
+                <th> Stun/regen </th>
+                <th> Supply/TOT </th>
               </tr>
               {pageUnits.map((e, i) => showRow(e, i))}
             </tbody>

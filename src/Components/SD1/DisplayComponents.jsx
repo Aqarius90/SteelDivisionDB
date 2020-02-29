@@ -7,10 +7,20 @@ export class DisplayAP extends PureComponent {
     let css = this.props.css;
     if (AP === "True") {
       return (
-        <img src="img/icone_fantassin.tgv.png" className={css} alt="bazooka" />
+        <img
+          src="SteelDivisionDB/img/icone_fantassin.tgv.png"
+          className={css}
+          alt="bazooka"
+        />
       );
     } else if (AP === "False") {
-      return <img src="img/icone_ap.tgv.png" className={css} alt="none" />;
+      return (
+        <img
+          src="SteelDivisionDB/img/icone_ap.tgv.png"
+          className={css}
+          alt="none"
+        />
+      );
     } else {
       if (css === "img-xp") {
         return <h6>AP: {AP}</h6>;
@@ -26,7 +36,13 @@ export class DisplayAV extends PureComponent {
     let AV = this.props.AV;
     let css = this.props.css;
     if (AV === 0) {
-      return <img src="img/icone_ap.tgv.png" className={css} alt="none" />;
+      return (
+        <img
+          src="SteelDivisionDB/img/icone_ap.tgv.png"
+          className={css}
+          alt="none"
+        />
+      );
     } else {
       if (css === "img-xp") {
         return <h6>FAV: {AV}</h6>;
@@ -48,22 +64,22 @@ export class DisplayAmmoProps extends PureComponent {
     } //barrage for normal artillery, burst for normal units and MRLS
     return (
       <div className="col-xl" key={i}>
-        <h6>
+        <p>
           {x.Type}: {x.Mags} loads of {x.Salvos}
-        </h6>
-        <h6>
+        </p>
+        <p>
           Power:
           {x.Power}
-        </h6>
-        <h6>
+        </p>
+        <p>
           Accuracy:
           {x.Accuracy}
-        </h6>
-        <h6>
+        </p>
+        <p>
           Range:
           {x.Range}
-        </h6>
-        <h6>{x.AOE}</h6>
+        </p>
+        <p>{x.AOE}</p>
       </div>
     );
   };
@@ -108,11 +124,17 @@ export class DisplayExp extends PureComponent {
     if (x === 0) {
       return <div />;
     } else if (x === 1) {
-      return <img src="img/grade1.tgv.png" className={css} alt={x} />;
+      return (
+        <img src="SteelDivisionDB/img/grade1.tgv.png" className={css} alt={x} />
+      );
     } else if (x === 2) {
-      return <img src="img/grade2.tgv.png" className={css} alt={x} />;
+      return (
+        <img src="SteelDivisionDB/img/grade2.tgv.png" className={css} alt={x} />
+      );
     } else if (x === 3) {
-      return <img src="img/grade3.tgv.png" className={css} alt={x} />;
+      return (
+        <img src="SteelDivisionDB/img/grade3.tgv.png" className={css} alt={x} />
+      );
     }
   }
 }
@@ -123,7 +145,7 @@ export class DisplayPara extends PureComponent {
     if (x) {
       return (
         <img
-          src="img/para_wingr.tgv.png"
+          src="SteelDivisionDB/img/para_wingr.tgv.png"
           className="img-xp"
           alt="displayPara"
         />
@@ -143,7 +165,7 @@ export class DisplaySpecial extends PureComponent {
     return (
       <img
         src={
-          "img/" +
+          "SteelDivisionDB/img/" +
           x.replace("Texture_Speciality_Icon_", "").toLowerCase() +
           ".tgv.png"
         }

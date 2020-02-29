@@ -87,9 +87,9 @@ class ReplayDBDisplay extends PureComponent {
 
   parseVote = x => {
     if (x) {
-      return "img/favdecktrue.png";
+      return "SteelDivisionDB/img/favdecktrue.png";
     }
-    return "img/favdeckfalse.png";
+    return "SteelDivisionDB/img/favdeckfalse.png";
   };
 
   render() {

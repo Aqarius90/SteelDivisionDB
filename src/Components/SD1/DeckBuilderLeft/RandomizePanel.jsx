@@ -6,7 +6,8 @@ class RandomizePanel extends Component {
     if (this.props.RandomizerDecks.filter(e => e === x).length > 0) {
       css += " btn-success";
     }
-    let img = "img/d/" + x.EmblemTexture.toLowerCase() + ".tgv.png";
+    let img =
+      "SteelDivisionDB/img/d/" + x.EmblemTexture.toLowerCase() + ".tgv.png";
     return (
       <div className="col-xl-3" key={i}>
         <button

@@ -4,7 +4,10 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 //actual division button
 class Division extends PureComponent {
   getPicture = () => {
-    let img = "img/d/" + this.props.x.EmblemTexture.toLowerCase() + ".tgv.png";
+    let img =
+      "SteelDivisionDB/img/d/" +
+      this.props.x.EmblemTexture.toLowerCase() +
+      ".tgv.png";
     return img;
   };
 

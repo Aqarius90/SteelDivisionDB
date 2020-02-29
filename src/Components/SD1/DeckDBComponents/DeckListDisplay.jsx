@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 
 class DeckListDisplay extends PureComponent {
   getPicture = x => {
-    let img = "img/d/" + x.Division.toLowerCase() + ".tgv.png";
+    let img = "SteelDivisionDB/img/d/" + x.Division.toLowerCase() + ".tgv.png";
     return img;
   };
 
@@ -54,9 +54,9 @@ class DeckListDisplay extends PureComponent {
 
   parseVote = x => {
     if (x) {
-      return "img/favdecktrue.png";
+      return "SteelDivisionDB/img/favdecktrue.png";
     }
-    return "img/favdeckfalse.png";
+    return "SteelDivisionDB/img/favdeckfalse.png";
   };
 
   render() {

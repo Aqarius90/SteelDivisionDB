@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class SubmitDeckHeader extends Component {
   getPicture = () => {
     let img =
-      "img/d/" +
+      "SteelDivisionDB/img/d/" +
       this.props.SelectedDeckObject.Division.toLowerCase() +
       ".tgv.png";
     return img;

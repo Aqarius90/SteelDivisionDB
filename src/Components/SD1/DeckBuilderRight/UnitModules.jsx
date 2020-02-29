@@ -12,7 +12,7 @@ import UnitModuleSurvivability from "./UnitModuleSurvivability";
 import UnitModuleAux from "./UnitModuleAux";
 import UnitModuleAir from "./UntiModuleAir";
 
-class UnitModules extends PureComponent {
+export class UnitModules extends PureComponent {
   parseOffmap = x => {
     if (x === null) {
       return <div />;

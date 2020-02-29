@@ -284,10 +284,7 @@ export function parseFromBin(charArray) {
   return CharOut;
 }
 export function parseBool(x) {
-  if (x) {
-    return "True";
-  }
-  return "False";
+  return x ? "True" : "False";
 }
 
 export function parseDescriptor(x) {
@@ -311,9 +308,6 @@ export function parseArmor(x) {
   var foo = x;
   foo = foo.replace("ArmorDescriptor_", "");
   foo = foo.replace("Lourd", "");
-  /*should mean "heavy"
-  but only non-lourd units are open top vehs
-  and deprecated or non-instanced infantry*/
   foo = foo.replace("_", " ");
   foo = foo.replace("Blindage", "AV");
   foo = foo.replace("Infanterie", "Infantry");
@@ -351,11 +345,20 @@ export function parseTransport(x) {
 export function parsePicture(x, size) {
   let img;
   if (size === "sm") {
-    img = "img/u-sm/" + x.VisualsForInterface.toLowerCase() + ".tgv.png";
+    img =
+      "SteelDivisionDB/img/u-sm/" +
+      x.VisualsForInterface.toLowerCase() +
+      ".tgv.png";
   } else if (size === "md") {
-    img = "img/u-md/" + x.VisualsForInterface.toLowerCase() + ".tgv.png";
+    img =
+      "SteelDivisionDB/img/u-md/" +
+      x.VisualsForInterface.toLowerCase() +
+      ".tgv.png";
   } else {
-    img = "img/u/" + x.VisualsForInterface.toLowerCase() + ".tgv.png";
+    img =
+      "SteelDivisionDB/img/u/" +
+      x.VisualsForInterface.toLowerCase() +
+      ".tgv.png";
   }
   return img;
 }

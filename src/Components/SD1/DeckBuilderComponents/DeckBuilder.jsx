@@ -4,12 +4,11 @@ import RightPanel from "../DeckBuilderRight/RightPanel";
 import LeftPanel from "../DeckBuilderLeft/LeftPanel";
 
 class DeckBuilder extends PureComponent {
-  state = {};
   render() {
     return (
       <React.Fragment>
         <div className="card">
-          <DeckCodeParser Honey={this.props.Honey} />
+          <DeckCodeParser Honey={this.props.Honey} pload={this.props.pload} />
         </div>
         <div className="row">
           <div className="col-xl-7">
