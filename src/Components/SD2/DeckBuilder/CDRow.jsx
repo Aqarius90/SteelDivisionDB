@@ -51,12 +51,10 @@ function UnitIconDisplay({ x, d, isValid, show, API }) {
 
   if (!show) {
     //for non-interactive display, show is undefined
-    return (
-      <div className="col-xl-1 col-xl-10">{unitIcon(x, d, isValid, show)}</div>
-    );
+    return <div className="col-010">{unitIcon(x, d, isValid, show)}</div>;
   } else {
     return (
-      <div className="col-xl-1 col-xl-10">
+      <div className="col-010">
         {unitIcon(x, d, isValid, show)}
         <button className="btn btn-block" onClick={() => API.deleteUnit(x)}>
           Delete
@@ -78,7 +76,7 @@ function unitIcon(x, d, isValid, show) {
         </h5>
         <h5 className="txt-sd2-avail">{x.avail}</h5>
         <h5 className="txt-sd2-phase">
-          {x.ph ? (x.ph === 1 ? "B" : "C") : "A"}
+          {x.phase === 0 ? (x.ph === 1 ? "B" : "C") : "A"}
         </h5>
         <VetIcon x={x.xp} css="img-sd2-rel-xp" />
         {getSpec(x.u, "img-sd2-rel-spec")}

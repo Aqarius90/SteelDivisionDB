@@ -5,19 +5,9 @@ import { getIncomeArray } from "../js/serializers";
 function StatsPanel({ Deck, setIncome }) {
   /*display param*/
   const [GameDuration, setGameDuration] = useState(30);
-  let isDuration = x => {
-    if (GameDuration === x) {
-      return "btn btn-primary";
-    }
-    return "btn ";
-  };
+  let isDuration = x => (GameDuration === x ? "btn btn-primary" : "btn ");
   const [IncomeRate, setIncomeRate] = useState(1);
-  let isIncomeRate = x => {
-    if (IncomeRate === x) {
-      return "btn btn-primary";
-    }
-    return "btn ";
-  };
+  let isIncomeRate = x => (IncomeRate === x ? "btn btn-primary" : "btn ");
 
   /*derived params (deck stats, really)*/
   const [summedCosts, setSummedcosts] = useState([
@@ -33,7 +23,6 @@ function StatsPanel({ Deck, setIncome }) {
 
   /*math for deck evaluation*/
   useEffect(() => {
-    console.log("begin calculation");
     let newSummedCosts = [];
     for (let i = 0; i < 3; i++) {
       let summa = [];
@@ -57,17 +46,18 @@ function StatsPanel({ Deck, setIncome }) {
       newSummedCosts.push(summa);
     }
     setSummedcosts(newSummedCosts);
-  }); // unneeded, you have to leave the tab to modify units
+  }, []); // unneeded, you have to leave the tab to modify units
 
   /*reducer*/
   function sumUnits(total, e) {
-    console.log("...check this");
     if (!!e) {
-      return total + e.unitPack.u.Price + e.transportPack.u.Price; //empty transport should add to 0
+      return (
+        total + e.u.Key.ProductionPrice + (e.t ? e.t.Key.ProductionPrice : 0)
+      ); //empty transport should add to 0
     }
     throw { "Summing of empty unit": e };
   }
-  function calculateTotalIncome() {
+  const calculateTotalIncome = React.useCallback(() => {
     let income = getIncomeArray(Deck);
     let totalincome = [];
     totalincome.push(income[0] * 10 * IncomeRate);
@@ -75,20 +65,23 @@ function StatsPanel({ Deck, setIncome }) {
     totalincome.push(income[2] * (GameDuration - 20) * IncomeRate);
     totalincome.push(totalincome.reduce((a, b) => a + b, 0));
     return totalincome;
-  }
+  }, []);
 
   const [TotalIncomes, setTotalIncomes] = useState(
     calculateTotalIncome([0, 0, 0, 0])
   );
   useEffect(() => {
     setTotalIncomes(calculateTotalIncome());
-  }, [GameDuration]);
+  }, [GameDuration, calculateTotalIncome]);
   useEffect(() => {
     setTotalIncomes(calculateTotalIncome());
-  }, [IncomeRate]);
-  useEffect(() => {
-    setTotalIncomes(calculateTotalIncome());
-  }, [Deck.Income]);
+  }, [IncomeRate, calculateTotalIncome]);
+  useEffect(
+    function() {
+      setTotalIncomes(calculateTotalIncome());
+    },
+    [Deck.Income, calculateTotalIncome]
+  );
 
   return (
     <React.Fragment>

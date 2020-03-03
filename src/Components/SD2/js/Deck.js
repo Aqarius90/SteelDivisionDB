@@ -105,13 +105,15 @@ class DeckAssembly {
   get ActivPts() {
     //used up activation points = total points in grid - left over points
     let sum = 0;
-    this.CostMatrix.forEach(e => e.forEach(f => (sum += f)));
-    this.DisplayMatrix.forEach(z =>
-      z.forEach(r => {
-        //I love/hate JS
-        sum -= typeof r === "number" && r;
-      })
+    this.CardsJagged.forEach((r, x) =>
+      r.forEach((c, y) => (sum += this.CostMatrix[x][y]))
     );
+    //this.CostMatrix.forEach(e => e.forEach(f => (sum = sum + f)));
+    //this.DisplayMatrix.forEach(z =>
+    //  z.forEach(r => {
+    //    sum -= typeof r === "number" && r;
+    //  })
+    //);
     return sum;
   }
 
@@ -402,6 +404,79 @@ class DeckAssembly {
       this.Income = x;
     } else {
       global.throw("Invalid income input", x);
+    }
+    return this;
+  }
+
+  randomFill(x, DB) {
+    this.loadFromDB(x, DB);
+    this.setIncome(Math.floor(Math.random() * 4));
+    let packsArray = [];
+    let transavail = [];
+    this.Transports.forEach(t =>
+      transavail.push({ d: t.Key.UnitDescriptor, v: t.Value })
+    );
+    this.Units.forEach(u => {
+      u.Value.UnitsPerPack.forEach((upp, iupp) => {
+        u.Value.XPBonus.forEach((xpb, ixpb) => {
+          if (xpb && upp) {
+            //packsArray.push(new Card(iupp, ixpb, u, false));
+            u.Value.AvailableTransportList.forEach(t => {
+              packsArray.push({
+                ph: iupp,
+                xp: ixpb,
+                Unit: u,
+                Transport: this.Transports.find(
+                  g => g.Key.UnitDescriptor === t.trim().slice(18)
+                )
+              });
+            });
+          }
+        });
+      });
+    });
+    packsArray = packsArray.filter(e => {
+      return (
+        !e.Transport ||
+        transavail.find(g => g.d === e.Transport.Key.UnitDescriptor).v >=
+          Math.floor(
+            e.Unit.Value.UnitsPerPack[e.ph] * e.Unit.Value.XPBonus[e.xp]
+          )
+      );
+    });
+    while (packsArray.length) {
+      /*add*/
+      let unitIndex = Math.floor(Math.random() * packsArray.length);
+      let addunit = packsArray[unitIndex];
+      packsArray.splice(unitIndex, 1);
+      this.addUnit(addunit);
+      /*readjust*/
+      if (addunit.Transport) {
+        transavail.find(
+          g => g.d === addunit.Transport.Key.UnitDescriptor
+        ).v -= Math.floor(
+          addunit.Unit.Value.UnitsPerPack[addunit.ph] *
+            addunit.Unit.Value.XPBonus[addunit.xp]
+        );
+      }
+      /*check trans rules*/
+      packsArray = packsArray.filter(e => {
+        return (
+          !e.Transport ||
+          transavail.find(g => g.d === e.Transport.Key.UnitDescriptor).v >=
+            Math.floor(
+              addunit.Unit.Value.UnitsPerPack[addunit.ph] *
+                addunit.Unit.Value.XPBonus[addunit.xp]
+            )
+        );
+      });
+      /*check unit rules*/
+      packsArray = packsArray.filter(e => {
+        return e.Unit.Value.MaxPackNumber > this.unitCount({ u: e.Unit });
+      });
+      if (isNaN(this.ActivPts) || this.MaxActivationPoints < this.ActivPts) {
+        this.Cards.pop();
+      }
     }
     return this;
   }

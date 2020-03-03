@@ -5,13 +5,17 @@ import firebase from "../../js/Firestore";
 import Database from "./Database/Database";
 import pako from "pako";
 import _ from "lodash";
-
-//import dummyDB from "../../DB2test.json";
-//import FirestoreInit from "./js/FirestoreInit";
+import DDB from "./DDB/DDB";
+import { useParams, useHistory } from "react-router-dom";
 
 function SD2({ Honey, API }) {
   console.log("SD2 render");
   let deckAPI = {}; //function holder. I don't have the energy to rewrite it into a reducer
+  let params = useParams();
+  let history = useHistory();
+  deckAPI.setCode = x => {
+    history.push("/SteelDivisionDB/" + params.DB + "/" + params.Page + "/" + x);
+  };
   //deck setters
   const [deck, setDeck] = useState(new DeckAssembly());
   deckAPI.decode = code => {
@@ -19,7 +23,7 @@ function SD2({ Honey, API }) {
     try {
       let newdeck = new DeckAssembly();
       setDeck(newdeck.loadFromCode(code, DB));
-      API.setCode(newdeck.DeckCode);
+      deckAPI.setCode(newdeck.DeckCode);
     } catch (error) {
       global.throw("deck decode error", 0, error);
     }
@@ -28,7 +32,7 @@ function SD2({ Honey, API }) {
     //set deck to empty
     let newdeck = new DeckAssembly();
     setDeck(newdeck);
-    API.setCode(newdeck.DeckCode);
+    deckAPI.setCode(newdeck.DeckCode);
   };
   deckAPI.setDeck = x => {
     //set deck from DB
@@ -36,7 +40,16 @@ function SD2({ Honey, API }) {
       //TODO keep units on switch?
       let newdeck = new DeckAssembly();
       setDeck(newdeck.loadFromDB(x, DB));
-      API.setCode(newdeck.DeckCode);
+      deckAPI.setCode(newdeck.DeckCode);
+    } catch (error) {
+      global.throw("deck set error", 0, error);
+    }
+  };
+  deckAPI.randomFill = x => {
+    try {
+      let newdeck = new DeckAssembly().randomFill(x, DB);
+      setDeck(newdeck);
+      deckAPI.setCode(newdeck.DeckCode);
     } catch (error) {
       global.throw("deck set error", 0, error);
     }
@@ -47,20 +60,19 @@ function SD2({ Honey, API }) {
     try {
       let newdeck = _.clone(deck).setIncome(x);
       setDeck(newdeck);
-      API.setCode(newdeck.DeckCode);
+      deckAPI.setCode(newdeck.DeckCode);
     } catch (error) {
       global.throw("income set error", 0, error);
     }
   };
 
-  //render
-  //const [hasError, setHasError] = useState(0); //0-no error, 1-uploading, 2-done
+  //renders
   const [DB, setDB] = useState();
 
   const [isFirst, setIsFirst] = useState(true);
-  if (isFirst && Honey.Preload !== "") {
+  if (isFirst && params.code) {
     if (DB) {
-      deckAPI.decode(Honey.Preload);
+      deckAPI.decode(params.code);
       setIsFirst(false);
     }
   }
@@ -91,7 +103,7 @@ function SD2({ Honey, API }) {
     try {
       let newdeck = _.clone(deck).addUnit(x);
       setDeck(newdeck);
-      API.setCode(newdeck.DeckCode);
+      deckAPI.setCode(newdeck.DeckCode);
     } catch (error) {
       global.throw("addUnit error", 0, error);
     }
@@ -100,25 +112,52 @@ function SD2({ Honey, API }) {
     try {
       let newdeck = _.clone(deck).deleteUnit(x);
       setDeck(newdeck);
-      API.setCode(newdeck.DeckCode);
+      deckAPI.setCode(newdeck.DeckCode);
     } catch (error) {
       global.throw("deleteUnit error", 0, error);
     }
   };
-  deckAPI.toggleRandomizer = () => {
-    //TODO can probably be self-contained in the module
-    global.throw("toggleRandomizer not written yet", 0);
-  };
 
-  if (Honey.ActiveTab === "DeckBuilder") {
-    return (
-      <DeckBuilder DB={DB} Deck={deck} API={deckAPI} Preload={Honey.Preload} />
-    );
-  } else if (Honey.ActiveTab === "Database") {
+  if (params.Page === "DeckBuilder") {
+    return <DeckBuilder DB={DB} Deck={deck} API={deckAPI} />;
+  } else if (params.Page === "Database") {
     return <Database DB={DB} FB={firebase.firestore()} />;
-  } else if (Honey.ActiveTab === "DeckDB") {
-    return <div>DeckDB</div>;
-  } else if (Honey.ActiveTab === "ReplayDB") {
+  } else if (params.Page === "DDB") {
+    if (!Honey.User) {
+      return (
+        <div>
+          <div className="modal-dialog" onClick={e => e.stopPropagation()}>
+            <div className="modal-content">
+              <div className="modal-header"></div>
+              <div className="modal-body">
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={API.logIn}
+                >
+                  {Honey.User ? "Logout" : "Login"}
+                </button>
+              </div>
+              <div className="modal-footer"></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return Honey.User ? (
+      <DDB
+        Honey={{
+          DB: DB,
+          import: deck,
+          user: Honey.User.uid
+        }}
+        API={{
+          export: deckAPI.decode
+        }}
+      />
+    ) : (
+      <></>
+    );
+  } else if (params.Page === "ReplayDB") {
     return <div>replayDB fragment</div>;
   } else {
     return null;

@@ -39,7 +39,7 @@ function DeckDB({ allDecks }) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-5">
+        <div className="col-xl-6 col-lg-8 col-md-10 col-sm-12">
           {filtered.map((e, i) => showRow(e, i))}
           <ReactPaginate
             previousLabel={"previous"}
@@ -61,7 +61,7 @@ function DeckDB({ allDecks }) {
             activeLinkClassName={"btn btn-block btn-outline-primary active"}
           />
         </div>
-        <div className="col-7">
+        <div className="col-xl-6 col-xs-12">
           <div className="row">
             {units ? units.map((e, i) => showUnits(e, i)) : ""}
           </div>

@@ -4,7 +4,7 @@ import CDRow from "./CDRow";
 function DeckGrid({ Deck, setIncome }) {
   return (
     <div className="card-body">
-      <IncomeSelector Deck={Deck} setIncome={setIncome} />
+      {setIncome ? <IncomeSelector Deck={Deck} setIncome={setIncome} /> : <></>}
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[0]} />
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[1]} />
       <CDRow Deck={Deck} Parsed={Deck.DisplayMatrix[2]} />

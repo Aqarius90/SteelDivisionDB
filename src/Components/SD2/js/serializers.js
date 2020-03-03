@@ -2,13 +2,14 @@ export function getIncomeArray(Deck) {
   /*inputs deck, returns income array, A/B/C */
   switch (Deck.Income) {
     case 0:
-      return Deck.IncomeList.Balanced;
+      return (Deck.Income = "Balanced");
     case 1:
-      return Deck.IncomeList.Vanguard;
+      return (Deck.Income = "Vanguard");
     case 2:
-      return Deck.IncomeList.Maverick;
+      return (Deck.Income = "Maverick");
     case 3:
-      return Deck.IncomeList.Juggernaut;
+      return (Deck.Income = "Juggernaut");
+
     default:
       console.log(Deck);
       throw new Error("Income array parsing error");

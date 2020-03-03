@@ -6,15 +6,11 @@ import UnitDisplay from "./UnitDisplay";
 function UnitPanel({ Deck, API, UnitPairs, Index, sideShow, setShow }) {
   let Parsed = Deck.DisplayMatrix[Index];
   return (
-    <div className="card-body">
+    <div className="card-body pb-0">
       <CDRow Deck={Deck} Parsed={Parsed} show={setShow} API={API} />
       <div className="row">
-        <div className="col-xl-6">
-          <UnitList UnitPairs={UnitPairs} show={setShow} />
-        </div>
-        <div className="col-xl-6">
-          {<UnitDisplay Pack={sideShow} show={setShow} add={API.addUnit} />}
-        </div>
+        <UnitList UnitPairs={UnitPairs} show={setShow} />
+        <UnitDisplay Pack={sideShow} show={setShow} add={API.addUnit} />
       </div>
     </div>
   );
@@ -131,7 +127,7 @@ function UnitList({ UnitPairs, show }) {
       break;
   }
   return (
-    <div className="card">
+    <div className="card popup-unit-panel">
       <div className="card-body">
         <table className="sortable table-hover">
           <tbody>

@@ -1,7 +1,6 @@
 import React from "react";
 import { parseArmor } from "../js/unitGUIparsers";
 import ReactTooltip from "react-tooltip";
-import { Button } from "reactstrap";
 
 export function ParseArmor({ x, tag }) {
   return (
@@ -50,7 +49,7 @@ export function TurretHeader({ t, salves, show, setShow }) {
           <div className="row">
             <img
               src={
-                "SteelDivisionDB/img-sd2/guns/" +
+                "/SteelDivisionDB/img-sd2/guns/" +
                 t.Weapons[0].Ammunition.InterfaceWeaponTexture.toLowerCase() +
                 ".png"
               }
@@ -158,11 +157,9 @@ function DisplayAmmoProps({ x, salves }) {
         <ReactTooltip />
         <p data-tip="Min range/Max range">
           Dispersion:
-          {a.DispersionAtMinRange
-            ? a.DispersionAtMinRange
-            : "N/A" + "/" + a.DispersionAtMaxRange
-            ? a.DispersionAtMaxRange
-            : "N/A"}
+          {(a.DispersionAtMinRange ? a.DispersionAtMinRange : "N/A") +
+            "/" +
+            (a.DispersionAtMaxRange ? a.DispersionAtMaxRange : "N/A")}
         </p>
         <p data-tip="Min/Max/AAA">
           Range:{a.RangeMin + "/" + a.RangeMax + "/" + a.RangeMaxAAA}
@@ -190,7 +187,7 @@ export function VetIcon({ x, css }) {
       return (
         <img
           className={css}
-          src="SteelDivisionDB/img-sd2/iconrankveteran.tgv.png"
+          src="/SteelDivisionDB/img-sd2/iconrankveteran.tgv.png"
           alt="-"
         />
       );
@@ -198,7 +195,7 @@ export function VetIcon({ x, css }) {
       return (
         <img
           className={css}
-          src="SteelDivisionDB/img-sd2/iconrankelite.tgv.png"
+          src="/SteelDivisionDB/img-sd2/iconrankelite.tgv.png"
           alt="^"
         />
       );
@@ -206,7 +203,7 @@ export function VetIcon({ x, css }) {
       return (
         <img
           className={css}
-          src="SteelDivisionDB/img-sd2/iconranksuperelite.tgv.png"
+          src="/SteelDivisionDB/img-sd2/iconranksuperelite.tgv.png"
           alt="^^"
         />
       );

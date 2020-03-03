@@ -8,41 +8,16 @@ export function setDeck(deck) {
   if (index === -1) {
     console.error("no such deck descriptor");
   } else {
-    if (typeof dataarray[index].MaxActivationPoints !== "undefined") {
-      //the division is already loaded
-      let deckbuilder = this.state.DeckBuilder;
+    //the division is already loaded
+    let deckbuilder = this.state.DeckBuilder;
 
-      let newDeck = deckbuilder.Deck.setDeck(dataarray[index]);
-      let newCode = deckbuilder.Deck.ExportCode;
-      deckbuilder.DBUnits = sortByCategory(dataarray[index].PackList);
-      deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
-      deckbuilder.Deck = newDeck;
-      this.props.API.setCode(newCode);
-      this.setState({ DeckBuilder: deckbuilder, code: newCode });
-    } else {
-      this.setState({ isLoading: true });
-      this.state.Firebase.doc(deck.Descriptor)
-        .get()
-        .then(queryDocumentSnapshot => {
-          dataarray[index] = queryDocumentSnapshot.data(); //load actual deck
-
-          let deckbuilder = this.state.DeckBuilder;
-          let newDeck = deckbuilder.Deck.setDeck(dataarray[index]);
-          let newCode = deckbuilder.Deck.ExportCode;
-
-          deckbuilder.DBUnits = sortByCategory(dataarray[index].PackList);
-          deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
-          deckbuilder.Deck = newDeck;
-
-          this.props.API.setCode(newCode);
-          this.setState({
-            isLoading: false,
-            DeckBuilder: deckbuilder,
-            code: newCode,
-            DB: dataarray
-          });
-        });
-    }
+    let newDeck = deckbuilder.Deck.setDeck(dataarray[index]);
+    let newCode = deckbuilder.Deck.ExportCode;
+    deckbuilder.DBUnits = sortByCategory(dataarray[index].PackList);
+    deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
+    deckbuilder.Deck = newDeck;
+    this.props.API.setCode(newCode);
+    this.setState({ DeckBuilder: deckbuilder, code: newCode });
   }
 }
 
@@ -183,41 +158,17 @@ export function parseDeckCode(x) {
   if (index === -1) {
     console.error("no such deck");
   } else {
-    if (typeof dataarray[index].MaxActivationPoints !== "undefined") {
-      newDeck = newDeck.decodeDeck(x, this.state.DB);
-      let newCode = newDeck.ExportCode;
-      deckbuilder.DBUnits = sortByCategory(newDeck.PackList);
-      deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
-      deckbuilder.Deck = newDeck;
+    newDeck = newDeck.decodeDeck(x, this.state.DB);
+    let newCode = newDeck.ExportCode;
+    deckbuilder.DBUnits = sortByCategory(newDeck.PackList);
+    deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
+    deckbuilder.Deck = newDeck;
 
-      this.props.API.setCode(newCode);
-      this.setState({
-        DeckBuilder: deckbuilder,
-        code: newCode
-      });
-    } else {
-      this.setState({ isLoading: true });
-
-      this.state.Firebase.doc(dataarray[index].Descriptor)
-        .get()
-        .then(queryDocumentSnapshot => {
-          dataarray[index] = queryDocumentSnapshot.data();
-
-          newDeck = newDeck.decodeDeck(x, this.state.DB);
-          let newCode = newDeck.ExportCode;
-          deckbuilder.DBUnits = sortByCategory(newDeck.PackList);
-          deckbuilder.DeckUnits = sortByCategoryForDisplay(newDeck);
-          deckbuilder.Deck = newDeck;
-
-          this.props.API.setCode(newCode);
-          this.setState({
-            DB: dataarray,
-            DeckBuilder: deckbuilder,
-            isLoading: false,
-            code: newCode
-          });
-        });
-    }
+    this.props.API.setCode(newCode);
+    this.setState({
+      DeckBuilder: deckbuilder,
+      code: newCode
+    });
   }
 }
 

@@ -37,12 +37,6 @@ p {
   max-width: 100%;
 }
 
-.col-xl-1.col-xl-10 {
-  flex: 0 0 10%;
-  max-width: 10%;
-  text-align: center;
-}
-
 .btn {
   font-size: 1rem;
 }
@@ -175,6 +169,7 @@ p {
   height: 25px;
 }
 .txt-sd2-price {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   position: absolute;
   bottom: -10px;
   left: 5%;
@@ -195,6 +190,7 @@ p {
 }
 
 .txt-sd2-phase {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   position: absolute;
   top: 0px;
   left: 5%;
@@ -202,6 +198,7 @@ p {
   font-weight: 900;
 }
 .txt-sd2-avail {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   position: absolute;
   bottom: -10px;
   right: 5%;
@@ -215,10 +212,66 @@ p {
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
+  .popup-background {
+    position: "absolute";
+    left: "0%";
+    top: "0%";
+    width: "100%";
+    height: "100%";
+    opacity: "0.7";
+    background-color: "#000";
+  }
+  .popup-simple {
+    position: "absolute";
+    left: "30%";
+    top: "30%";
+    width: "40%";
+    height: "40%";
+  }
+  .popup-unit {
+    position: absolute;
+    right: 0%;
+    width: 768px;
+    z-index: 2;
+  }
+  .popup-unit-panel {
+    position: absolute;
+    left: 0%;
+    width: 768px;
+    z-index: 1;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .popup-background {
+    position: "absolute";
+    left: "0%";
+    top: "0%";
+    width: "100%";
+    height: "100%";
+    opacity: "0.7";
+    background-color: "#000";
+  }
+  .popup-simple {
+    position: "absolute";
+    left: "30%";
+    top: "30%";
+    width: "40%";
+    height: "40%";
+  }
+  .popup-unit {
+    position: absolute;
+    right: 0%;
+    width: 914.5px;
+    z-index: 2;
+  }
+  .popup-unit-panel {
+    position: absolute;
+    left: 0%;
+    width: 914.5px;
+    z-index: 1;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -245,10 +298,171 @@ p {
     width: 914.5px;
     z-index: 2;
   }
+  .popup-unit-panel {
+    position: absolute;
+    left: 0%;
+    width: 914.5px;
+    z-index: 1;
+  }
 }
 .popup-close {
   position: absolute;
   top: 15px;
   left: 10px;
   font-weight: 900;
+}
+
+.col-xl-1.col-xl-10 {
+  flex: 0 0 10%;
+  max-width: 10%;
+  text-align: center;
+}
+
+.col-010 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .col-010 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    text-align: center;
+  }
+}
+@media (min-width: 768px) {
+  .col-010 {
+    flex: 0 0 30%;
+    max-width: 30%;
+    text-align: center;
+  }
+}
+@media (min-width: 850px) {
+  .col-010 {
+    flex: 0 0 20%;
+    max-width: 20%;
+    text-align: center;
+  }
+  .txt-sd2-price {
+    position: absolute;
+    bottom: -5%;
+    left: 17%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .img-sd2-rel-xp {
+    position: absolute;
+    top: 0px;
+    left: 75%;
+  }
+  .img-sd2-rel-spec {
+    position: absolute;
+    top: -10%;
+    left: 70%;
+    color: #fff;
+  }
+  .txt-sd2-phase {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: absolute;
+    top: 0px;
+    left: 17%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .txt-sd2-avail {
+    position: absolute;
+    bottom: -10px;
+    right: 17%;
+    color: #fff;
+    font-weight: 900;
+  }
+}
+@media (min-width: 1200px) {
+  .col-010 {
+    flex: 0 0 15%;
+    max-width: 15%;
+    text-align: center;
+  }
+  .txt-sd2-price {
+    position: absolute;
+    bottom: -5%;
+    left: 15%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .img-sd2-rel-xp {
+    position: absolute;
+    top: 0px;
+    left: 75%;
+  }
+  .img-sd2-rel-spec {
+    position: absolute;
+    top: -10%;
+    left: 80%;
+    color: #fff;
+  }
+  .txt-sd2-phase {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    position: absolute;
+    top: 0px;
+    left: 15%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .txt-sd2-avail {
+    position: absolute;
+    bottom: -10px;
+    right: 15%;
+    color: #fff;
+    font-weight: 900;
+  }
+}
+@media (min-width: 1650px) {
+  .col-010 {
+    flex: 0 0 10%;
+    max-width: 10%;
+    text-align: center;
+  }
+  .txt-sd2-price {
+    position: absolute;
+    bottom: -5%;
+    left: 10%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .img-sd2-rel-xp {
+    position: absolute;
+    top: 0px;
+    left: 80%;
+  }
+  .img-sd2-rel-spec {
+    position: absolute;
+    top: -10%;
+    left: 85%;
+    color: #fff;
+  }
+  .txt-sd2-phase {
+    position: absolute;
+    top: 0px;
+    left: 10%;
+    color: #fff;
+    font-weight: 900;
+  }
+  .txt-sd2-avail {
+    position: absolute;
+    bottom: -10px;
+    right: 10%;
+    color: #fff;
+    font-weight: 900;
+  }
+}
+
+.img-sd2-back {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 60px;
+}
+.img-sd2-xp {
+  height: 25px;
 }

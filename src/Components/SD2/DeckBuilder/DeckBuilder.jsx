@@ -3,9 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import DivisionSelector from "./DivisionSelector";
 import DeckGrid from "./DeckGrid";
 import UnitPanel from "./UnitPanel";
-//import StatsPanel from "./StatsPanel";
+import Randomizer from "./Randomizer";
+import StatsPanel from "./StatsPanel";
+import { useParams } from "react-router-dom";
 
-function DeckBuilder({ DB, Deck, API, Preload, setCode }) {
+function DeckBuilder({ DB, Deck, API }) {
   //the unit to show in right hand side
   const [sideShow, setSideShow] = useState(null);
 
@@ -33,7 +35,7 @@ function DeckBuilder({ DB, Deck, API, Preload, setCode }) {
   console.log("render deckbuilder");
   return (
     <div className="card">
-      <DecodeHeader Deck={Deck} API={API} Preload={Preload} setCode={setCode} />
+      <DecodeHeader Deck={Deck} API={API} />
       <Tabs className="card">
         <TabList>
           <Tab>Division</Tab>
@@ -48,7 +50,6 @@ function DeckBuilder({ DB, Deck, API, Preload, setCode }) {
           <Tab>Planes</Tab>
           <Tab>Static</Tab>
           <Tab>Randomizer</Tab>
-          <Tab>Statistics</Tab>
         </TabList>
 
         <TabPanel>
@@ -147,19 +148,23 @@ function DeckBuilder({ DB, Deck, API, Preload, setCode }) {
             setShow={setSideShow}
           />
         </TabPanel>
-        <TabPanel />
         <TabPanel>
-          {/*<StatsPanel Deck={Deck} setIncome={API.setIncome} />*/}
+          <Randomizer DB={DB} randomFill={API.randomFill}></Randomizer>
         </TabPanel>
+
+        {/*<TabPanel>
+          {<StatsPanel Deck={Deck} setIncome={API.setIncome} />}
+        </TabPanel>*/}
       </Tabs>
     </div>
   );
 }
 
-function DecodeHeader({ Deck, API, Preload }) {
+function DecodeHeader({ Deck, API }) {
   const [isFirst, setIsFirst] = useState(true);
-  if (isFirst && Preload) {
-    API.decode(Preload);
+  let params = useParams();
+  if (isFirst && params.code) {
+    API.decode(params.code);
     setIsFirst(false);
   }
 
@@ -179,12 +184,12 @@ function DecodeHeader({ Deck, API, Preload }) {
   return (
     <>
       <div className="row card-body">
-        <div className="col-xl-3">
+        <div className="col-xl-3 col-md-8 order-1">
           <h3>
             {Deck.DivisonName} :{Deck.ActivPts}/{Deck.MaxActivationPoints}
           </h3>
         </div>
-        <div className="col-xl-7">
+        <div className="col-xl-7 col-md-12 order-xl-2 order-md-4">
           <input
             className="form-control"
             value={code}
@@ -192,12 +197,12 @@ function DecodeHeader({ Deck, API, Preload }) {
             onChange={handleChange}
           />
         </div>
-        <div className="col-xl">
+        <div className="col order-xl-3 order-md-2">
           <button className="btn btn-block" onClick={() => API.decode(code)}>
             Decode
           </button>
         </div>
-        <div className="col-xl">
+        <div className="col order-xl-4 order-md-3">
           <button className="btn btn-block" onClick={() => API.clear()}>
             Clear
           </button>

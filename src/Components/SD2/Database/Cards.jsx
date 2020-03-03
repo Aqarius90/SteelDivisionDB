@@ -10,14 +10,14 @@ export function DeckUnitCard({ x, i }) {
     <div className="card" key={i}>
       <div className="card-header" onClick={() => setShow(!show)}>
         <div className="row" data="test">
-          <div className="col-2">{getPortrait(x, "img-sd2-back")}</div>
+          <div className="col-3">{getPortrait(x, "img-sd2-back")}</div>
           <div className="col-3">
             <h5>{x.Key.UnitName}</h5>
             <h5>Cards: {x.Value.MaxPackNumber}</h5>
           </div>
-          <div className="col-3">
-            <h5>Availability :</h5>
-            <h5>Veterancy coeff.:</h5>
+          <div className="col-2">
+            <h5>Per card:</h5>
+            <h5>Vet. coeff.:</h5>
           </div>
           <div className="col-2 justify-content-end">
             <h5>
@@ -38,7 +38,7 @@ export function DeckUnitCard({ x, i }) {
           <div className="col-2">
             <img
               src={
-                "SteelDivisionDB/img-sd2/units/" +
+                "/SteelDivisionDB/img-sd2/units/" +
                 x.Key.UnitDescriptor.toLowerCase() +
                 ".png"
               }
@@ -57,7 +57,7 @@ export function DeckUnitCard({ x, i }) {
                   <img
                     key={i}
                     src={
-                      "SteelDivisionDB/img-sd2/pictures/" +
+                      "/SteelDivisionDB/img-sd2/pictures/" +
                       e.split("Unit_")[1].toLowerCase() +
                       ".png"
                     }
@@ -87,7 +87,7 @@ export function DeckDeckRow({ x, setUnits }) {
           <div className="col-2" onClick={() => setShow(!show)}>
             <img
               src={
-                "SteelDivisionDB/img-sd2/divs/" +
+                "/SteelDivisionDB/img-sd2/divs/" +
                 x.EmblemTexture.split("Emblem_")[1].toLowerCase() +
                 ".png"
               }
@@ -98,7 +98,7 @@ export function DeckDeckRow({ x, setUnits }) {
           <div className="col-2" onClick={() => setShow(!show)}>
             <img
               src={
-                "SteelDivisionDB/img-sd2/" +
+                "/SteelDivisionDB/img-sd2/" +
                 x.TypeTexture.split("Type_")[1].toLowerCase() +
                 ".tgv.png"
               }
@@ -112,7 +112,7 @@ export function DeckDeckRow({ x, setUnits }) {
           </div>
           <div className="col-2">
             <button
-              className="btn btn-primary btn-block p-4"
+              className="btn btn-primary btn-block py-4"
               onClick={() => setUnits(x.Units)}
             >
               Units
@@ -205,14 +205,14 @@ export function UnitUnitCard({ detail, setDetail }) {
       <div className="card">
         <div className="card-header">
           <div className="row p-1">
-            <div className="col-xl-5">{makeHead({ Key: detail })}</div>
-            <div className="col-xl-7">
+            <div className="col-md-5">{makeHead({ Key: detail })}</div>
+            <div className="col-md-7">
               {detail.Decks.map((e, i) => {
                 return (
                   <div className="row" key={i}>
                     <img
                       src={
-                        "SteelDivisionDB/img-sd2/divs/" +
+                        "/SteelDivisionDB/img-sd2/divs/" +
                         e.Emblem.split("Emblem_")[1].toLowerCase() +
                         ".png"
                       }
@@ -255,7 +255,7 @@ export function WeaponWeaponRow({ x, i }) {
         <td key={i}>
           <img
             src={
-              "SteelDivisionDB/img-sd2/guns/" +
+              "/SteelDivisionDB/img-sd2/guns/" +
               x.InterfaceWeaponTexture.toLowerCase() +
               ".png"
             }
@@ -299,7 +299,7 @@ export function WeaponWeaponCard({ detail, setDetail }) {
           <div className="col-2">
             <img
               src={
-                "SteelDivisionDB/img-sd2/guns/" +
+                "/SteelDivisionDB/img-sd2/guns/" +
                 detail.InterfaceWeaponTexture.toLowerCase() +
                 ".png"
               }
@@ -331,11 +331,13 @@ export function WeaponWeaponCard({ detail, setDetail }) {
             <ReactTooltip />
             <h6 data-tip="Min range/Max range">
               Dispersion:
-              {detail.DispersionAtMinRange
+              {(detail.DispersionAtMinRange
                 ? detail.DispersionAtMinRange
-                : "N/A" + "/" + detail.DispersionAtMaxRange
-                ? detail.DispersionAtMaxRange
-                : "N/A"}
+                : "N/A") +
+                "/" +
+                (detail.DispersionAtMaxRange
+                  ? detail.DispersionAtMaxRange
+                  : "N/A")}
             </h6>
             <h6 data-tip="Min/Max/AAA">
               Range:

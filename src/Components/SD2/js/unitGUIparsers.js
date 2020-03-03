@@ -5,7 +5,7 @@ export function getSpec(x, css) {
     return (
       <img
         src={
-          "SteelDivisionDB/img-sd2/specs/" +
+          "/SteelDivisionDB/img-sd2/specs/" +
           x.Key.SpecToken.toLowerCase() +
           ".tgv.png"
         }
@@ -23,7 +23,7 @@ export function getPortrait(x, css) {
     return (
       <img
         src={
-          "SteelDivisionDB/img-sd2/pictures/" +
+          "/SteelDivisionDB/img-sd2/pictures/" +
           x.Key.UnitDescriptor.toLowerCase() +
           ".png"
         }
@@ -35,7 +35,7 @@ export function getPortrait(x, css) {
   return (
     <img
       src={
-        "SteelDivisionDB/img-sd2/units/" +
+        "/SteelDivisionDB/img-sd2/units/" +
         x.Key.UnitDescriptor.toLowerCase() +
         ".png"
       }

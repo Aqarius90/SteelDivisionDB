@@ -343,11 +343,13 @@ function Weapons({ t, salves }) {
                       <ReactTooltip />
                       <h6 data-tip="Min range/Max range">
                         Dispersion:
-                        {x.Ammunition.DispersionAtMinRange
+                        {(x.Ammunition.DispersionAtMinRange
                           ? x.Ammunition.DispersionAtMinRange
-                          : "N/A" + "/" + x.Ammunition.DispersionAtMaxRange
-                          ? x.Ammunition.DispersionAtMaxRange
-                          : "N/A"}
+                          : "N/A") +
+                          "/" +
+                          (x.Ammunition.DispersionAtMaxRange
+                            ? x.Ammunition.DispersionAtMaxRange
+                            : "N/A")}
                       </h6>
                       <h6 data-tip="Min/Max/AAA">
                         Range:
@@ -416,11 +418,9 @@ export function Ammo({ x }) {
           <ReactTooltip />
           <p data-tip="Min range/Max range">
             Dispersion:
-            {x.DispersionAtMinRange
-              ? x.DispersionAtMinRange
-              : "N/A" + "/" + x.DispersionAtMaxRange
-              ? x.DispersionAtMaxRange
-              : "N/A"}
+            {(x.DispersionAtMinRange ? x.DispersionAtMinRange : "N/A") +
+              "/" +
+              (x.DispersionAtMaxRange ? x.DispersionAtMaxRange : "N/A")}
           </p>
         </li>
         <li>
