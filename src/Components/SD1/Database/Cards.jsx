@@ -31,7 +31,7 @@ export function DeckUnitCard({ x, i }) {
             {x.Unit.SpecialtyTexture ? (
               <img
                 src={
-                  "SteelDivisionDB/img/" +
+                  "/SteelDivisionDB/img/" +
                   x.Unit.SpecialtyTexture.replace(
                     "Texture_Speciality_Icon_",
                     ""
@@ -57,7 +57,7 @@ export function DeckUnitCard({ x, i }) {
                   {x.Unit.SpecialtyTexture ? (
                     <img
                       src={
-                        "SteelDivisionDB/img/" +
+                        "/SteelDivisionDB/img/" +
                         x.Unit.SpecialtyTexture.replace(
                           "Texture_Speciality_Icon_",
                           ""
@@ -123,7 +123,7 @@ export function DeckDeckRow({ x, setUnits }) {
           <div className="col-2" onClick={() => setShow(!show)}>
             <img
               src={
-                "SteelDivisionDB/img/d/" +
+                "/SteelDivisionDB/img/d/" +
                 x.EmblemTexture.toLowerCase() +
                 ".tgv.png"
               }
@@ -190,7 +190,7 @@ export function UnitUnitRow({ x, i }) {
           {x.SpecialtyTexture ? (
             <img
               src={
-                "SteelDivisionDB/img/" +
+                "/SteelDivisionDB/img/" +
                 x.SpecialtyTexture.replace(
                   "Texture_Speciality_Icon_",
                   ""
@@ -283,7 +283,7 @@ export function UnitUnitCard({ detail, setDetail }) {
                     <div className="col-2">
                       <img
                         src={
-                          "SteelDivisionDB/img/d/" +
+                          "/SteelDivisionDB/img/d/" +
                           e.Emblem.toLowerCase() +
                           ".tgv.png"
                         }
@@ -336,7 +336,7 @@ export function WeaponWeaponRow({ x, i }) {
         <td key={i}>
           <img
             src={
-              "SteelDivisionDB/img/w/" +
+              "/SteelDivisionDB/img/w/" +
               x.InterfaceWeaponTexture.toLowerCase().replace(
                 "~/texture_interface_weapon_",
                 ""
@@ -403,7 +403,7 @@ export function WeaponWeaponCard({ detail, setDetail }) {
           <div className="col-2">
             <img
               src={
-                "SteelDivisionDB/img/w/" +
+                "/SteelDivisionDB/img/w/" +
                 detail.InterfaceWeaponTexture.toLowerCase().replace(
                   "~/texture_interface_weapon_",
                   ""

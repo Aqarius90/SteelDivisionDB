@@ -210,7 +210,6 @@ class DeckAssembly {
       BinaryOut += e.uid.toString(2).padStart(11, "0");
       BinaryOut += e.tid.toString(2).padStart(11, "0");
     });
-    console.log(BinaryOut);
     return parseFromBin(BinaryOut);
   }
 
@@ -260,7 +259,8 @@ class DeckAssembly {
     if (dbDeck) {
       this.loadFromDB(dbDeck.Descriptor, DB);
     } else if (global.debug) {
-      console.error("no such deck"); //keep parsing, for debug ease
+      global.throw("no such deck: ", dbDeck);
+      return this;
     }
 
     //number of cards
@@ -286,52 +286,56 @@ class DeckAssembly {
     posc += 5;
 
     //unit loop
-    for (let i = 0; i < cardcount; i++) {
-      let count = parseInt(bin.slice(posc, posc + unitCountBits), 2);
-      posc += unitCountBits;
-      let phase = parseInt(bin.slice(posc, posc + phaseCountBits), 2);
-      posc += phaseCountBits;
-      let xp = parseInt(bin.slice(posc, posc + xpCountBits), 2);
-      posc += xpCountBits;
-      let ID = parseInt(bin.slice(posc, posc + unitBits), 2) - 1; //off by one. :eugen:
-      posc += unitBits;
-      let tID = parseInt(bin.slice(posc, posc + unitBits), 2) - 1; //same
-      posc += unitBits;
+    try {
+      for (let i = 0; i < cardcount; i++) {
+        let count = parseInt(bin.slice(posc, posc + unitCountBits), 2);
+        posc += unitCountBits;
+        let phase = parseInt(bin.slice(posc, posc + phaseCountBits), 2);
+        posc += phaseCountBits;
+        let xp = parseInt(bin.slice(posc, posc + xpCountBits), 2);
+        posc += xpCountBits;
+        let ID = parseInt(bin.slice(posc, posc + unitBits), 2) - 1; //off by one. :eugen:
+        posc += unitBits;
+        let tID = parseInt(bin.slice(posc, posc + unitBits), 2) - 1; //same
+        posc += unitBits;
 
-      let unitPack = this.Units.find(x => {
-        return x.Key.Serial === ID;
-      });
-      tID = tID === -1 ? 0 : tID; //to falsey
-      let transportPack = tID; //to falsey
-      if (tID) {
-        transportPack = this.Transports.find(x => {
-          return x.Key.Serial === tID;
+        let unitPack = this.Units.find(x => {
+          return x.Key.Serial === ID;
         });
-      }
-
-      if (!unitPack && !transportPack && tID) {
-        console.error("## ERROR no such unitPack: " + ID + "/" + tID);
-      } else if (!unitPack) {
-        console.error(
-          "## ERROR no such unitPack: " +
-            ID +
-            "/" +
-            transportPack.Key.UnitDescriptor
-        );
-      } else if (!transportPack && tID) {
-        console.error(
-          "## ERROR no such unitPack: " +
-            unitPack.Key.UnitDescriptor +
-            "/" +
-            tID
-        );
-      } else {
-        for (let y = 0; y < count; y++) {
-          //breaking up [2xdozor] into [dozor, dozor]. much easier down the line
-          //a <Card> is {ph, xp, PackUnit, PackTrans}
-          //Unit is a unit as such, Pack is unit in a particular div, and Card is a deployment
-          this.Cards.push(new Card(phase, xp, unitPack, transportPack));
+        tID = tID === -1 ? 0 : tID; //to falsey
+        let transportPack = tID; //to falsey
+        if (tID) {
+          transportPack = this.Transports.find(x => {
+            return x.Key.Serial === tID;
+          });
         }
+
+        if (!unitPack && !transportPack && tID) {
+          global.throw("## ERROR no such unitPack: ", { id: ID, tid: tID });
+        } else if (!unitPack) {
+          global.throw("## ERROR no such unitPack: ", {
+            id: ID,
+            tdesc: transportPack.Key.UnitDescriptor
+          });
+        } else if (!transportPack && tID) {
+          global.throw("## ERROR no such unitPack: ", {
+            desc: unitPack.Key.UnitDescriptor,
+            tid: tID
+          });
+        } else {
+          for (let y = 0; y < count; y++) {
+            //breaking up [2xdozor] into [dozor, dozor]. much easier down the line
+            //a <Card> is {ph, xp, PackUnit, PackTrans}
+            //Unit is a unit as such, Pack is unit in a particular div, and Card is a deployment
+            this.Cards.push(new Card(phase, xp, unitPack, transportPack));
+          }
+        }
+      }
+    } catch (e) {
+      if (global.debug) {
+        global.throw("Factory parse error", this, e);
+      } else {
+        //console.error("Factory parse error");
       }
     }
     if (global.debug) {

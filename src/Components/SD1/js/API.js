@@ -109,7 +109,6 @@ export function hideUnit(x) {
 }
 
 export function sortBy(u, x) {
-  console.log("sortby"); //debug, to check if it's even called
   let state = this.state.DeckBuilder;
   let newArray = state.DBUnits;
   if (u === 0) {
@@ -147,6 +146,11 @@ export function setDeckCode(x) {
 }
 
 export function parseDeckCode(x) {
+  if (x === "") {
+    let newDeck = new DeckAssembly();
+    this.props.API.setCode(x);
+    this.setState({ code: x });
+  }
   let deckbuilder = this.state.DeckBuilder;
   let newDeck = new DeckAssembly();
   let dataarray = this.state.DB;

@@ -11,7 +11,6 @@ export function getIncomeArray(Deck) {
       return (Deck.Income = "Juggernaut");
 
     default:
-      console.log(Deck);
-      throw new Error("Income array parsing error");
+      global.throw("Income array parsing error", Deck);
   }
 }

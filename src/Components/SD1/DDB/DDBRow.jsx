@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import DeckGrid from "../DeckBuilder/DeckGrid";
+import DeckGrid from "./DumbDeckDisplay";
 
 export function DDBRow({ x, show, del, isUser }) {
   return (
     <>
-      <th> {x.title} </th>
-      <th>
+      <th className="col-2"> {x.title} </th>
+      <th className="col-5"> {x.desc} </th>
+      <th className="col-1">
         {!!x.divEm ? (
           <img
-            src={
-              "/SteelDivisionDB/img-sd2/divs/" +
-              x.divEm.split("Emblem_")[1].toLowerCase() +
-              ".png"
-            }
+            src={"/SteelDivisionDB/img/d/" + x.divEm.toLowerCase() + ".tgv.png"}
             className="img-back"
             alt="divEmblem"
           />
@@ -20,17 +17,16 @@ export function DDBRow({ x, show, del, isUser }) {
           <></>
         )}
       </th>
-      <th> {x.div} </th>
-      <th> {x.Side} </th>
-      <th> {x.Income} </th>
-      <th> {x.timestamp ? x.timestamp.toDate().toLocaleDateString() : ""} </th>
-      <th> {x.Rating} </th>
-      <th>
+      <th className="col-1"> {x.Side} </th>
+      <th className="col-1">
+        {x.timestamp ? x.timestamp.toDate().toLocaleDateString() : ""}{" "}
+      </th>
+      <th className="col-1">
         <button className="btn btn-outline-dark" onClick={() => show(x)}>
           Show
         </button>
       </th>
-      <th>
+      <th className="col-1">
         {isUser(x.user) ? (
           <button className="btn btn-outline-dark" onClick={() => del(x)}>
             Delete
@@ -42,7 +38,7 @@ export function DDBRow({ x, show, del, isUser }) {
     </>
   );
 }
-export function DDBUpload({ obj, upload, exportDeck, hide }) {
+export function DDBUpload({ obj, DB, upload, exportDeck, hide }) {
   const [title, setTitle] = useState(obj.title);
   const [desc, setDesc] = useState(obj.desc);
   let handleTitle = event => {
@@ -62,8 +58,8 @@ export function DDBUpload({ obj, upload, exportDeck, hide }) {
                 {!!obj.divEm ? (
                   <img
                     src={
-                      "/SteelDivisionDB/img-sd2/divs/" +
-                      obj.divEm.split("Emblem_")[1].toLowerCase() +
+                      "/SteelDivisionDB/img/d/" +
+                      obj.divEm.toLowerCase() +
                       ".png"
                     }
                     className="img-back"
@@ -124,7 +120,14 @@ export function DDBUpload({ obj, upload, exportDeck, hide }) {
               </div>
             </div>
           </div>
-          <DeckGrid Deck={obj.deck}></DeckGrid>
+          <div className="row">
+            <div className="col-7">
+              <DeckGrid
+                DeckUnits={obj.sortByCategory(obj.deck.Cards)}
+                Deck={obj}
+              ></DeckGrid>
+            </div>
+          </div>
         </div>
       </div>
     </div>

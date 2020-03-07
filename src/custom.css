@@ -168,6 +168,9 @@ p {
 .img-sd2-xp {
   height: 25px;
 }
+.img-sd2-mini {
+  height: 40px;
+}
 .txt-sd2-price {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   position: absolute;
@@ -345,7 +348,7 @@ p {
   }
   .txt-sd2-price {
     position: absolute;
-    bottom: -5%;
+    bottom: -10px;
     left: 17%;
     color: #fff;
     font-weight: 900;
@@ -385,7 +388,7 @@ p {
   }
   .txt-sd2-price {
     position: absolute;
-    bottom: -5%;
+    bottom: -10px;
     left: 15%;
     color: #fff;
     font-weight: 900;
@@ -425,7 +428,7 @@ p {
   }
   .txt-sd2-price {
     position: absolute;
-    bottom: -5%;
+    bottom: -10px;
     left: 10%;
     color: #fff;
     font-weight: 900;

@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import { DeckUnitCard, DeckDeckRow } from "./Cards";
 
 function DeckDB({ allDecks }) {
-  const [decks, setDecks] = useState(allDecks);
+  //const [decks, setDecks] = useState(allDecks);
   const [units, setUnits] = useState(null);
   function showRow(e, i) {
     return (
@@ -23,14 +23,14 @@ function DeckDB({ allDecks }) {
   /*pagination*/
   let pPage = 20;
   const [page, setPage] = useState(0);
-  const [pages, setPages] = useState(Math.ceil(decks.length / pPage));
+  const [pages, setPages] = useState(Math.ceil(allDecks.length / pPage));
   let filtered = [];
   for (
     let i = page * pPage;
-    i < Math.min((page + 1) * pPage, decks.length - 1);
+    i < Math.min((page + 1) * pPage, allDecks.length - 1);
     i++
   ) {
-    filtered.push(decks[i]);
+    filtered.push(allDecks[i]);
   }
   let handlePageClick = data => {
     setPage(data.selected);

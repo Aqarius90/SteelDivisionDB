@@ -4,7 +4,6 @@ import DivisionSelector from "./DivisionSelector";
 import DeckGrid from "./DeckGrid";
 import UnitPanel from "./UnitPanel";
 import Randomizer from "./Randomizer";
-import StatsPanel from "./StatsPanel";
 import { useParams } from "react-router-dom";
 
 function DeckBuilder({ DB, Deck, API }) {
@@ -30,9 +29,6 @@ function DeckBuilder({ DB, Deck, API }) {
     });
     return listables;
   };
-  //<div className="col-xl-2">
-  //</div>
-  console.log("render deckbuilder");
   return (
     <div className="card">
       <DecodeHeader Deck={Deck} API={API} />

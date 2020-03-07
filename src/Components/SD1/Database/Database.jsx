@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import DeckDB from "./DeckDB";
 import UnitDB from "./UnitDB";
 import WeaponDB from "./WeaponDB";
@@ -139,8 +138,6 @@ export function FilterField({ items, set }) {
         u.push(e);
       }
     });
-    console.log(str);
-    console.log(u);
     set(u);
   };
   return (

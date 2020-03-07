@@ -6,15 +6,15 @@ import pako from "pako";
 
 function Database({ DB, FB }) {
   const [thisDB, setThisDB] = useState("d");
-  const [allDecks, setAllDecks] = useState(DB);
+  //const [allDecks, setAllDecks] = useState(DB);
   const [allUnits, setAllUnits] = useState(null);
   const [allWeapons, setAllWeapons] = useState(null);
 
   function getDB() {
     switch (thisDB) {
       case "d":
-        if (allDecks) {
-          return <DeckDB allDecks={allDecks} />;
+        if (DB) {
+          return <DeckDB allDecks={DB} />;
         }
         break;
       case "u":
@@ -133,8 +133,6 @@ export function FilterField({ items, set }) {
         u.push(e);
       }
     });
-    console.log(str);
-    console.log(u);
     set(u);
   };
   return (

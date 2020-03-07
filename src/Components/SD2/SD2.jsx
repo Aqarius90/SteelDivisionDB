@@ -6,6 +6,7 @@ import Database from "./Database/Database";
 import pako from "pako";
 import _ from "lodash";
 import DDB from "./DDB/DDB";
+import RDB from "./RDB/RDB";
 import { useParams, useHistory } from "react-router-dom";
 
 function SD2({ Honey, API }) {
@@ -68,7 +69,6 @@ function SD2({ Honey, API }) {
 
   //renders
   const [DB, setDB] = useState();
-
   const [isFirst, setIsFirst] = useState(true);
   if (isFirst && params.code) {
     if (DB) {
@@ -157,11 +157,43 @@ function SD2({ Honey, API }) {
     ) : (
       <></>
     );
-  } else if (params.Page === "ReplayDB") {
-    return <div>replayDB fragment</div>;
+  } else if (params.Page === "RDB") {
+    if (!Honey.User) {
+      return (
+        <div>
+          <div className="modal-dialog" onClick={e => e.stopPropagation()}>
+            <div className="modal-content">
+              <div className="modal-header"></div>
+              <div className="modal-body">
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={API.logIn}
+                >
+                  {Honey.User ? "Logout" : "Login"}
+                </button>
+              </div>
+              <div className="modal-footer"></div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return Honey.User ? (
+      <RDB
+        Honey={{
+          DB: DB,
+          import: deck,
+          user: Honey.User
+        }}
+        API={{
+          export: deckAPI.decode
+        }}
+      />
+    ) : (
+      <></>
+    );
   } else {
     return null;
   }
 }
-
 export default SD2;

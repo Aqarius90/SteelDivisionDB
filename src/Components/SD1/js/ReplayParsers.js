@@ -241,5 +241,5 @@ export function parsePicture(x) {
     default:
       break;
   }
-  return "SteelDivisionDB/img/d/" + emblem + ".tgv.png";
+  return "/SteelDivisionDB/img/d/" + emblem + ".tgv.png";
 }

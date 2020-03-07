@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
 function Header({ Honey, API }) {
+  let params = useParams();
+  let history = useHistory();
+  console.log(params);
   const [share, setShare] = useState(false);
   function renderShare() {
-    console.log(share);
     if (share) {
       let link =
-        "https://localhost:3000/?" +
-        Honey.loadedDB +
-        "?" +
-        Honey.ActiveTab +
-        "?" +
-        Honey.input;
+        "https://localhost:3000/SteelDivisionDB/" +
+        params.DB +
+        "/" +
+        params.Page +
+        "/" +
+        params.code;
       return (
         <div
           style={{
@@ -37,50 +40,79 @@ function Header({ Honey, API }) {
     }
     return <div />;
   }
-
   return (
     <div className="row card-header">
-      <div className="col-xl-1">
+      <div className="col-xl-2 col-md-3">
         <button
           className="btn btn-primary btn-block"
-          onClick={() => API.setTab.DeckBuilder()}
-          disabled={
-            Honey.loadedDB && Honey.ActiveTab !== "DeckBuilder" ? false : true
+          onClick={() =>
+            history.push(
+              "/SteelDivisionDB/" +
+                params.DB +
+                "/DeckBuilder" +
+                (params.code ? "/" + params.code : "")
+            )
           }
+          disabled={params.DB && params.Page !== "DeckBuilder" ? false : true}
         >
           DeckBuilder
         </button>
-
         <button
           className="btn btn-primary btn-block"
-          onClick={() => API.setTab.Database()}
-          disabled={
-            Honey.loadedDB && Honey.ActiveTab !== "DeckDB" ? false : true
+          onClick={() =>
+            history.push(
+              "/SteelDivisionDB/" +
+                params.DB +
+                "/Database" +
+                (params.code ? "/" + params.code : "")
+            )
           }
+          disabled={params.DB && params.Page !== "Database" ? false : true}
         >
           Database
         </button>
-      </div>
-      <div className="col-xl-10 panel">
-        <h1 align="center">Steel Division Database</h1>
-      </div>
-      <div className="col-xl-1">
-        <button
-          className="btn btn-primary btn-block"
-          onClick={
-            Honey.User
-              ? () => global.throw("Bugreport is bugged. How ironic.")
-              : API.logIn
-          }
-        >
-          {Honey.User ? "Report a bug" : "Login"}
-        </button>
-        <button
-          disabled={Honey.ActiveTab === "DeckBuilder" ? false : true}
+        {/*<button
+          disabled={params.DB && params.Page !== "DeckBuilder" ? false : true}
           className="btn btn-primary btn-block"
           onClick={() => setShare(!share)}
         >
           Share
+        </button>*/}
+      </div>
+      <div className="col-xl-8 col-md-6 panel">
+        <h1 align="center">Steel Division Database</h1>
+      </div>
+      <div className="col-xl-2 col-md-3">
+        {/*<button className="btn btn-primary btn-block" onClick={API.logIn}>
+          {params.User ? "Logout" : "Login"}
+        </button>*/}
+        <button
+          className="btn btn-primary btn-block"
+          onClick={() =>
+            history.push(
+              "/SteelDivisionDB/" +
+                params.DB +
+                "/DDB" +
+                (params.code ? "/" + params.code : "")
+            )
+          }
+          disabled={params.Page !== "DDB" ? false : true}
+        >
+          Decks
+        </button>
+        <button
+          className="btn btn-primary btn-block"
+          onClick={() =>
+            history.push(
+              "/SteelDivisionDB/" +
+                params.DB +
+                "/RDB" +
+                (params.code ? "/" + params.code : "")
+            )
+          }
+          disabled={params.DB && params.Page !== "RDB" ? false : true}
+        >
+          Replays
         </button>
       </div>
       {renderShare()}

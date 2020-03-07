@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import DeckDB from "./DeckDBComponents/DeckDB";
-import ReplayDB from "./ReplayDBComponents/ReplayDB";
+import DDB from "./DDB/DDB";
+import RDB from "./RDB/RDB";
 import DeckBuilder from "./DeckBuilderComponents/DeckBuilder";
 import DeckAssembly from "./js/DeckAssembly";
-import UploadDialog from "./UploadDialog";
-import SkyLight from "react-skylight";
 import Database from "./Database/Database";
 import firebase from "../../js/Firestore";
 import pako from "pako";
+import { useParams, useHistory } from "react-router-dom";
 import {
   //separate file, for housekeeping
   setDeck,
@@ -22,26 +21,6 @@ import {
   toggleRandomizer,
   hideUnit
 } from "./js/API";
-import {
-  deckListFilter,
-  deckListVote,
-  deckListGet,
-  deckListSet,
-  deckListEdit,
-  deckListDelete,
-  deckListUpload,
-  loadDecks
-} from "./js/DBAPI";
-import {
-  replayFilter,
-  replayVote,
-  replayGet,
-  ReplayDeckSet,
-  replayDelete,
-  replayShowUpload,
-  replayUpload,
-  loadReplays
-} from "./js/RPAPI.js";
 
 class SD1 extends Component {
   constructor() {
@@ -61,28 +40,8 @@ class SD1 extends Component {
     this.setDeckCode = setDeckCode.bind(this);
     this.parseDeckCode = parseDeckCode.bind(this);
 
-    this.deckListFilter = deckListFilter.bind(this);
-    this.deckListVote = deckListVote.bind(this);
-    this.deckListGet = deckListGet.bind(this);
-    this.deckListSet = deckListSet.bind(this);
-    this.deckListEdit = deckListEdit.bind(this);
-    this.deckListDelete = deckListDelete.bind(this);
-    this.deckListUpload = deckListUpload.bind(this);
-
-    this.loadDecks = loadDecks.bind(this);
-
-    this.replayFilter = replayFilter.bind(this);
-    this.replayVote = replayVote.bind(this);
-    this.replayGet = replayGet.bind(this);
-    this.ReplayDeckSet = ReplayDeckSet.bind(this);
-    this.replayDelete = replayDelete.bind(this);
-    this.replayShowUpload = replayShowUpload.bind(this);
-    this.replayUpload = replayUpload.bind(this);
-    this.loadReplays = loadReplays.bind(this);
-
     this.state = {
       //UI
-      isLoading: true,
       code: "", //a null confuses the input form
       API: {
         parseDeckCode: this.parseDeckCode,
@@ -108,41 +67,6 @@ class SD1 extends Component {
           getUsedCount: this.getUsedCount,
           toggleRandomizer: this.toggleRandomizer
         }
-      },
-      DeckDB: {
-        FullDeckList: null, //full DB list
-        DeckList: null, //DB list, post filter
-        FilterParam: null,
-        SelectedDeck: null,
-        SelectedDeckCode: "",
-        SelectedDeckObject: null,
-        DeckUnits: [[], [], [], [], [], [], [], []],
-        sortby: null,
-        API: {
-          filter: this.deckListFilter,
-          vote: this.deckListVote,
-          showDeck: this.deckListGet,
-          editDeck: this.deckListSet,
-          editHeader: this.deckListEdit,
-          deleteDeck: this.deckListDelete,
-          uploadDeck: this.deckListUpload
-        }
-      },
-      ReplayDB: {
-        ReplayList: null,
-        sortby: null,
-        Replay: null,
-        ReplayDecks: null,
-        IsUploading: null,
-        API: {
-          filter: this.replayFilter,
-          vote: this.replayVote,
-          showReplay: this.replayGet,
-          editDeck: this.ReplayDeckSet,
-          deleteReplay: this.replayDelete,
-          showUpload: this.replayShowUpload,
-          upload: this.replayUpload
-        }
       }
     };
   }
@@ -157,7 +81,6 @@ class SD1 extends Component {
       .doc("SD1")
       .get()
       .then(queryDocumentSnapshot => {
-        console.log("tests");
         var inflated = JSON.parse(
           pako.inflate(queryDocumentSnapshot.data().d, { to: "string" })
         );
@@ -215,62 +138,128 @@ class SD1 extends Component {
       });
   };
 
+  kjsdfkjkj = x => {
+    let history = useHistory();
+    history.push(
+      "/SteelDivisionDB/" +
+        this.props.Honey.params.DB +
+        "/" +
+        this.props.Honey.params.Page +
+        "/" +
+        x
+    );
+  };
+
   render() {
-    if (this.state.isLoading) {
-      if (this.state.DB === null) {
-        this.initData();
-      }
+    if (this.state.DB === null) {
+      this.initData();
       return (
         <div className="card">
-          <div className="mx-auto">
-            <div className="lds-dual-ring" />
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
           </div>
         </div>
       );
     } else {
-      if (this.props.Honey.ActiveTab === "DeckBuilder") {
-        return (
-          <DeckBuilder
-            Honey={this.state}
-            pload={this.props.Honey.Preload}
-            pset={this.props.API.setCode}
-          />
-        );
-      } else if (this.props.Honey.ActiveTab === "DeckDB") {
-        return (
-          <DeckDB
-            DB={this.state.DB}
-            deckDB={this.state.DeckDB}
-            DeckUnits={this.state.DeckBuilder.DeckUnits}
-            User={this.props.Honey.User}
-          />
-        );
-      } else if (this.props.Honey.ActiveTab === "Database") {
-        return <Database DB={this.state.DB} />;
-      } else if (this.props.Honey.ActiveTab === "ReplayDB") {
-        return (
-          <React.Fragment>
-            <ReplayDB
-              DB={this.state.DB}
-              ReplayDB={this.state.ReplayDB}
-              User={this.props.Honey.User}
-              upload={this.state.ReplayDB.API.showUpload}
-              filter={this.state.ReplayDB.API.filter}
+      switch (this.props.Honey.params.Page) {
+        case "DeckBuilder":
+          return (
+            <DeckBuilder
+              Honey={this.state}
+              pload={this.props.Honey.params.code}
             />
-            <SkyLight
-              hideOnOverlayClicked
-              ref={ref => (this.uploadDialog = ref)}
-              title={
-                <UploadDialog
-                  upload={this.state.ReplayDB.API.upload}
-                  IsUploading={this.state.ReplayDB.IsUploading}
-                />
-              }
+          );
+        case "Database":
+          return <Database DB={this.state.DB} />;
+
+        case "DDB":
+          if (!this.props.Honey.User) {
+            return (
+              <div>
+                <div
+                  className="modal-dialog"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <div className="modal-content">
+                    <div className="modal-header"></div>
+                    <div className="modal-body">
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={this.props.API.logIn}
+                      >
+                        Login
+                      </button>
+                    </div>
+                    <div className="modal-footer"></div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+          return this.props.Honey.User ? (
+            <DDB
+              Honey={{
+                DB: this.state.DB,
+                import: this.props.Honey.params.code,
+                user: this.props.Honey.User.uid
+              }}
+              API={{
+                export: this.state.API.parseDeckCode
+              }}
             />
-          </React.Fragment>
-        );
-      } else {
-        return null;
+          ) : (
+            <></>
+          );
+        case "RDB":
+          if (!this.props.Honey.User) {
+            return (
+              <div>
+                <div
+                  className="modal-dialog"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <div className="modal-content">
+                    <div className="modal-header"></div>
+                    <div className="modal-body">
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={this.props.API.logIn}
+                      >
+                        Login
+                      </button>
+                    </div>
+                    <div className="modal-footer"></div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+          return this.props.Honey.User ? (
+            <RDB
+              Honey={{
+                DB: this.state.DB,
+                import: this.props.Honey.params.code,
+                user: this.props.Honey.User.uid
+              }}
+              API={{
+                export: this.state.API.parseDeckCode
+              }}
+            />
+          ) : (
+            <></>
+          );
+        default:
+          return (
+            <div className="card">
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          );
       }
     }
   }

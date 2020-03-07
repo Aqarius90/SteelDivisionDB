@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 class Division extends PureComponent {
   getPicture = () => {
     let img =
-      "SteelDivisionDB/img/d/" +
+      "/SteelDivisionDB/img/d/" +
       this.props.x.EmblemTexture.toLowerCase() +
       ".tgv.png";
     return img;

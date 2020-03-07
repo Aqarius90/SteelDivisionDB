@@ -12,18 +12,16 @@ function DDB({ Honey, API }) {
   const [showDetail, toggleDetail] = useState(false);
 
   function importDeck() {
-    if (Honey.import.DeckCode) {
+    //see
+    if (Honey.import) {
       setObj(
-        new uploadObj(Honey.user).importDeck(
-          Honey.DB,
-          Honey.import.DeckCode,
-          Honey.user
-        )
+        new uploadObj(Honey.user).importDeck(Honey.DB, Honey.import, Honey.user)
       );
     }
     toggleDetail(true);
   }
   function importUpload(x) {
+    //see
     setObj(_.clone(obj.load(Honey.DB, x, Honey.user)));
     toggleDetail(true);
   }
@@ -86,22 +84,26 @@ function DDB({ Honey, API }) {
   useEffect(() => {
     let x = [];
     Honey.DB.forEach(e => {
-      x.push({ div: e.EmblemTexture, Side: e.Side, val: true });
+      x.push({ div: e.EmblemTexture, Side: e.DivisionNationalite, val: true });
     });
     setFilterDiv(x);
     load(Anchor);
+    setAnchor(true);
   }, []);
 
   /*handle data*/
   function del(x) {
     firebase
       .firestore()
-      .collection("SD2DDB")
+      .collection("SD1DDB")
       .doc(x.id)
       .delete()
       .then(function() {
         let foo = _.clone(rows);
-        foo.splice(foo.findIndex(x), 1);
+        foo.splice(
+          foo.findIndex(e => e.id === x.id),
+          1
+        );
         setRows(foo);
       })
       .catch(function(error) {
@@ -115,7 +117,7 @@ function DDB({ Honey, API }) {
     }
     let ref = firebase
       .firestore()
-      .collection("SD2DDB")
+      .collection("SD1DDB")
       .orderBy("timestamp");
     if (anch) {
       //offset, used after fisrt load
@@ -148,22 +150,22 @@ function DDB({ Honey, API }) {
         global.throw("Get DDB error: ", "", error);
       });
   }
-  function upload(obj, t, d, user = Honey.user, page = page) {
+  function upload(obj, t, d, user = Honey.user) {
     let newID = firebase
       .firestore()
-      .collection("SD2DDB")
+      .collection("SD1DDB")
       .doc();
-
+    console.log(obj);
     newID
       .set({
         title: t,
         desc: d,
         code: obj.code,
         divEm: obj.divEm,
-        div: obj.div,
+        //div: obj.div,
         Side: obj.Side,
-        Income: obj.Income,
-        Rating: obj.Rating,
+        //Income: obj.Income,
+        //Rating: obj.Rating,
         user: user,
         id: newID.id,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -190,7 +192,7 @@ function DDB({ Honey, API }) {
   }
   function showRow(x, i) {
     return (
-      <tr key={i}>
+      <tr className="d-flex" key={i}>
         <DDBRow x={x} show={importUpload} del={del} isUser={isUser}></DDBRow>
       </tr>
     );
@@ -204,11 +206,7 @@ function DDB({ Honey, API }) {
           onClick={() => filterToggle(x.div)}
         >
           <img
-            src={
-              "/SteelDivisionDB/img-sd2/divs/" +
-              x.div.split("Emblem_")[1].toLowerCase() +
-              ".png"
-            }
+            src={"/SteelDivisionDB/img/d/" + x.div.toLowerCase() + ".tgv.png"}
             className="img-back"
             alt="unitPortrait"
           />
@@ -235,6 +233,7 @@ function DDB({ Honey, API }) {
       {showDetail ? (
         <DDBUpload
           obj={obj}
+          DB={Honey.DB}
           upload={upload}
           exportDeck={API.export}
           hide={() => toggleDetail(false)}
@@ -245,17 +244,14 @@ function DDB({ Honey, API }) {
             <div className="col-6 justify-content-center">
               <table className="sortable table-hover">
                 <tbody>
-                  <tr>
-                    <th> Name </th>
-                    <th> </th>
-                    <th> Division </th>
-                    <th> Side </th>
-                    <th> Income </th>
-                    <th> Date </th>
-                    <th> Type </th>
-                    <th> Rating </th>
-                    <th> </th>
-                    <th> </th>
+                  <tr className="d-flex">
+                    <th className="col-2"> Name </th>
+                    <th className="col-5"> Description </th>
+                    <th className="col-1"> </th>
+                    <th className="col-1"> Side </th>
+                    <th className="col-1"> Date </th>
+                    <th className="col-1"> </th>
+                    <th className="col-1"> </th>
                   </tr>
                   {showRows.map((e, i) => showRow(e, i))}
                 </tbody>

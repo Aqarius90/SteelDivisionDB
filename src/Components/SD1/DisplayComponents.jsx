@@ -8,7 +8,7 @@ export class DisplayAP extends PureComponent {
     if (AP === "True") {
       return (
         <img
-          src="SteelDivisionDB/img/icone_fantassin.tgv.png"
+          src="/SteelDivisionDB/img/icone_fantassin.tgv.png"
           className={css}
           alt="bazooka"
         />
@@ -16,7 +16,7 @@ export class DisplayAP extends PureComponent {
     } else if (AP === "False") {
       return (
         <img
-          src="SteelDivisionDB/img/icone_ap.tgv.png"
+          src="/SteelDivisionDB/img/icone_ap.tgv.png"
           className={css}
           alt="none"
         />
@@ -38,7 +38,7 @@ export class DisplayAV extends PureComponent {
     if (AV === 0) {
       return (
         <img
-          src="SteelDivisionDB/img/icone_ap.tgv.png"
+          src="/SteelDivisionDB/img/icone_ap.tgv.png"
           className={css}
           alt="none"
         />
@@ -125,15 +125,27 @@ export class DisplayExp extends PureComponent {
       return <div />;
     } else if (x === 1) {
       return (
-        <img src="SteelDivisionDB/img/grade1.tgv.png" className={css} alt={x} />
+        <img
+          src="/SteelDivisionDB/img/grade1.tgv.png"
+          className={css}
+          alt={x}
+        />
       );
     } else if (x === 2) {
       return (
-        <img src="SteelDivisionDB/img/grade2.tgv.png" className={css} alt={x} />
+        <img
+          src="/SteelDivisionDB/img/grade2.tgv.png"
+          className={css}
+          alt={x}
+        />
       );
     } else if (x === 3) {
       return (
-        <img src="SteelDivisionDB/img/grade3.tgv.png" className={css} alt={x} />
+        <img
+          src="/SteelDivisionDB/img/grade3.tgv.png"
+          className={css}
+          alt={x}
+        />
       );
     }
   }
@@ -145,7 +157,7 @@ export class DisplayPara extends PureComponent {
     if (x) {
       return (
         <img
-          src="SteelDivisionDB/img/para_wingr.tgv.png"
+          src="/SteelDivisionDB/img/para_wingr.tgv.png"
           className="img-xp"
           alt="displayPara"
         />
@@ -165,7 +177,7 @@ export class DisplaySpecial extends PureComponent {
     return (
       <img
         src={
-          "SteelDivisionDB/img/" +
+          "/SteelDivisionDB/img/" +
           x.replace("Texture_Speciality_Icon_", "").toLowerCase() +
           ".tgv.png"
         }
