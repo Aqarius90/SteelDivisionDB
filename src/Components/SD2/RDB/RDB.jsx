@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import RDBRow from "./RDBRow";
-import DeckAssembly from "../js/Deck";
+import Deck from "../js/Deck";
+import DeckAssembly from "../../SD1/js/DeckAssembly";
 import RDBUpload from "./RDBUpload";
 import firebase from "../../../js/Firestore";
 import _ from "lodash";
 import pako from "pako";
+import { useParams } from "react-router-dom";
 
 function RDB({ Honey, API }) {
+  let params = useParams();
   /*deck handling*/
   const [showUploadPanel, setUploadPanel] = useState(false);
   const [parsed, setParsed] = useState(null);
@@ -49,23 +52,31 @@ function RDB({ Honey, API }) {
   }
   useEffect(() => {
     /*init data*/
-    //load(Anchor);
+    load(Anchor);
   }, []);
 
   /*handle data*/
   function del(x) {
+    let dBase = params.DB === "SD1" ? "SD1RDB" : "SD2RDB";
+    if (global.debug) {
+      console.log(dBase);
+      console.log(x);
+    }
     firebase
       .firestore()
-      .collection("SD2RDB")
-      .doc(x.id)
+      .collection(dBase)
+      .doc(x.uid)
       .delete()
       .then(function() {
         let foo = _.clone(rows);
-        foo.splice(foo.findIndex(x), 1);
+        foo.splice(
+          foo.findIndex(e => e.id === x.id),
+          1
+        );
         setRows(foo);
       })
       .catch(function(error) {
-        console.error("Error removing: ", error);
+        global.throw("Error removing: ", {}, error);
       });
   }
   function load(anch) {
@@ -73,9 +84,10 @@ function RDB({ Honey, API }) {
       //stop loading at end of dataset
       return;
     }
+    let dBase = params.DB === "SD1" ? "SD1RDB" : "SD2RDB";
     let ref = firebase
       .firestore()
-      .collection("SD2RDB")
+      .collection(dBase)
       .orderBy("timestamp");
     if (anch) {
       //offset, used after fisrt load
@@ -109,13 +121,24 @@ function RDB({ Honey, API }) {
       });
   }
   function upload(title, desc, parsed, userid = Honey.user.uid) {
+    let dBase = params.DB === "SD1" ? "SD1RDB" : "SD2RDB";
     let miamiTwice = pako.deflate(pako.deflate(parsed.blob), {
       to: "string"
     });
     let ref = firebase
       .firestore()
-      .collection("SD2RDB")
+      .collection(dBase)
       .doc(parsed.meta.h.UniqueSessionId);
+    if (global.debug) {
+      console.log({
+        userid: userid,
+        title: title,
+        desc: desc,
+        meta: parsed.meta,
+        uid: parsed.meta.h.UniqueSessionId,
+        zip: miamiTwice
+      });
+    }
     ref
       .set({
         userid: userid,
@@ -190,12 +213,19 @@ function RDB({ Honey, API }) {
         }
       }
     }
-    let d = new DeckAssembly();
-    Players.forEach(e => {
-      d.loadFromCode(e.PlayerDeckContent, DB);
-      //e.divEm = d.Emblem ? d.Emblem : "ERROR";
-      e.divEm = d.EmblemTexture ? d.EmblemTexture : "ERROR";
-    });
+    if (params.DB === "SD1") {
+      let d = new DeckAssembly();
+      Players.forEach(e => {
+        d.decodeDeck(e.PlayerDeckContent, DB);
+        e.divEm = d.Emblem;
+      });
+    } else {
+      let d = new Deck();
+      Players.forEach(e => {
+        d.loadFromCode(e.PlayerDeckContent, DB);
+        e.divEm = d.EmblemTexture ? d.EmblemTexture : "ERROR";
+      });
+    }
 
     let FooterStart = x.indexOf('"result"');
     let FooterEnd = x.length - 1;
@@ -203,8 +233,6 @@ function RDB({ Honey, API }) {
     footer = JSON.parse(
       footer.slice(footer.indexOf(":") + 1) //remove title
     ); //duration, score, victory
-    console.log({ h: Game, p: Players, f: footer });
-    //remove after testing
     return { h: Game, p: Players, f: footer };
   }
 
@@ -213,7 +241,7 @@ function RDB({ Honey, API }) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Add part</h5>
+            <h5 className="modal-title"></h5>
             <button
               type="button"
               className="close"
@@ -251,7 +279,7 @@ function RDB({ Honey, API }) {
           DB={Honey.DB}
           upload={upload}
           parsed={parsed}
-          hide={() => showUploadPanel(false)}
+          hide={() => setUploadPanel(false)}
         ></RDBUpload>
       </div>
     );
@@ -276,7 +304,7 @@ function RDB({ Honey, API }) {
             }
             onClick={() => setFilterOwn(!filterOwn)}
           >
-            My decks
+            My replays
           </button>
         </div>
         <div className="col-9">

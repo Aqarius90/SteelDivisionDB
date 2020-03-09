@@ -1,17 +1,13 @@
 import React from "react";
+import { Spec } from "./dict";
 
 export function getSpec(x, css) {
   if (x.Key.SpecToken) {
     return (
       <img
-        src={
-          "/SteelDivisionDB/img-sd2/specs/" +
-          x.Key.SpecToken.toLowerCase() +
-          ".tgv.png"
-        }
+        src={Spec.find(e => e.k === x.Key.SpecToken).i}
         className={css}
-        //className={css}
-        alt={"DisplaySpecial"}
+        alt={x.Key.SpecToken}
       />
     );
   }
@@ -23,7 +19,8 @@ export function getPortrait(x, css) {
     return (
       <img
         src={
-          "/SteelDivisionDB/img-sd2/pictures/" +
+          process.env.PUBLIC_URL +
+          "/img-sd2/pictures/" +
           x.Key.UnitDescriptor.toLowerCase() +
           ".png"
         }
@@ -35,7 +32,8 @@ export function getPortrait(x, css) {
   return (
     <img
       src={
-        "/SteelDivisionDB/img-sd2/units/" +
+        process.env.PUBLIC_URL +
+        "/img-sd2/units/" +
         x.Key.UnitDescriptor.toLowerCase() +
         ".png"
       }

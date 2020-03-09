@@ -1,6 +1,9 @@
 import React from "react";
 import { parseArmor } from "../js/unitGUIparsers";
 import ReactTooltip from "react-tooltip";
+import xp0 from "../../../pics/SD2/iconrankveteran.tgv.png";
+import xp1 from "../../../pics/SD2/iconrankelite.tgv.png";
+import xp2 from "../../../pics/SD2/iconranksuperelite.tgv.png";
 
 export function ParseArmor({ x, tag }) {
   return (
@@ -49,9 +52,10 @@ export function TurretHeader({ t, salves, show, setShow }) {
           <div className="row">
             <img
               src={
-                "/SteelDivisionDB/img-sd2/guns/" +
+                process.env.PUBLIC_URL +
+                "/img-sd2/guns/" +
                 t.Weapons[0].Ammunition.InterfaceWeaponTexture.toLowerCase() +
-                ".png"
+                ".tgv.png"
               }
               className="img-weapon"
               alt={t.Weapons[0].Ammunition.InterfaceWeaponTexture}
@@ -184,29 +188,11 @@ function DisplayAmmoProps({ x, salves }) {
 export function VetIcon({ x, css }) {
   switch (x) {
     case 0:
-      return (
-        <img
-          className={css}
-          src="/SteelDivisionDB/img-sd2/iconrankveteran.tgv.png"
-          alt="-"
-        />
-      );
+      return <img className={css} src={xp0} alt="-" />;
     case 1:
-      return (
-        <img
-          className={css}
-          src="/SteelDivisionDB/img-sd2/iconrankelite.tgv.png"
-          alt="^"
-        />
-      );
+      return <img className={css} src={xp1} alt="^" />;
     case 2:
-      return (
-        <img
-          className={css}
-          src="/SteelDivisionDB/img-sd2/iconranksuperelite.tgv.png"
-          alt="^^"
-        />
-      );
+      return <img className={css} src={xp2} alt="^^" />;
     default:
       global.throw("VetIcon in unit panel", x);
       return <div />;

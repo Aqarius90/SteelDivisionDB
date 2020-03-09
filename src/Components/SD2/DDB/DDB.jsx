@@ -101,11 +101,14 @@ function DDB({ Honey, API }) {
       .delete()
       .then(function() {
         let foo = _.clone(rows);
-        foo.splice(foo.findIndex(x), 1);
+        foo.splice(
+          foo.findIndex(e => e.id === x.id),
+          1
+        );
         setRows(foo);
       })
       .catch(function(error) {
-        console.error("Error removing: ", error);
+        global.throw("Error removing: ", x, error);
       });
   }
   function load(anch) {
@@ -205,9 +208,10 @@ function DDB({ Honey, API }) {
         >
           <img
             src={
-              "/SteelDivisionDB/img-sd2/divs/" +
+              process.env.PUBLIC_URL +
+              "/img-sd2/divs/" +
               x.div.split("Emblem_")[1].toLowerCase() +
-              ".png"
+              ".tgv.png"
             }
             className="img-back"
             alt="unitPortrait"

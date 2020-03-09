@@ -9,7 +9,12 @@ export function DDBRow({ x, show, del, isUser }) {
       <th className="col-1">
         {!!x.divEm ? (
           <img
-            src={"/SteelDivisionDB/img/d/" + x.divEm.toLowerCase() + ".tgv.png"}
+            src={
+              process.env.PUBLIC_URL +
+              "/img/d/" +
+              x.divEm.toLowerCase() +
+              ".tgv.png"
+            }
             className="img-back"
             alt="divEmblem"
           />
@@ -58,7 +63,8 @@ export function DDBUpload({ obj, DB, upload, exportDeck, hide }) {
                 {!!obj.divEm ? (
                   <img
                     src={
-                      "/SteelDivisionDB/img/d/" +
+                      process.env.PUBLIC_URL +
+                      "/img/d/" +
                       obj.divEm.toLowerCase() +
                       ".png"
                     }

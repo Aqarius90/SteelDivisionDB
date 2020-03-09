@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import { UnitUnitRow, UnitUnitCard } from "./Cards";
+import { SD1UnitUnitRow, SD1UnitUnitCard } from "./SD1Cards";
+import { SD2UnitUnitRow, SD2UnitUnitCard } from "./SD2Cards";
 import { FilterField } from "./Database";
+import { useParams } from "react-router-dom";
 
 function UnitDB({ allUnits }) {
   const [fUnits, setfUnits] = useState(allUnits);
+  let params = useParams();
+  let prs = params.DB === "SD1" ? true : false;
+
   function showRow(x, i) {
     return (
       <tr key={i} onClick={() => setDetail(x)}>
-        <UnitUnitRow x={x} i={i}></UnitUnitRow>
+        {prs ? (
+          <SD1UnitUnitRow x={x} i={i}></SD1UnitUnitRow>
+        ) : (
+          <SD2UnitUnitRow x={x} i={i}></SD2UnitUnitRow>
+        )}
       </tr>
     );
   }
@@ -58,11 +67,15 @@ function UnitDB({ allUnits }) {
                 <th> Stun/regen </th>
                 <th> Supply/TOT </th>
               </tr>
-              {pageUnits.map((e, i) => showRow(e, i))}
+              {pageUnits.map((e, i) => showRow(e, i, prs))}
             </tbody>
           </table>
         </div>
-        <UnitUnitCard detail={detail} setDetail={setDetail} />
+        {prs ? (
+          <SD1UnitUnitCard detail={detail} setDetail={setDetail} />
+        ) : (
+          <SD2UnitUnitCard detail={detail} setDetail={setDetail} />
+        )}
         <ReactPaginate
           previousLabel={"previous"}
           nextLabel={"next"}

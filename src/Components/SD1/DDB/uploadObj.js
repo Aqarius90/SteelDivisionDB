@@ -60,7 +60,7 @@ export default class uploadObj {
           x[7].push(units[i]);
           break;
         default: {
-          console.error("UnitParseError: " + units[i].Factory);
+          global.throw("UnitParseError: " + units[i].Factory);
         }
       }
     }

@@ -1,13 +1,11 @@
 import React from "react";
-import {
-  getGameMode,
-  getGameType,
-  getTimeLimit,
-  getIncomeRate
-} from "./replayParsers";
+import { SD1Parsers, SD2Parsers } from "./replayParsers";
 import pako from "pako";
+import { useParams } from "react-router-dom";
 
 export default function RDBRow({ x, exportDeck, del, isUser }) {
+  let params = useParams();
+  let prs = params.DB === "SD1" ? SD1Parsers : SD2Parsers;
   return (
     <div className="row">
       <div className="col-2">
@@ -15,17 +13,17 @@ export default function RDBRow({ x, exportDeck, del, isUser }) {
         <h6>{x.desc}</h6>
       </div>
       <div className="col-3">
-        <h6>Game mode: {getGameMode(x.meta.h.GameMode)}</h6>
-        <h6>Map:{x.meta.h.Map}</h6>
-        <h6>Game type: {getGameType(x.meta.h.GameType)}</h6>
+        <h6>Game mode: {prs.getGameMode(x.meta.h.GameMode)}</h6>
+        <h6>Map:{prs.getMap(x.meta.h.Map)}</h6>
+        <h6>Game type: {prs.getGameType(x.meta.h.GameType)}</h6>
 
-        <h6>Time Limit: {getTimeLimit(x.meta.h.TimeLimit)}</h6>
+        <h6>Time Limit: {prs.getTimeLimit(x.meta.h.TimeLimit)}</h6>
         <h6>Score Limit: {x.meta.h.ScoreLimit}</h6>
-        <h6>Victory condition: {x.meta.h.VictoryCond}</h6>
+        <h6>Victory condition: {prs.getVictoryCond(x.meta.h.VictoryCond)}</h6>
       </div>
       <div className="col-2">
         <h6>Starting points:{x.meta.h.InitMoney}</h6>
-        <h6>Income: {getIncomeRate(x.meta.h.IncomeRate)}</h6>
+        <h6>Income: {prs.getIncomeRate(x.meta.h.IncomeRate)}</h6>
         <h6>
           Duration:
           {new Date(1000 * x.meta.f.Duration).toISOString().substr(11, 8)}
@@ -43,9 +41,15 @@ export default function RDBRow({ x, exportDeck, del, isUser }) {
                   <div className="col-2">
                     <img
                       src={
-                        "/SteelDivisionDB/img-sd2/divs/" +
-                        e.divEm.split("Emblem_")[1].toLowerCase() +
-                        ".png"
+                        params.DB === "SD1"
+                          ? process.env.PUBLIC_URL +
+                            "/img/d/" +
+                            e.divEm.toLowerCase() +
+                            ".tgv.png"
+                          : process.env.PUBLIC_URL +
+                            "/img-sd2/divs/" +
+                            e.divEm.split("Emblem_")[1].toLowerCase() +
+                            ".tgv.png"
                       }
                       className="img-sd2-mini"
                       alt="divEmblem"

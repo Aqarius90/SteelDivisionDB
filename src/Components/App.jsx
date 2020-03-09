@@ -3,8 +3,6 @@ import firebase from "../js/Firestore";
 import Header from "./Header";
 import SD1 from "./SD1/SD1";
 import SD2 from "./SD2/SD2";
-//import FirestoreInit from "../js/FirestoreInit";
-//import _ from "lodash";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,26 +11,24 @@ import {
   useHistory,
   useParams
 } from "react-router-dom";
+import SD1header from "../pics/SD1header.png";
+import SD2header from "../pics/SD2header.png";
 
-require("dotenv").config();
-
-/*import { UpdateDatabase } from "../js/DatabaseHandlers";
+import { UpdateDatabase } from "../js/DatabaseHandlers";
 global.UpdateDatabase = function(x) {
   UpdateDatabase(x);
   return "wait for console";
-};*/
+};
+require("dotenv").config();
 
-global.debug = true;
+global.debug = false;
 global.throw = function(title, vars, error) {
   if (global.debug) {
     console.error(title);
     console.log(vars);
     console.error(error);
   } else {
-    console.log(title);
-    console.log(error);
-    //TODO
-    console.error("NOT IMPLEMENTED: errorReport (gg SYSOP)");
+    console.error(title);
   }
 };
 
@@ -40,7 +36,6 @@ function App() {
   //firebase&auth
   const [user, dUser] = useState(null);
   let login = () => {
-    console.log("login");
     if (user) {
       return firebase
         .auth()
@@ -57,7 +52,6 @@ function App() {
         .auth()
         .signInWithPopup(provider)
         .then(result => {
-          console.log(result.user);
           dUser(result.user);
         })
         .catch(function(error) {
@@ -113,7 +107,7 @@ function RedirectWrapper({ user, login }) {
               <Link to="/SteelDivisionDB/SD1/DeckBuilder">
                 <img
                   className="w-50 mx-auto d-block"
-                  src={"SteelDivisionDB/SD1header.png"}
+                  src={SD1header}
                   alt="divEmblem"
                 />
               </Link>
@@ -122,7 +116,7 @@ function RedirectWrapper({ user, login }) {
               <Link to="/SteelDivisionDB/SD2/DeckBuilder">
                 <img
                   className="w-50 mx-auto d-block"
-                  src={"SteelDivisionDB/SD2header.png"}
+                  src={SD2header}
                   alt="divEmblem"
                 />
               </Link>

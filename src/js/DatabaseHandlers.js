@@ -139,6 +139,15 @@ function fDBUnits(DB) {
         });
       });
     }
+    if (u.Offmap) {
+      u.Offmap.Turrets.forEach(t => {
+        t.Weapons.forEach(w => {
+          w.Ammunition = _.cloneDeep(
+            DB.fAmmo.find(x => x.AmmoDescriptor === w.Ammunition)
+          );
+        });
+      });
+    }
     /*callbacks*/
     u.Decks = [];
     DB.Decks.forEach(d => {

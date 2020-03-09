@@ -10,7 +10,6 @@ import RDB from "./RDB/RDB";
 import { useParams, useHistory } from "react-router-dom";
 
 function SD2({ Honey, API }) {
-  console.log("SD2 render");
   let deckAPI = {}; //function holder. I don't have the energy to rewrite it into a reducer
   let params = useParams();
   let history = useHistory();
@@ -121,7 +120,7 @@ function SD2({ Honey, API }) {
   if (params.Page === "DeckBuilder") {
     return <DeckBuilder DB={DB} Deck={deck} API={deckAPI} />;
   } else if (params.Page === "Database") {
-    return <Database DB={DB} FB={firebase.firestore()} />;
+    return <Database DB={DB} />;
   } else if (params.Page === "DDB") {
     if (!Honey.User) {
       return (

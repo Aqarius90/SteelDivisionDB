@@ -3,10 +3,12 @@ import DeckDB from "./DeckDB";
 import UnitDB from "./UnitDB";
 import WeaponDB from "./WeaponDB";
 import pako from "pako";
+import firebase from "../../../js/Firestore";
+import { useParams } from "react-router-dom";
 
-function Database({ DB, FB }) {
+function Database({ DB }) {
+  let params = useParams();
   const [thisDB, setThisDB] = useState("d");
-  //const [allDecks, setAllDecks] = useState(DB);
   const [allUnits, setAllUnits] = useState(null);
   const [allWeapons, setAllWeapons] = useState(null);
 
@@ -40,9 +42,12 @@ function Database({ DB, FB }) {
   }
 
   function setActive(x) {
+    let prs = params.DB === "SD1" ? "SD1" : "SD2";
     if (x === "u" && !allUnits) {
-      FB.collection("zip")
-        .doc("SD2u")
+      firebase
+        .firestore()
+        .collection("zip")
+        .doc(prs + "u")
         .get()
         .then(queryDocumentSnapshot => {
           var inflated = JSON.parse(
@@ -52,8 +57,10 @@ function Database({ DB, FB }) {
         });
     }
     if (x === "w" && !allWeapons) {
-      FB.collection("zip")
-        .doc("SD2a")
+      firebase
+        .firestore()
+        .collection("zip")
+        .doc(prs + "a")
         .get()
         .then(queryDocumentSnapshot => {
           var inflated = JSON.parse(

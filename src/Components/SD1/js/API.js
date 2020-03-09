@@ -6,7 +6,7 @@ export function setDeck(deck) {
   let dataarray = this.state.DB;
   let index = dataarray.findIndex(e => e.Descriptor === deck.Descriptor);
   if (index === -1) {
-    console.error("no such deck descriptor");
+    global.throw("no such deck descriptor", deck.Descriptor);
   } else {
     //the division is already loaded
     let deckbuilder = this.state.DeckBuilder;
@@ -61,7 +61,7 @@ function sortByCategory(units) {
         x[7].push(units[i]);
         break;
       default: {
-        console.error("UnitParseError: " + units[i].Factory);
+        global.throw("UnitParseError", units[i].Factory);
       }
     }
   }
@@ -160,7 +160,7 @@ export function parseDeckCode(x) {
   let index = dataarray.findIndex(e => e.EncodeInt === deckID);
 
   if (index === -1) {
-    console.error("no such deck");
+    global.throw("no such deck");
   } else {
     newDeck = newDeck.decodeDeck(x, this.state.DB);
     let newCode = newDeck.ExportCode;

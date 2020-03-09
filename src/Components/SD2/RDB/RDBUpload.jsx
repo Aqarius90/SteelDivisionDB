@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import {
-  getGameMode,
-  getGameType,
-  getTimeLimit,
-  getIncomeRate,
-  getMap
-} from "./replayParsers";
+import { SD1Parsers, SD2Parsers } from "./replayParsers";
+import { useParams } from "react-router-dom";
 
 export default function RDBUpload({ DB, upload, parsed, hide }) {
+  let params = useParams();
+  let prs = params.DB === "SD1" ? SD1Parsers : SD2Parsers;
   const [isUploading, setIsUploading] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -68,14 +65,16 @@ export default function RDBUpload({ DB, upload, parsed, hide }) {
                   </div>
                 </div>
                 <div className="col-2">
-                  <h6>Game mode: {getGameMode(parsed.meta.h.GameMode)}</h6>
-                  <h6>Game type: {getGameType(parsed.meta.h.GameType)}</h6>
-                  <h6>Map: {getMap(parsed.meta.h.Map)}</h6>
+                  <h6>Game mode: {prs.getGameMode(parsed.meta.h.GameMode)}</h6>
+                  <h6>Game type: {prs.getGameType(parsed.meta.h.GameType)}</h6>
+                  <h6>Map: {prs.getMap(parsed.meta.h.Map)}</h6>
                 </div>
                 <div className="col-2">
-                  <h6>Income: {getIncomeRate(parsed.meta.h.IncomeRate)}</h6>
+                  <h6>Income: {prs.getIncomeRate(parsed.meta.h.IncomeRate)}</h6>
                   <h6>Starting points:{parsed.meta.h.InitMoney}</h6>
-                  <h6>Time Limit: {getTimeLimit(parsed.meta.h.TimeLimit)}</h6>
+                  <h6>
+                    Time Limit: {prs.getTimeLimit(parsed.meta.h.TimeLimit)}
+                  </h6>
                 </div>
                 <div className="col-2">
                   <h6>

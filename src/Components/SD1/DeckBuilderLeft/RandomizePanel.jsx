@@ -7,7 +7,10 @@ class RandomizePanel extends Component {
       css += " btn-success";
     }
     let img =
-      "/SteelDivisionDB/img/d/" + x.EmblemTexture.toLowerCase() + ".tgv.png";
+      process.env.PUBLIC_URL +
+      "/img/d/" +
+      x.EmblemTexture.toLowerCase() +
+      ".tgv.png";
     return (
       <div className="col-xl-3" key={i}>
         <button

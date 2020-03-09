@@ -346,17 +346,20 @@ export function parsePicture(x, size) {
   let img;
   if (size === "sm") {
     img =
-      "/SteelDivisionDB/img/u-sm/" +
+      process.env.PUBLIC_URL +
+      "/img/u-sm/" +
       x.VisualsForInterface.toLowerCase() +
       ".tgv.png";
   } else if (size === "md") {
     img =
-      "/SteelDivisionDB/img/u-md/" +
+      process.env.PUBLIC_URL +
+      "/img/u-md/" +
       x.VisualsForInterface.toLowerCase() +
       ".tgv.png";
   } else {
     img =
-      "/SteelDivisionDB/img/u/" +
+      process.env.PUBLIC_URL +
+      "/img/u/" +
       x.VisualsForInterface.toLowerCase() +
       ".tgv.png";
   }

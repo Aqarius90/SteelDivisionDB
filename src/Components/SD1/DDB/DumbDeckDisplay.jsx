@@ -37,7 +37,8 @@ function CardDisplay({ Deck, x }) {
       <div className="div-rel">
         <img
           src={
-            "/SteelDivisionDB/img/u-md/" +
+            process.env.PUBLIC_URL +
+            "/img/u-md/" +
             Unit.VisualsForInterface.toLowerCase() +
             ".tgv.png"
           }

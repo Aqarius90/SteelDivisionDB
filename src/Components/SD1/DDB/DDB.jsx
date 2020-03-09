@@ -107,7 +107,7 @@ function DDB({ Honey, API }) {
         setRows(foo);
       })
       .catch(function(error) {
-        console.error("Error removing: ", error);
+        global.throw("Error removing: ", x, error);
       });
   }
   function load(anch) {
@@ -155,7 +155,6 @@ function DDB({ Honey, API }) {
       .firestore()
       .collection("SD1DDB")
       .doc();
-    console.log(obj);
     newID
       .set({
         title: t,
@@ -206,7 +205,12 @@ function DDB({ Honey, API }) {
           onClick={() => filterToggle(x.div)}
         >
           <img
-            src={"/SteelDivisionDB/img/d/" + x.div.toLowerCase() + ".tgv.png"}
+            src={
+              process.env.PUBLIC_URL +
+              "/img/d/" +
+              x.div.toLowerCase() +
+              ".tgv.png"
+            }
             className="img-back"
             alt="unitPortrait"
           />

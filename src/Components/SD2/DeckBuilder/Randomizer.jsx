@@ -39,9 +39,10 @@ function Randomizer({ DB, randomFill }) {
         >
           <img
             src={
-              "/SteelDivisionDB/img-sd2/divs/" +
+              process.env.PUBLIC_URL +
+              "/img-sd2/divs/" +
               x.EmblemTexture.split("Emblem_")[1].toLowerCase() +
-              ".png"
+              ".tgv.png"
             }
             className="img-back"
             alt="unitPortrait"

@@ -4,42 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 function Header({ Honey, API }) {
   let params = useParams();
   let history = useHistory();
-  console.log(params);
-  const [share, setShare] = useState(false);
-  function renderShare() {
-    if (share) {
-      let link =
-        "https://localhost:3000/SteelDivisionDB/" +
-        params.DB +
-        "/" +
-        params.Page +
-        "/" +
-        params.code;
-      return (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            background: "rgba(0,0,0,0.6)",
-            zIndex: 5,
-            width: "100%",
-            height: "100%"
-          }}
-          onClick={() => setShare(false)}
-        >
-          <div className="modal-dialog" onClick={e => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header"></div>
-              <div className="modal-body">{link}</div>
-              <div className="modal-footer"></div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return <div />;
-  }
+  const [quiz, setQuiz] = useState(false);
   return (
     <div className="row card-header">
       <div className="col-xl-2 col-md-3">
@@ -71,21 +36,13 @@ function Header({ Honey, API }) {
         >
           Database
         </button>
-        {/*<button
-          disabled={params.DB && params.Page !== "DeckBuilder" ? false : true}
-          className="btn btn-primary btn-block"
-          onClick={() => setShare(!share)}
-        >
-          Share
-        </button>*/}
       </div>
       <div className="col-xl-8 col-md-6 panel">
-        <h1 align="center">Steel Division Database</h1>
+        <h1 align="center" onClick={() => setQuiz(!quiz)}>
+          Steel Division Database
+        </h1>
       </div>
       <div className="col-xl-2 col-md-3">
-        {/*<button className="btn btn-primary btn-block" onClick={API.logIn}>
-          {params.User ? "Logout" : "Login"}
-        </button>*/}
         <button
           className="btn btn-primary btn-block"
           onClick={() =>
@@ -115,7 +72,23 @@ function Header({ Honey, API }) {
           Replays
         </button>
       </div>
-      {renderShare()}
+      {/*Honey.User && quiz ? (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            background: "rgba(0,0,0,0.6)",
+            zIndex: 5,
+            width: "100%",
+            height: "100%"
+          }}
+          onClick={() => setQuiz(false)}
+        >
+        </div>
+      ) : (
+        <></>
+      )*/}
     </div>
   );
 }

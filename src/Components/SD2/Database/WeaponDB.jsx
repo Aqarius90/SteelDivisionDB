@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import { WeaponWeaponRow, WeaponWeaponCard } from "./Cards";
+import { SD1WeaponWeaponRow, SD1WeaponWeaponCard } from "./SD1Cards";
+import { SD2WeaponWeaponRow, SD2WeaponWeaponCard } from "./SD2Cards";
 import { FilterField } from "./Database";
+import { useParams } from "react-router-dom";
 
 function WeaponDB({ allWeapons }) {
   const [fweapons, setfWeapons] = useState(allWeapons);
+  let params = useParams();
+  let prs = params.DB === "SD1" ? true : false;
+
   function showRow(e, i) {
     return (
       <tr key={i} onClick={() => setDetail(e)}>
-        <WeaponWeaponRow x={e} i={i}></WeaponWeaponRow>
+        {prs ? (
+          <SD1WeaponWeaponRow x={e} i={i}></SD1WeaponWeaponRow>
+        ) : (
+          <SD2WeaponWeaponRow x={e} i={i}></SD2WeaponWeaponRow>
+        )}
       </tr>
     );
   }
@@ -51,17 +60,22 @@ function WeaponDB({ allWeapons }) {
                 <th> Accuracy </th>
                 <th> Stabilizer </th>
                 <th> Aimtime </th>
-                <th> DispersionMin </th>
+                {prs ? "" : <th> DispersionMin </th>}
                 <th> DispersionMax </th>
                 <th> RangeMin </th>
                 <th> RangeMax </th>
-                <th> RangeAAA </th>
+                {prs ? <th> RangeMin </th> : ""}
+                {prs ? <th> RangeMax </th> : <th> RangeAAA </th>}
               </tr>
               {pageWeapons.map((e, i) => showRow(e, i))}
             </tbody>
           </table>
         </div>
-        <WeaponWeaponCard detail={detail} setDetail={setDetail} />
+        {prs ? (
+          <SD1WeaponWeaponCard detail={detail} setDetail={setDetail} />
+        ) : (
+          <SD2WeaponWeaponCard detail={detail} setDetail={setDetail} />
+        )}
         <ReactPaginate
           previousLabel={"previous"}
           nextLabel={"next"}

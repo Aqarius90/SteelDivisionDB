@@ -67,12 +67,7 @@ class DeckAssembly {
             }
           }
         } catch {
-          if (global.debug) {
-            console.error("Factory parse error");
-            console.error(e);
-          } else {
-            //console.error("Factory parse error");
-          }
+          global.throw("Factory parse error", e);
         }
       });
     } catch (error) {
@@ -332,11 +327,7 @@ class DeckAssembly {
         }
       }
     } catch (e) {
-      if (global.debug) {
-        global.throw("Factory parse error", this, e);
-      } else {
-        //console.error("Factory parse error");
-      }
+      global.throw("Factory parse error", this, e);
     }
     if (global.debug) {
       console.log(this.DeckCode);

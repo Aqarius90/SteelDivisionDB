@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import DDB from "./DDB/DDB";
-import RDB from "./RDB/RDB";
+import RDB from "../SD2/RDB/RDB";
 import DeckBuilder from "./DeckBuilderComponents/DeckBuilder";
 import DeckAssembly from "./js/DeckAssembly";
-import Database from "./Database/Database";
+import Database from "../SD2/Database/Database";
 import firebase from "../../js/Firestore";
 import pako from "pako";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   //separate file, for housekeeping
   setDeck,
@@ -72,7 +72,6 @@ class SD1 extends Component {
   }
 
   initData = () => {
-    console.log("initData");
     let deckbuilder = this.state.DeckBuilder;
     deckbuilder.Deck = new DeckAssembly();
     firebase
@@ -241,7 +240,7 @@ class SD1 extends Component {
               Honey={{
                 DB: this.state.DB,
                 import: this.props.Honey.params.code,
-                user: this.props.Honey.User.uid
+                user: this.props.Honey.User
               }}
               API={{
                 export: this.state.API.parseDeckCode

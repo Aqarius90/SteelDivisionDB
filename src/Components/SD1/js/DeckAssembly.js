@@ -113,7 +113,7 @@ class DeckAssembly {
 
     let index = DB.findIndex(e => e.EncodeInt === deckInt);
     if (index === -1) {
-      console.error("no such deck in db");
+      global.throw("no such deck");
     } else {
       if (typeof DB[index].MaxActivationPoints !== "undefined") {
         this.setDeck(DB[index]);

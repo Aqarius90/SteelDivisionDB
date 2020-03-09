@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
-import { DeckUnitCard, DeckDeckRow } from "./Cards";
+import { SD1DeckUnitCard, SD1DeckDeckRow } from "./SD1Cards";
+import { SD2DeckUnitCard, SD2DeckDeckRow } from "./SD2Cards";
+import { useParams } from "react-router-dom";
 
 function DeckDB({ allDecks }) {
-  //const [decks, setDecks] = useState(allDecks);
   const [units, setUnits] = useState(null);
+  let params = useParams();
+  let prs = params.DB === "SD1";
   function showRow(e, i) {
     return (
       <div key={i}>
-        <DeckDeckRow x={e} setUnits={setUnits}></DeckDeckRow>
+        {prs ? (
+          <SD1DeckDeckRow x={e} setUnits={setUnits}></SD1DeckDeckRow>
+        ) : (
+          <SD2DeckDeckRow x={e} setUnits={setUnits}></SD2DeckDeckRow>
+        )}
       </div>
     );
   }
   function showUnits(e, i) {
     return (
       <div key={i} className="col-12">
-        <DeckUnitCard x={e} i={i}></DeckUnitCard>
+        {prs ? (
+          <SD1DeckUnitCard x={e} i={i}></SD1DeckUnitCard>
+        ) : (
+          <SD2DeckUnitCard x={e} i={i}></SD2DeckUnitCard>
+        )}
       </div>
     );
   }
@@ -40,7 +51,7 @@ function DeckDB({ allDecks }) {
     <div className="container">
       <div className="row">
         <div className="col-xl-6 col-lg-8 col-md-10 col-sm-12">
-          {filtered.map((e, i) => showRow(e, i))}
+          {filtered.map((e, i) => showRow(e, i, prs))}
           <ReactPaginate
             previousLabel={"previous"}
             nextLabel={"next"}
@@ -63,7 +74,7 @@ function DeckDB({ allDecks }) {
         </div>
         <div className="col-xl-6 col-xs-12">
           <div className="row">
-            {units ? units.map((e, i) => showUnits(e, i)) : ""}
+            {units ? units.map((e, i) => showUnits(e, i, prs)) : ""}
           </div>
         </div>
       </div>
