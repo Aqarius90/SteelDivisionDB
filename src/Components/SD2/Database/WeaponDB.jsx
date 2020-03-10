@@ -24,7 +24,7 @@ function WeaponDB({ allWeapons }) {
   const [detail, setDetail] = useState(null);
 
   /*pagination*/
-  let pPage = 20;
+  let pPage = 15;
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState(Math.ceil(allWeapons.length / pPage));
   function setFilter(x) {

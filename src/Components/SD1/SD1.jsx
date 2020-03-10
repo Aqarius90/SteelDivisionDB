@@ -140,7 +140,7 @@ class SD1 extends Component {
   kjsdfkjkj = x => {
     let history = useHistory();
     history.push(
-      "/SteelDivisionDB/" +
+      "/" +
         this.props.Honey.params.DB +
         "/" +
         this.props.Honey.params.Page +

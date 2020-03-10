@@ -42,7 +42,7 @@ export function SD2DeckUnitCard({ x, i }) {
                 process.env.PUBLIC_URL +
                 "/img-sd2/units/" +
                 x.Key.UnitDescriptor.toLowerCase() +
-                ".png"
+                ".tgv.png"
               }
               className="img-sd2-back"
               alt="unitPortrait"
@@ -62,7 +62,7 @@ export function SD2DeckUnitCard({ x, i }) {
                       process.env.PUBLIC_URL +
                       "/img-sd2/pictures/" +
                       e.split("Unit_")[1].toLowerCase() +
-                      ".png"
+                      ".tgv.png"
                     }
                     className={"img-back"}
                     alt={"DisplaySpecial"}
@@ -93,7 +93,7 @@ export function SD2DeckDeckRow({ x, setUnits }) {
                 process.env.PUBLIC_URL +
                 "/img-sd2/divs/" +
                 x.EmblemTexture.split("Emblem_")[1].toLowerCase() +
-                ".png"
+                ".tgv.png"
               }
               className="img-back"
               alt="divemblem"
@@ -215,7 +215,7 @@ export function SD2UnitUnitCard({ detail, setDetail }) {
                         process.env.PUBLIC_URL +
                         "/img-sd2/divs/" +
                         e.Emblem.split("Emblem_")[1].toLowerCase() +
-                        ".png"
+                        ".tgv.png"
                       }
                       className="img-back"
                       alt="divemblem"
@@ -259,7 +259,7 @@ export function SD2WeaponWeaponRow({ x, i }) {
               process.env.PUBLIC_URL +
               "/img-sd2/guns/" +
               x.InterfaceWeaponTexture.toLowerCase() +
-              ".png"
+              ".tgv.png"
             }
             className="img-weapon"
             alt={x.InterfaceWeaponTexture}
@@ -304,7 +304,7 @@ export function SD2WeaponWeaponCard({ detail, setDetail }) {
                 process.env.PUBLIC_URL +
                 "/img-sd2/guns/" +
                 detail.InterfaceWeaponTexture.toLowerCase() +
-                ".png"
+                ".tgv.png"
               }
               className="img-weapon"
               alt={detail.InterfaceWeaponTexture}

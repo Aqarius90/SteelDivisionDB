@@ -14,7 +14,7 @@ function SD2({ Honey, API }) {
   let params = useParams();
   let history = useHistory();
   deckAPI.setCode = x => {
-    history.push("/SteelDivisionDB/" + params.DB + "/" + params.Page + "/" + x);
+    history.push("/" + params.DB + "/" + params.Page + "/" + x);
   };
   //deck setters
   const [deck, setDeck] = useState(new DeckAssembly());

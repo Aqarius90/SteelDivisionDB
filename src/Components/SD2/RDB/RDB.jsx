@@ -285,8 +285,8 @@ function RDB({ Honey, API }) {
     );
   }
   return (
-    <div className="container">
-      <div className="row py-2">
+    <div className="container card">
+      <div className="row py-2 card-header">
         <div className="col-1">
           <button
             className="btn btn-block btn-outline-primary"
@@ -324,7 +324,7 @@ function RDB({ Honey, API }) {
           </button>
         </div>
       </div>
-      <div className="row">
+      <div className="row card-body">
         <div className="col-12 justify-content-center">
           <div className="row">
             {showRows.map(function showRow(x, i) {

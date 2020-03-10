@@ -246,7 +246,7 @@ function DDB({ Honey, API }) {
       ) : (
         <>
           <div className="row">
-            <div className="col-6 justify-content-center">
+            <div className="card col-6 justify-content-center">
               <table className="sortable table-hover">
                 <tbody>
                   <tr>

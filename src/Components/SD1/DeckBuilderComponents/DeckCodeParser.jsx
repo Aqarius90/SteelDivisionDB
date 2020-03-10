@@ -8,7 +8,6 @@ function DeckCodeParser({ Honey, pload }) {
   }
 
   /*lets you type into the input without polluting the Deck object with false data*/
-  const [code, setCode] = useState("");
   const [realCode, setRealCode] = useState(Deck.DeckCode);
   if (realCode !== Deck.DeckCode) {
     /*realCode is the actual deck code. code is just the shown one

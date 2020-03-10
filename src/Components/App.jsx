@@ -4,7 +4,7 @@ import Header from "./Header";
 import SD1 from "./SD1/SD1";
 import SD2 from "./SD2/SD2";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
@@ -64,7 +64,7 @@ function App() {
     <Router>
       <div className="container">
         <Switch>
-          <Route path="/SteelDivisionDB/:DB?/:Page?/:code?">
+          <Route path="/:DB?/:Page?/:code?">
             <div className="card">
               <Header
                 Honey={{
@@ -87,7 +87,7 @@ function RedirectWrapper({ user, login }) {
   let params = useParams();
   let history = useHistory();
   let setCode = x => {
-    history.push("/SteelDivisionDB/" + params.DB + "/" + params.Page + "/" + x);
+    history.push("/" + params.DB + "/" + params.Page + "/" + x);
   };
   switch (params.DB) {
     case "SD1":
@@ -104,7 +104,7 @@ function RedirectWrapper({ user, login }) {
         <div className="card">
           <div className="row">
             <div className="col-sm">
-              <Link to="/SteelDivisionDB/SD1/DeckBuilder">
+              <Link to="/SD1/DeckBuilder">
                 <img
                   className="w-50 mx-auto d-block"
                   src={SD1header}
@@ -113,7 +113,7 @@ function RedirectWrapper({ user, login }) {
               </Link>
             </div>
             <div className="col-sm">
-              <Link to="/SteelDivisionDB/SD2/DeckBuilder">
+              <Link to="/SD2/DeckBuilder">
                 <img
                   className="w-50 mx-auto d-block"
                   src={SD2header}

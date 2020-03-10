@@ -29,6 +29,8 @@ function Database({ DB }) {
           return <WeaponDB allWeapons={allWeapons} />;
         }
         break;
+      default:
+        break;
     }
     return (
       <div className="card">

@@ -34,7 +34,6 @@ function DeckDB({ allDecks }) {
   /*pagination*/
   let pPage = 20;
   const [page, setPage] = useState(0);
-  const [pages, setPages] = useState(Math.ceil(allDecks.length / pPage));
   let filtered = [];
   for (
     let i = page * pPage;
@@ -57,7 +56,7 @@ function DeckDB({ allDecks }) {
             nextLabel={"next"}
             breakLabel={"..."}
             breakClassName={"btn btn-outline-primary btn-secondary"}
-            pageCount={pages}
+            pageCount={Math.ceil(allDecks.length / pPage)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={handlePageClick}

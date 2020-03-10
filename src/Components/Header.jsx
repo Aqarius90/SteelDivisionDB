@@ -12,7 +12,7 @@ function Header({ Honey, API }) {
           className="btn btn-primary btn-block"
           onClick={() =>
             history.push(
-              "/SteelDivisionDB/" +
+              "/" +
                 params.DB +
                 "/DeckBuilder" +
                 (params.code ? "/" + params.code : "")
@@ -26,7 +26,7 @@ function Header({ Honey, API }) {
           className="btn btn-primary btn-block"
           onClick={() =>
             history.push(
-              "/SteelDivisionDB/" +
+              "/" +
                 params.DB +
                 "/Database" +
                 (params.code ? "/" + params.code : "")
@@ -47,10 +47,7 @@ function Header({ Honey, API }) {
           className="btn btn-primary btn-block"
           onClick={() =>
             history.push(
-              "/SteelDivisionDB/" +
-                params.DB +
-                "/DDB" +
-                (params.code ? "/" + params.code : "")
+              "/" + params.DB + "/DDB" + (params.code ? "/" + params.code : "")
             )
           }
           disabled={params.Page !== "DDB" ? false : true}
@@ -61,10 +58,7 @@ function Header({ Honey, API }) {
           className="btn btn-primary btn-block"
           onClick={() =>
             history.push(
-              "/SteelDivisionDB/" +
-                params.DB +
-                "/RDB" +
-                (params.code ? "/" + params.code : "")
+              "/" + params.DB + "/RDB" + (params.code ? "/" + params.code : "")
             )
           }
           disabled={params.DB && params.Page !== "RDB" ? false : true}

@@ -25,39 +25,45 @@ import shturm from "../../../pics/SD2/spec/spec_straffing.tgv.png";
 import radio from "../../../pics/SD2/spec/spec_radio.tgv.png";
 import suicide from "../../../pics/SD2/spec/spec_suicide.tgv.png";
 import smoke from "../../../pics/SD2/spec/spec_fumigene.tgv.png";
+import partisan from "../../../pics/SD2/spec/spec_commando.png";
 
 import armor from "../../../pics/SD2/armor.tgv.png";
 import meca from "../../../pics/SD2/meca.tgv.png";
 import soldier from "../../../pics/SD2/soldier.tgv.png";
 
 export var Spec = [
-  { k: "Spec_reconnaissance", i: reco },
-  { k: "Spec_reco_radio", i: recoradio },
-  { k: "spec_decourage", i: shtraf },
-  { k: "Spec_discipline", i: shock },
-  { k: "Spec_tir_indirect", i: arty },
-  { k: "Spec_indirect_radio", i: artyradio },
-  { k: "Spec_flamme", i: nplm },
-  { k: "Spec_canon", i: fighter },
-  { k: "Spec_bombes_1", i: bmb1 },
-  { k: "Spec_bombes_2", i: bmb2 },
-  { k: "Spec_bombes_3", i: bmb3 },
-  { k: "Spec_roquettes_1", i: rck1 },
-  { k: "Spec_roquettes_2", i: rck2 },
-  { k: "Spec_roquettes_3", i: rck3 },
-  { k: "Spec_commandement", i: cmd },
-  { k: "Spec_cmdt_radio", i: cmdradio },
-  { k: "Spec_super_commandement", i: combat },
-  { k: "Spec_AT_1", i: at1 },
-  { k: "Spec_ravitaillement", i: supply },
-  { k: "Spec_OffMap", i: offmap },
-  { k: "Spec_cluster_1", i: cluster1 },
-  { k: "Spec_cluster_2", i: cluster2 },
-  { k: "Spec_amphibie", i: amph },
-  { k: "Spec_Straffing", i: shturm },
-  { k: "Spec_radio", i: radio },
-  { k: "Spec_suicide", i: suicide },
-  { k: "Spec_fumigene", i: smoke }
+  { k: "Spec_reconnaissance_Unite", i: reco },
+  { k: "Spec_reco_radio_Unite", i: recoradio },
+  { k: "spec_decourage_Unite", i: shtraf },
+  { k: "Spec_discipline_Unite", i: shock },
+  { k: "Spec_tir_indirect_Unite", i: arty },
+  { k: "Spec_indirect_radio_Unite", i: artyradio },
+  { k: "Spec_flamme_Unite", i: nplm },
+  { k: "Spec_flamme_Avion", i: nplm },
+  { k: "Spec_bombes_1_Avion", i: bmb1 },
+  { k: "Spec_bombes_2_Avion", i: bmb2 },
+  { k: "Spec_bombes_3_Avion", i: bmb3 },
+  { k: "Spec_roquettes_1_Avion", i: rck1 },
+  { k: "Spec_roquettes_2_Avion", i: rck2 },
+  { k: "Spec_roquettes_3_Avion", i: rck3 },
+  { k: "Spec_commandement_Unite", i: cmd },
+  { k: "Spec_cmdt_radio_Unite", i: cmdradio },
+  { k: "Spec_super_commandement_Unite", i: combat },
+  { k: "Spec_AT_1_Unite", i: at1 },
+  { k: "Spec_AT_1_Avion", i: at1 },
+  { k: "Spec_ravitaillement_Unite", i: supply },
+  { k: "Spec_OffMap_Unite", i: offmap },
+  { k: "Spec_cluster_1_Avion", i: cluster1 },
+  { k: "Spec_cluster_2_Avion", i: cluster2 },
+  { k: "Spec_amphibie_Unite", i: amph },
+  { k: "Spec_Straffing_Avion", i: shturm },
+  { k: "Spec_radio_Unite", i: radio },
+  { k: "Spec_suicide_Unite", i: suicide },
+  { k: "Spec_fumigene_Unite", i: smoke },
+  { k: "Spec_fumigene_Avion", i: smoke },
+  { k: "Spec_reconnaissance_Avion", i: reco },
+  { k: "Spec_canon_Avion", i: fighter },
+  { k: "Spec_commando_Unite", i: partisan }
 ];
 
 export var DivType = [

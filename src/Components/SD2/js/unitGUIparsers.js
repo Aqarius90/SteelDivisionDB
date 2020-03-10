@@ -15,6 +15,37 @@ export function getSpec(x, css) {
 }
 
 export function getPortrait(x, css) {
+  if (
+    x.Key.UnitDescriptor.includes("Bunker_AT") ||
+    x.Key.UnitDescriptor.includes("Bunker_PaK")
+  ) {
+    return (
+      <img
+        src={
+          process.env.PUBLIC_URL + "/img-sd2/pictures/defense_bunker_at.tgv.png"
+        }
+        onError={
+          global.debug ? () => console.log(x.Key.UnitDescriptor) : () => {}
+        }
+        className={css}
+        alt="unitPortrait"
+      />
+    );
+  }
+  if (x.Key.UnitDescriptor.includes("Bunker")) {
+    return (
+      <img
+        src={
+          process.env.PUBLIC_URL + "/img-sd2/pictures/defense_bunker_mg.tgv.png"
+        }
+        onError={
+          global.debug ? () => console.log(x.Key.UnitDescriptor) : () => {}
+        }
+        className={css}
+        alt="unitPortrait"
+      />
+    );
+  }
   if (css) {
     return (
       <img
@@ -22,7 +53,10 @@ export function getPortrait(x, css) {
           process.env.PUBLIC_URL +
           "/img-sd2/pictures/" +
           x.Key.UnitDescriptor.toLowerCase() +
-          ".png"
+          ".tgv.png"
+        }
+        onError={
+          global.debug ? () => console.log(x.Key.UnitDescriptor) : () => {}
         }
         className={css}
         alt="unitPortrait"
@@ -35,7 +69,7 @@ export function getPortrait(x, css) {
         process.env.PUBLIC_URL +
         "/img-sd2/units/" +
         x.Key.UnitDescriptor.toLowerCase() +
-        ".png"
+        ".tgv.png"
       }
       className="img-sd-back"
       alt="unitPortrait"
