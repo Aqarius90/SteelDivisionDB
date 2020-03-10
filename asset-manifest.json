@@ -1,15 +1,27 @@
 {
-  "main.css": "/SteelDivisionDB/static/css/main.467a4acb.chunk.css",
-  "main.js": "/SteelDivisionDB/static/js/main.8346ecc9.chunk.js",
-  "main.js.map": "/SteelDivisionDB/static/js/main.8346ecc9.chunk.js.map",
-  "runtime~main.js": "/SteelDivisionDB/static/js/runtime~main.69ec7a86.js",
-  "runtime~main.js.map": "/SteelDivisionDB/static/js/runtime~main.69ec7a86.js.map",
-  "static/css/2.b10c9cbe.chunk.css": "/SteelDivisionDB/static/css/2.b10c9cbe.chunk.css",
-  "static/js/2.67689d47.chunk.js": "/SteelDivisionDB/static/js/2.67689d47.chunk.js",
-  "static/js/2.67689d47.chunk.js.map": "/SteelDivisionDB/static/js/2.67689d47.chunk.js.map",
-  "index.html": "/SteelDivisionDB/index.html",
-  "precache-manifest.bf6d2d7bed38991ee0edbc353e64a261.js": "/SteelDivisionDB/precache-manifest.bf6d2d7bed38991ee0edbc353e64a261.js",
-  "service-worker.js": "/SteelDivisionDB/service-worker.js",
-  "static/css/2.b10c9cbe.chunk.css.map": "/SteelDivisionDB/static/css/2.b10c9cbe.chunk.css.map",
-  "static/css/main.467a4acb.chunk.css.map": "/SteelDivisionDB/static/css/main.467a4acb.chunk.css.map"
+  "files": {
+    "main.css": "/SteelDivisionDB/static/css/main.b918a759.chunk.css",
+    "main.js": "/SteelDivisionDB/static/js/main.8735e4a4.chunk.js",
+    "main.js.map": "/SteelDivisionDB/static/js/main.8735e4a4.chunk.js.map",
+    "runtime-main.js": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js",
+    "runtime-main.js.map": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js.map",
+    "static/css/2.030dbed9.chunk.css": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css",
+    "static/js/2.d8c4b218.chunk.js": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js",
+    "static/js/2.d8c4b218.chunk.js.map": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js.map",
+    "index.html": "/SteelDivisionDB/index.html",
+    "precache-manifest.cf6557e03baef7ea31e2d4600f5d1061.js": "/SteelDivisionDB/precache-manifest.cf6557e03baef7ea31e2d4600f5d1061.js",
+    "service-worker.js": "/SteelDivisionDB/service-worker.js",
+    "static/css/2.030dbed9.chunk.css.map": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css.map",
+    "static/css/main.b918a759.chunk.css.map": "/SteelDivisionDB/static/css/main.b918a759.chunk.css.map",
+    "static/js/2.d8c4b218.chunk.js.LICENSE.txt": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js.LICENSE.txt",
+    "static/media/SD1header.png": "/SteelDivisionDB/static/media/SD1header.62c5a853.png",
+    "static/media/SD2header.png": "/SteelDivisionDB/static/media/SD2header.60de9412.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2cddc929.js",
+    "static/css/2.030dbed9.chunk.css",
+    "static/js/2.d8c4b218.chunk.js",
+    "static/css/main.b918a759.chunk.css",
+    "static/js/main.8735e4a4.chunk.js"
+  ]
 }
