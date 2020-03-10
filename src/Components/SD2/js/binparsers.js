@@ -135,6 +135,10 @@ export function parseToBin(deckCode) {
 }
 
 export function parseFromBin(BinaryOut) {
+  if (global.debug) {
+    console.log("BinaryOut");
+    console.log(BinaryOut);
+  }
   let charArray = BinaryOut.match(/.{1,6}/g); //groups of six
   let pad = "000000";
   charArray[charArray.length - 1] =
@@ -281,6 +285,10 @@ export function parseFromBin(BinaryOut) {
     CharOut += "A=";
   } else if (CharOut.length % 4 === 3) {
     CharOut += "A";
+  }
+  if (global.debug) {
+    console.log("new deck code");
+    console.log(CharOut);
   }
   return CharOut;
 }

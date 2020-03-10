@@ -196,14 +196,22 @@ class DeckAssembly {
       .padStart(5, "0");
 
     /*unit bitcount*/
-    BinaryOut += "01011"; //11 bits for each unit. Update might change this
+    let unitpad = 0;
+    if (true) {
+      BinaryOut += "01110"; //12 bits per unit
+      unitpad = 12;
+    } else {
+      console.log("###11");
+      BinaryOut += "01011"; //11 bits per unit
+      unitpad = 11;
+    }
 
     cardSet.forEach(e => {
       BinaryOut += e.count.toString(2).padStart(bCount, "0");
       BinaryOut += e.phase.toString(2).padStart(bPH, "0");
       BinaryOut += e.xp.toString(2).padStart(bXP, "0");
-      BinaryOut += e.uid.toString(2).padStart(11, "0");
-      BinaryOut += e.tid.toString(2).padStart(11, "0");
+      BinaryOut += e.uid.toString(2).padStart(unitpad, "0");
+      BinaryOut += e.tid.toString(2).padStart(unitpad, "0");
     });
     return parseFromBin(BinaryOut);
   }
@@ -278,6 +286,10 @@ class DeckAssembly {
     let xpCountBits = parseInt(bin.slice(posc + 0, posc + 5), 2);
     posc += 5;
     let unitBits = parseInt(bin.slice(posc + 0, posc + 5), 2);
+    if (global.debug) {
+      console.log("unitBits");
+      console.log(unitBits);
+    }
     posc += 5;
 
     //unit loop
@@ -304,19 +316,12 @@ class DeckAssembly {
             return x.Key.Serial === tID;
           });
         }
-
-        if (!unitPack && !transportPack && tID) {
+        if (global.debug) {
+          //console.log(unitPack);
+          //console.log(transportPack);
+        }
+        if (!unitPack || transportPack === -1) {
           global.throw("## ERROR no such unitPack: ", { id: ID, tid: tID });
-        } else if (!unitPack) {
-          global.throw("## ERROR no such unitPack: ", {
-            id: ID,
-            tdesc: transportPack.Key.UnitDescriptor
-          });
-        } else if (!transportPack && tID) {
-          global.throw("## ERROR no such unitPack: ", {
-            desc: unitPack.Key.UnitDescriptor,
-            tid: tID
-          });
         } else {
           for (let y = 0; y < count; y++) {
             //breaking up [2xdozor] into [dozor, dozor]. much easier down the line
@@ -327,7 +332,7 @@ class DeckAssembly {
         }
       }
     } catch (e) {
-      global.throw("Factory parse error", this, e);
+      global.throw("unit parse error", this, e);
     }
     if (global.debug) {
       console.log(this.DeckCode);
