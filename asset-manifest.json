@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SteelDivisionDB/static/css/main.b918a759.chunk.css",
-    "main.js": "/SteelDivisionDB/static/js/main.22ddec97.chunk.js",
-    "main.js.map": "/SteelDivisionDB/static/js/main.22ddec97.chunk.js.map",
+    "main.js": "/SteelDivisionDB/static/js/main.6ae52a74.chunk.js",
+    "main.js.map": "/SteelDivisionDB/static/js/main.6ae52a74.chunk.js.map",
     "runtime-main.js": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js",
     "runtime-main.js.map": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js.map",
     "static/css/2.030dbed9.chunk.css": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css",
     "static/js/2.8e1c047a.chunk.js": "/SteelDivisionDB/static/js/2.8e1c047a.chunk.js",
     "static/js/2.8e1c047a.chunk.js.map": "/SteelDivisionDB/static/js/2.8e1c047a.chunk.js.map",
     "index.html": "/SteelDivisionDB/index.html",
-    "precache-manifest.c4c010d4744805c834d3758850fd2e5b.js": "/SteelDivisionDB/precache-manifest.c4c010d4744805c834d3758850fd2e5b.js",
+    "precache-manifest.c74f33b96b8781cbb9fab2bb06b7b899.js": "/SteelDivisionDB/precache-manifest.c74f33b96b8781cbb9fab2bb06b7b899.js",
     "service-worker.js": "/SteelDivisionDB/service-worker.js",
     "static/css/2.030dbed9.chunk.css.map": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css.map",
     "static/css/main.b918a759.chunk.css.map": "/SteelDivisionDB/static/css/main.b918a759.chunk.css.map",
@@ -22,6 +22,6 @@
     "static/css/2.030dbed9.chunk.css",
     "static/js/2.8e1c047a.chunk.js",
     "static/css/main.b918a759.chunk.css",
-    "static/js/main.22ddec97.chunk.js"
+    "static/js/main.6ae52a74.chunk.js"
   ]
 }
