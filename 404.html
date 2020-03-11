@@ -23,44 +23,9 @@
       // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
       // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
       // Otherwise, leave segmentCount as 0.
-      /*
-      var l = window.location;
-      let db = l.includes("/SD1/") ? "SD1" : null;
-      let db = l.includes("/SD2/") ? "SD2" : null;
-      let page = "";
-      switch (true) {
-        case l.includes("/DeckBuilder/"):
-          page = "DeckBuilder";
-          break;
-
-        case l.includes("/Database/"):
-          page = "Database";
-          break;
-        case l.includes("/DDB/"):
-          page = "DDB";
-          break;
-        case l.includes("/RDB/"):
-          page = "RDB";
-          break;
-        default:
-          break;
-      }
-      let code =
-        l.split("/" + page + "/").length > 0
-          ? l.split("/" + page + "/")[1]
-          : "";
-      if (db) {
-        window.history.replaceState(
-          null,
-          null,
-          l.pathname.slice(0, -1) +
-            (q.p || "") +
-            (q.q ? "?" + q.q : "") +
-            l.hash
-        );l.
-      }*/
       var segmentCount = 1;
-      console.log(l);
+
+      var l = window.location;
       l.replace(
         l.protocol +
           "//" +
