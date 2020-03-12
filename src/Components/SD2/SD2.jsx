@@ -7,15 +7,12 @@ import pako from "pako";
 import _ from "lodash";
 import DDB from "./DDB/DDB";
 import RDB from "./RDB/RDB";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function SD2({ Honey, API }) {
   let deckAPI = {}; //function holder. I don't have the energy to rewrite it into a reducer
   let params = useParams();
-  let history = useHistory();
-  deckAPI.setCode = x => {
-    history.push("/" + params.DB + "/" + params.Page + "/" + x);
-  };
+  deckAPI.setCode = API.setCode;
   //deck setters
   const [deck, setDeck] = useState(new DeckAssembly());
   deckAPI.decode = code => {

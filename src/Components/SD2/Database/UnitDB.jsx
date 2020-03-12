@@ -24,7 +24,7 @@ function UnitDB({ allUnits }) {
   const [detail, setDetail] = useState(null);
 
   /*pagination*/
-  let pPage = 20;
+  let pPage = 10;
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState(Math.ceil(allUnits.length / pPage));
   function setFilter(x) {
@@ -45,37 +45,41 @@ function UnitDB({ allUnits }) {
   };
 
   return (
-    <div className="container">
-      <FilterField items={allUnits} set={setFilter}></FilterField>
-      <div className="row">
-        <div className="col-12">
-          <table className="sortable table-hover">
-            <tbody>
-              <tr>
-                <th> </th>
-                <th> Unit </th>
-                <th> Spec </th>
-                <th> Price </th>
-                <th> Front AV </th>
-                <th> Side AV </th>
-                <th> Rear AV </th>
-                <th> Top AV </th>
-                <th> Factory </th>
-                <th> Optics </th>
-                <th> Camo </th>
-                <th> Speed </th>
-                <th> Stun/regen </th>
-                <th> Supply/TOT </th>
-              </tr>
-              {pageUnits.map((e, i) => showRow(e, i, prs))}
-            </tbody>
-          </table>
+    <>
+      <div className="card">
+        <FilterField items={allUnits} set={setFilter}></FilterField>
+        <div className="row">
+          <div className="col-12">
+            <table className="sortable table-hover">
+              <tbody>
+                <tr>
+                  <th> </th>
+                  <th> Unit </th>
+                  <th> Spec </th>
+                  <th> Price </th>
+                  <th> Front AV </th>
+                  <th> Side AV </th>
+                  <th> Rear AV </th>
+                  <th> Top AV </th>
+                  <th> Factory </th>
+                  <th> Optics </th>
+                  <th> Camo </th>
+                  <th> Speed </th>
+                  <th> Stun/regen </th>
+                  <th> Supply/TOT </th>
+                </tr>
+                {pageUnits.map((e, i) => showRow(e, i, prs))}
+              </tbody>
+            </table>
+          </div>
+          {prs ? (
+            <SD1UnitUnitCard detail={detail} setDetail={setDetail} />
+          ) : (
+            <SD2UnitUnitCard detail={detail} setDetail={setDetail} />
+          )}
         </div>
-        {prs ? (
-          <SD1UnitUnitCard detail={detail} setDetail={setDetail} />
-        ) : (
-          <SD2UnitUnitCard detail={detail} setDetail={setDetail} />
-        )}
+      </div>
+      <div className="card">
         <ReactPaginate
           previousLabel={"previous"}
           nextLabel={"next"}
@@ -97,7 +101,7 @@ function UnitDB({ allUnits }) {
           activeLinkClassName={"btn btn-block btn-outline-primary active"}
         />
       </div>
-    </div>
+    </>
   );
 }
 export default UnitDB;

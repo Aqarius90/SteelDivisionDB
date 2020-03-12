@@ -6,7 +6,6 @@ import DeckAssembly from "./js/DeckAssembly";
 import Database from "../SD2/Database/Database";
 import firebase from "../../js/Firestore";
 import pako from "pako";
-import { useHistory } from "react-router-dom";
 import {
   //separate file, for housekeeping
   setDeck,
@@ -135,18 +134,6 @@ class SD1 extends Component {
           isLoading: false
         });
       });
-  };
-
-  kjsdfkjkj = x => {
-    let history = useHistory();
-    history.push(
-      "/" +
-        this.props.Honey.params.DB +
-        "/" +
-        this.props.Honey.params.Page +
-        "/" +
-        x
-    );
   };
 
   render() {

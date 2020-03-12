@@ -24,7 +24,7 @@ function WeaponDB({ allWeapons }) {
   const [detail, setDetail] = useState(null);
 
   /*pagination*/
-  let pPage = 15;
+  let pPage = 10;
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState(Math.ceil(allWeapons.length / pPage));
   function setFilter(x) {
@@ -45,37 +45,41 @@ function WeaponDB({ allWeapons }) {
   };
 
   return (
-    <div className="container">
-      <FilterField items={allWeapons} set={setFilter}></FilterField>
-      <div className="row">
-        <div className="col-12">
-          <table className="sortable table-hover">
-            <tbody>
-              <tr>
-                <th></th>
-                <th> Weapon </th>
-                <th> Caliber </th>
-                <th> Indirect fire </th>
-                <th> APCR </th>
-                <th> Accuracy </th>
-                <th> Stabilizer </th>
-                <th> Aimtime </th>
-                {prs ? "" : <th> DispersionMin </th>}
-                <th> DispersionMax </th>
-                <th> RangeMin </th>
-                <th> RangeMax </th>
-                {prs ? <th> RangeMin </th> : ""}
-                {prs ? <th> RangeMax </th> : <th> RangeAAA </th>}
-              </tr>
-              {pageWeapons.map((e, i) => showRow(e, i))}
-            </tbody>
-          </table>
+    <>
+      <div className="card">
+        <FilterField items={allWeapons} set={setFilter}></FilterField>
+        <div className="row">
+          <div className="col-12">
+            <table className="sortable table-hover">
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th> Weapon </th>
+                  <th> Caliber </th>
+                  <th> Indirect fire </th>
+                  <th> APCR </th>
+                  <th> Accuracy </th>
+                  <th> Stabilizer </th>
+                  <th> Aimtime </th>
+                  {prs ? "" : <th> DispersionMin </th>}
+                  <th> DispersionMax </th>
+                  <th> RangeMin </th>
+                  <th> RangeMax </th>
+                  {prs ? <th> RangeMin </th> : ""}
+                  {prs ? <th> RangeMax </th> : <th> RangeAAA </th>}
+                </tr>
+                {pageWeapons.map((e, i) => showRow(e, i))}
+              </tbody>
+            </table>
+          </div>
+          {prs ? (
+            <SD1WeaponWeaponCard detail={detail} setDetail={setDetail} />
+          ) : (
+            <SD2WeaponWeaponCard detail={detail} setDetail={setDetail} />
+          )}
         </div>
-        {prs ? (
-          <SD1WeaponWeaponCard detail={detail} setDetail={setDetail} />
-        ) : (
-          <SD2WeaponWeaponCard detail={detail} setDetail={setDetail} />
-        )}
+      </div>
+      <div className="card">
         <ReactPaginate
           previousLabel={"previous"}
           nextLabel={"next"}
@@ -97,7 +101,7 @@ function WeaponDB({ allWeapons }) {
           activeLinkClassName={"btn btn-block btn-outline-primary active"}
         />
       </div>
-    </div>
+    </>
   );
 }
 export default WeaponDB;

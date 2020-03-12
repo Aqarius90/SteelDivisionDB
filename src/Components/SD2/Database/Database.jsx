@@ -76,11 +76,11 @@ function Database({ DB }) {
 
   return (
     <React.Fragment>
-      <div className="container">
+      <div className="card">
         <div className="row">
           <div className="col">
             <button
-              className="btn btn-block  btn-outline-dark"
+              className="btn btn-block btn-outline-dark"
               onClick={() => setActive("d")}
             >
               Decks
@@ -88,7 +88,7 @@ function Database({ DB }) {
           </div>
           <div className="col">
             <button
-              className="btn btn-block  btn-outline-dark"
+              className="btn btn-block btn-outline-dark"
               onClick={() => setActive("u")}
             >
               Units
@@ -96,7 +96,7 @@ function Database({ DB }) {
           </div>
           <div className="col">
             <button
-              className="btn btn-block  btn-outline-dark"
+              className="btn btn-block btn-outline-dark"
               onClick={() => setActive("w")}
             >
               Weapons

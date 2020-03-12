@@ -272,7 +272,7 @@ function DDB({ Honey, API }) {
                 LOAD
               </button>
             </div>
-            <div className="col-6">
+            <div className=" card col-6">
               <div className="row">
                 <div className="col-6">
                   <button

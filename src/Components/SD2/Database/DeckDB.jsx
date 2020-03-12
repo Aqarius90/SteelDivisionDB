@@ -32,7 +32,7 @@ function DeckDB({ allDecks }) {
   }
 
   /*pagination*/
-  let pPage = 20;
+  let pPage = 5;
   const [page, setPage] = useState(0);
   let filtered = [];
   for (
@@ -47,29 +47,10 @@ function DeckDB({ allDecks }) {
   };
 
   return (
-    <div className="container">
+    <>
       <div className="row">
         <div className="col-xl-6 col-lg-8 col-md-10 col-sm-12">
           {filtered.map((e, i) => showRow(e, i, prs))}
-          <ReactPaginate
-            previousLabel={"previous"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"btn btn-outline-primary btn-secondary"}
-            pageCount={Math.ceil(allDecks.length / pPage)}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageClick}
-            containerClassName={"btn-group btn-block"}
-            pageClassName={"btn"}
-            previousClassName={"btn"}
-            nextClassName={"btn"}
-            activeClassName={"btn active"}
-            pageLinkClassName={"btn btn-block btn-outline-primary "}
-            previousLinkClassName={"btn btn-block btn-outline-primary"}
-            nextLinkClassName={"btn btn-block btn-outline-primary"}
-            activeLinkClassName={"btn btn-block btn-outline-primary active"}
-          />
         </div>
         <div className="col-xl-6 col-xs-12">
           <div className="row">
@@ -77,7 +58,28 @@ function DeckDB({ allDecks }) {
           </div>
         </div>
       </div>
-    </div>
+      <div className="card">
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"btn btn-outline-primary btn-secondary"}
+          pageCount={Math.ceil(allDecks.length / pPage)}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"btn-group btn-block"}
+          pageClassName={"btn"}
+          previousClassName={"btn"}
+          nextClassName={"btn"}
+          activeClassName={"btn active"}
+          pageLinkClassName={"btn btn-block btn-outline-primary "}
+          previousLinkClassName={"btn btn-block btn-outline-primary"}
+          nextLinkClassName={"btn btn-block btn-outline-primary"}
+          activeLinkClassName={"btn btn-block btn-outline-primary active"}
+        />
+      </div>
+    </>
   );
 }
 export default DeckDB;

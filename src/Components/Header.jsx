@@ -50,7 +50,7 @@ function Header({ Honey, API }) {
               "/" + params.DB + "/DDB" + (params.code ? "/" + params.code : "")
             )
           }
-          disabled={params.Page !== "DDB" ? false : true}
+          disabled={params.DB && params.Page !== "DDB" ? false : true}
         >
           Decks
         </button>

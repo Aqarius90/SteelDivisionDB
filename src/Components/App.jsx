@@ -4,7 +4,7 @@ import Header from "./Header";
 import SD1 from "./SD1/SD1";
 import SD2 from "./SD2/SD2";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Link,
@@ -61,7 +61,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/SteelDivisionDB">
       <div className="container">
         <Switch>
           <Route path="/:DB?/:Page?/:code?">
@@ -85,10 +85,19 @@ function App() {
 
 function RedirectWrapper({ user, login }) {
   let params = useParams();
-  let history = useHistory();
+
   let setCode = x => {
     history.push("/" + params.DB + "/" + params.Page + "/" + x);
   };
+  let history = useHistory();
+  if (window.location.search && !params.DB) {
+    let l = window.location.search.split("/");
+    //window.location.search = "";
+    params.DB = l.length > 1 ? l[1] : "";
+    params.Page = l.length > 2 ? l[2] : "";
+    params.code = l.length > 3 ? l[3] : "";
+    setCode(l[3]);
+  }
   switch (params.DB) {
     case "SD1":
       return (
@@ -98,7 +107,9 @@ function RedirectWrapper({ user, login }) {
         />
       );
     case "SD2":
-      return <SD2 Honey={{ User: user }} API={{ logIn: login }} />;
+      return (
+        <SD2 Honey={{ User: user }} API={{ logIn: login, setCode: setCode }} />
+      );
     default:
       return (
         <div className="card">

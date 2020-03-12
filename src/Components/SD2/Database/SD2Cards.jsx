@@ -85,7 +85,7 @@ export function SD2DeckDeckRow({ x, setUnits }) {
       <div className="card-header">
         <div className="row">
           <div className="col-3" onClick={() => setShow(!show)}>
-            <h4>{x.DivisionName}</h4>
+            <h5>{x.DivisionName}</h5>
           </div>
           <div className="col-2" onClick={() => setShow(!show)}>
             <img

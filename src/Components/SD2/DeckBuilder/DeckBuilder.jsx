@@ -32,7 +32,7 @@ function DeckBuilder({ DB, Deck, API }) {
   return (
     <div className="card">
       <DecodeHeader Deck={Deck} API={API} />
-      <Tabs className="card">
+      <Tabs className="card" defaultIndex={DB ? 1 : 0}>
         <TabList>
           <Tab>Division</Tab>
           <Tab>Deck</Tab>
