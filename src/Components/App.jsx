@@ -14,11 +14,11 @@ import {
 import SD1header from "../pics/SD1header.png";
 import SD2header from "../pics/SD2header.png";
 
-import { UpdateDatabase } from "../js/DatabaseHandlers";
-global.UpdateDatabase = function(x) {
-  UpdateDatabase(x);
-  return "wait for console";
-};
+//import { UpdateDatabase } from "../js/DatabaseHandlers";
+//global.UpdateDatabase = function(x) {
+//  UpdateDatabase(x);
+//  return "wait for console";
+//};
 require("dotenv").config();
 
 global.debug = false;

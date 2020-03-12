@@ -76,7 +76,7 @@ function unitIcon(x, d, isValid, show) {
         </h5>
         <h5 className="txt-sd2-avail">{x.avail}</h5>
         <h5 className="txt-sd2-phase">
-          {x.phase === 0 ? (x.ph === 1 ? "B" : "C") : "A"}
+          {x.phase === 0 ? "A" : x.phase === 1 ? "B" : "C"}
         </h5>
         <VetIcon x={x.xp} css="img-sd2-rel-xp" />
         {getSpec(x.u, "img-sd2-rel-spec")}
