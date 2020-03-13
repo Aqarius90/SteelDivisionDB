@@ -50,7 +50,7 @@ function WeaponDB({ allWeapons }) {
         <FilterField items={allWeapons} set={setFilter}></FilterField>
         <div className="row">
           <div className="col-12">
-            <table className="sortable table-hover">
+            <table className="sortable table-hover table-bordered table-responsive text-center">
               <tbody>
                 <tr>
                   <th></th>

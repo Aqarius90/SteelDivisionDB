@@ -50,7 +50,7 @@ function UnitDB({ allUnits }) {
         <FilterField items={allUnits} set={setFilter}></FilterField>
         <div className="row">
           <div className="col-12">
-            <table className="sortable table-hover">
+            <table className="sortable table-hover table-bordered table-responsive text-center">
               <tbody>
                 <tr>
                   <th> </th>
