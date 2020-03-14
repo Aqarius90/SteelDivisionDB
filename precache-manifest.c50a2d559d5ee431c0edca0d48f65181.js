@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "12d0920870d986d6d6c2d5a4d565b969",
+    "revision": "f04dd674a844280b750f51738fdadf7f",
     "url": "/SteelDivisionDB/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css"
   },
   {
-    "revision": "bbc5452317d01ef85180",
+    "revision": "8c1174618c68edaebd61",
     "url": "/SteelDivisionDB/static/css/main.b918a759.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SteelDivisionDB/static/js/2.3e0183b6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bbc5452317d01ef85180",
-    "url": "/SteelDivisionDB/static/js/main.6b7734fc.chunk.js"
+    "revision": "8c1174618c68edaebd61",
+    "url": "/SteelDivisionDB/static/js/main.0aa64eae.chunk.js"
   },
   {
     "revision": "5df9a6586f0bbb619f96",
