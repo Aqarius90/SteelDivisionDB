@@ -52,7 +52,7 @@ function SD2({ Honey, API }) {
     }
   };
   deckAPI.setIncome = x => {
-    //incomes are 0,1 2 3 for balanced, vanguard, maverick, juggernaut
+    //incomes are 0,1 2 3 4 5 for balanced, vanguard, maverick, juggernaut, flat, V
     //TODO check this ordering
     try {
       let newdeck = _.clone(deck).setIncome(x);

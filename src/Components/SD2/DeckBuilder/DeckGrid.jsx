@@ -61,6 +61,22 @@ export function IncomeSelector({ Deck, setIncome }) {
           "/" +
           IncomeList.Juggernaut[2]}
       </button>
+      <button className={isSelected(4)} onClick={() => setIncome(4)}>
+        {"Flat:  " +
+          IncomeList.Flat[0] +
+          "/" +
+          IncomeList.Flat[1] +
+          "/" +
+          IncomeList.Flat[2]}
+      </button>
+      <button className={isSelected(5)} onClick={() => setIncome(5)}>
+        {"V for Victory:  " +
+          IncomeList.V[0] +
+          "/" +
+          IncomeList.V[1] +
+          "/" +
+          IncomeList.V[2]}
+      </button>
     </div>
   );
 }

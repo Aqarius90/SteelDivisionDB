@@ -20,7 +20,9 @@ class DeckAssembly {
       Balanced: [0, 0, 0],
       Vanguard: [0, 0, 0],
       Maverick: [0, 0, 0],
-      Juggernaut: [0, 0, 0]
+      Juggernaut: [0, 0, 0],
+      Flat: [0, 0, 0],
+      V: [0, 0, 0]
     };
 
     //dynamic
@@ -275,7 +277,7 @@ class DeckAssembly {
     //income
     let bitsofIncome = parseInt(bin.slice(posc, posc + 5), 2);
     posc += 5;
-    this.Income = parseInt(bin.slice(posc + 0, posc + bitsofIncome));
+    this.Income = parseInt(bin.slice(posc + 0, posc + bitsofIncome), 2);
     posc += bitsofIncome;
 
     //unit loop bit counts
@@ -399,7 +401,7 @@ class DeckAssembly {
   }
 
   setIncome(x) {
-    if (x in [0, 1, 2, 3]) {
+    if (x in [0, 1, 2, 3, 4, 5]) {
       //only valid inputs
       this.Income = x;
     } else {

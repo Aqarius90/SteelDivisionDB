@@ -64,7 +64,7 @@ function App() {
     <Router basename="/SteelDivisionDB">
       <div className="container">
         <Switch>
-          <Route path="/:DB?/:Page?/:code?">
+          <Route path="/:DB?/:Page?/:code*">
             <div className="card">
               <Header
                 Honey={{
@@ -96,7 +96,10 @@ function RedirectWrapper({ user, login }) {
     params.DB = l.length > 1 ? l[1] : "";
     params.Page = l.length > 2 ? l[2] : "";
     params.code = l.length > 3 ? l[3] : "";
-    setCode(l[3]);
+    for (let i = 4; i < l.length; i++) {
+      params.code += "/" + l[i];
+    }
+    setCode(params.code);
   }
   switch (params.DB) {
     case "SD1":

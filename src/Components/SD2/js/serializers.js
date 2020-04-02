@@ -9,6 +9,10 @@ export function getIncomeArray(Deck) {
       return (Deck.Income = "Maverick");
     case 3:
       return (Deck.Income = "Juggernaut");
+    case 4:
+      return (Deck.Income = "Flat");
+    case 5:
+      return (Deck.Income = "V for Victory");
 
     default:
       global.throw("Income array parsing error", Deck);
