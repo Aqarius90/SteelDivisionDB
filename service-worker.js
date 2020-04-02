@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/SteelDivisionDB/precache-manifest.1f8924b1e2801bb321abe84d9ae82225.js"
+  "/SteelDivisionDB/precache-manifest.5460e9d9be8790b6d65bf92845abee0c.js"
 );
 
 self.addEventListener('message', (event) => {
