@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/SteelDivisionDB/static/css/main.b918a759.chunk.css",
-    "main.js": "/SteelDivisionDB/static/js/main.b507ca29.chunk.js",
-    "main.js.map": "/SteelDivisionDB/static/js/main.b507ca29.chunk.js.map",
+    "main.js": "/SteelDivisionDB/static/js/main.64e0d712.chunk.js",
+    "main.js.map": "/SteelDivisionDB/static/js/main.64e0d712.chunk.js.map",
     "runtime-main.js": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js",
     "runtime-main.js.map": "/SteelDivisionDB/static/js/runtime-main.2cddc929.js.map",
     "static/css/2.030dbed9.chunk.css": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css",
-    "static/js/2.3e0183b6.chunk.js": "/SteelDivisionDB/static/js/2.3e0183b6.chunk.js",
-    "static/js/2.3e0183b6.chunk.js.map": "/SteelDivisionDB/static/js/2.3e0183b6.chunk.js.map",
+    "static/js/2.d8c4b218.chunk.js": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js",
+    "static/js/2.d8c4b218.chunk.js.map": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js.map",
     "index.html": "/SteelDivisionDB/index.html",
-    "precache-manifest.5460e9d9be8790b6d65bf92845abee0c.js": "/SteelDivisionDB/precache-manifest.5460e9d9be8790b6d65bf92845abee0c.js",
+    "precache-manifest.f5764ae4596ee35cb175deee5f201b38.js": "/SteelDivisionDB/precache-manifest.f5764ae4596ee35cb175deee5f201b38.js",
     "service-worker.js": "/SteelDivisionDB/service-worker.js",
     "static/css/2.030dbed9.chunk.css.map": "/SteelDivisionDB/static/css/2.030dbed9.chunk.css.map",
     "static/css/main.b918a759.chunk.css.map": "/SteelDivisionDB/static/css/main.b918a759.chunk.css.map",
-    "static/js/2.3e0183b6.chunk.js.LICENSE.txt": "/SteelDivisionDB/static/js/2.3e0183b6.chunk.js.LICENSE.txt",
+    "static/js/2.d8c4b218.chunk.js.LICENSE.txt": "/SteelDivisionDB/static/js/2.d8c4b218.chunk.js.LICENSE.txt",
     "static/media/SD1header.png": "/SteelDivisionDB/static/media/SD1header.62c5a853.png",
     "static/media/SD2header.png": "/SteelDivisionDB/static/media/SD2header.60de9412.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2cddc929.js",
     "static/css/2.030dbed9.chunk.css",
-    "static/js/2.3e0183b6.chunk.js",
+    "static/js/2.d8c4b218.chunk.js",
     "static/css/main.b918a759.chunk.css",
-    "static/js/main.b507ca29.chunk.js"
+    "static/js/main.64e0d712.chunk.js"
   ]
 }
