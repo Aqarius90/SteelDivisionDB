@@ -41,7 +41,7 @@
     "commit": "gh-pages -d build -n"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^5.0.0"
   },
   "browserslist": [
     ">0.2%",
